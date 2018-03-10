@@ -1,0 +1,487 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello, World! - The Rust Programming Language</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+    </head>
+    <body class="light">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme;
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            document.querySelector('html').classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li class="affix"><a href="foreword.html">Foreword</a></li><li class="affix"><a href="ch00-00-introduction.html">Introduction</a></li><li><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li><a href="ch01-02-hello-world.html" class="active"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Guessing Game Tutorial</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References &amp; Borrowing</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T> Points to Data on the Heap and Has a Known Size</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>, the Reference Counted Smart Pointer</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T> and the Interior Mutability Pattern</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions &amp; Closures</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                        </div>
+
+                        <h1 class="menu-title">The Rust Programming Language</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="ch01-02-hello-world.html#hello-world" id="hello-world"><h2>Hello, World!</h2></a>
+<p>Після встановлення Rust напишемо першу програму цією мовою. Давно стало
+традицією при вивченні нової мови програмування писати маленьку програму, що
+виводить на екран текст  “Hello, world!”, і ми не будемо відступати від цієї
+традиції.</p>
+<blockquote>
+<p>Примітка: ця книжка передбачає базове знайомство із командним рядком. Rust
+як така не висуває особливих вимог до редакторів, інструментів і розміщення
+коду, тому якщо вам зручніше використовувати IDE замість командного рядка,
+можете користуватися вашим улюбленим IDE.</p>
+</blockquote>
+<a class="header" href="ch01-02-hello-world.html#Створення-теки-проекту" id="Створення-теки-проекту"><h3>Створення теки проекту</h3></a>
+<p>Для початку, створіть теку для розміщення вашого коду на Rust. Для Rust немає
+значення, де розміщено ваш код, але в цій книжці ми рекомендуємо зробити теку
+<em>projects</em> (проекти) у вашій домашній теці і тримати всі проекти там. Запустіть
+термінал і введіть такі команди, щоб створити теку для проекту з цього розділу:</p>
+<p>Linux і Mac:</p>
+<pre><code class="language-text">$ mkdir ~/projects
+$ cd ~/projects
+$ mkdir hello_world
+$ cd hello_world
+</code></pre>
+<p>Windows:</p>
+<pre><code class="language-cmd">&gt; mkdir %USERPROFILE%\projects
+&gt; cd %USERPROFILE%\projects
+&gt; mkdir hello_world
+&gt; cd hello_world
+</code></pre>
+<a class="header" href="ch01-02-hello-world.html#Написання-і-запуск-програми-на-rust" id="Написання-і-запуск-програми-на-rust"><h3>Написання і запуск програми на Rust</h3></a>
+<p>Теперь створіть новий сирцевий файл і назвіть його <em>main.rs</em>. Файли на Rust
+завжди закінчуються розширенням <em>.rs</em>. Якщо у назві файлу використовується більш
+ніж одне слово, для розділення використовується підкреслення. Наприклад, можна
+назвати файл <em>hello_world.rs</em>, але не <em>helloworld.rs</em>.</p>
+<p>Тепер відкрийте файл <em>main.rs</em>, який ви щойно створили, і наберіть такий код:</p>
+<p><span class="filename">Файл: main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">fn main() {
+    println!(&quot;Hello, world!&quot;);
+}
+</code></pre></pre>
+<p>Збережіть цей файл і поверніться до вікна терміналу. На Linux або Mac наберіть
+такі команди:</p>
+<pre><code class="language-text">$ rustc main.rs
+$ ./main
+Hello, world!
+</code></pre>
+<p>У Windows запустіть <code>.\main.exe</code> замість <code>./main</code>. Незалежно від вашої
+операційної системи, ви побачите у терміналі стрічку <code>Hello, world!</code>. Якщо
+побачили - вітаємо! Ви щойно написали програму на Rust і офіційно стали
+програмістом на Rust! Ласкаво просимо до спільноти!</p>
+<a class="header" href="ch01-02-hello-world.html#Анатомія-програми-на-rust" id="Анатомія-програми-на-rust"><h3>Анатомія програми на Rust</h3></a>
+<p>Тепер давайте детально пройдемося по тому, що щойно сталося у вашій програмі
+&quot;Hello, world!&quot;. Ось перший шматок пазла:</p>
+<pre><pre class="playpen"><code class="language-rust">fn main() {
+
+}
+</code></pre></pre>
+<p>Ці рядки на Rust визначають <em>функцію</em>. Функція <code>main</code> особлива: це перше, що
+запускається у кожній виконанній програмі на Rust. Перший рядок каже: &quot;я
+проголошую функцію з назовою <code>main</code> без параметрів і яка нічого не повертає.
+Якби були параметри, їхні імена треба було розмістити між дужками <code>(</code> та <code>)</code>.</p>
+<p>Також зверніть увагу, що тіло функції взято у фігурні дужки <code>{</code> та <code>}</code>. Rust
+вимагає таких дужок навколо тіл усіх функцій. Вважається хорошим стилем
+розміщувати відкриваючу дужку на тому ж рядку, що й проголошення функції, з
+відступом в один пробіл.</p>
+<p>Всередині функції <code>main</code>:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+    println!(&quot;Hello, world!&quot;);
+#}</code></pre></pre>
+<p>Цей рядок виконує всю роботу в цій маленькій програмі: виводить текст на екран.
+Тут треба зазначити ряд деталей. По-перше, у Rust прийнято робити відступи в
+чотири пробіли, а не табуляцію.</p>
+<p>Друга важлива деталь - це <code>println!</code>. Це виклик <em>макросу</em> (<em>macro</em>), реалізації
+метапрограмування в Rust. Якби ми викликали функцію, то це виглядало б як
+<code>println</code> (без <code>!</code>). Макроси в Rust детальніше обговорюються в Розділі 24, а
+поки що достатньо знати, що коли ви бачите <code>!</code>, це означає, що викликається
+макрос, а не звичайна функція.</p>
+<p>Далі іде <code>&quot;Hello, world!&quot;</code>  - це <em>стрічка</em> (<em>string</em>). Ми передаємо цю стрічку
+аргументом до <code>println!</code>, який виводить стрічку на екран. Досить просто!</p>
+<p>Рядок завершується крапкою із комою (<code>;</code>). Це означає, що цей вираз завершено, і
+можна починати наступний. Більшість рядків в коді на Rust завершується <code>;</code>.</p>
+<a class="header" href="ch01-02-hello-world.html#Компіляція-і-запуск---окремі-кроки" id="Компіляція-і-запуск---окремі-кроки"><h3>Компіляція і запуск - окремі кроки</h3></a>
+<p>В підрозділі &quot;Написання і запуск програми на Rust&quot; ми показали вам, як запускати
+щойно створену програму. Тепер розділимо цей процес на частини і дослідимо кожну
+з них окремо.</p>
+<p>Перед запуском програми на Rust необхідно її скомпілювати. Можна скористатися
+компілятором Rust, набравши команду rustc і передавши їй ім'я сирцевого файлу:</p>
+<pre><code class="language-text">$ rustc main.rs
+</code></pre>
+<p>Якщо ви маєте досвід роботи з C чи C++, ви можете помітити, що це схоже на <code>gcc</code>
+чи <code>clang</code>. Після вдалої компіляції Rust створює двійковий виконанний файл, який
+можна побачити на Linux чи Mac, ввівши команду <code>ls</code> у вашій оболонці:</p>
+<pre><code class="language-text">$ ls
+main  main.rs
+</code></pre>
+<p>В Windows введіть <code>dir /B</code> (опція /B каже показувати імена тільки файлів):</p>
+<pre><code class="language-cmd">&gt; dir /B
+main.exe
+main.rs
+</code></pre>
+<p>Ми бачиому, що в нас є два файли: сирцевий код, з розширенням <em>.rs</em>, та
+виконанний файл (<em>main.exe</em> у Windows, <em>main</em> деінде). Все, що лишається на цей
+момент - запустити файл <em>main</em> чи <em>main.exe</em>:</p>
+<pre><code class="language-text">$ ./main  # чи .\main.exe у Windows
+</code></pre>
+<p>Якщо <em>main.rs</em> - це ваша програма &quot;Hello, world!&quot;, вона виведе повідомлення
+<code>Hello, world!</code> у вашому терміналі.</p>
+<p>Якщо ви переходите з інтерпретованої мови на кшталт Ruby, Python чи JavaScript,
+вам може бути незвичним, що компіляція і виконання програми - окремі кроки. Rust
+є <em>завчасно компільованою</em> мовою, тобто ви можете скомпілювати програму,
+передати її комусь іншому, і він зможе запустити її навіть якщо у нього не
+встановлено Rust. Якщо ви передаєте комусь файл <code>.rb</code>, <code>.py</code> чи <code>.js</code>, йому,
+натомість, буде потрібна встановлена реалізація мови Ruby, Python чи Javascript,
+відповідно, але вам потрібна тільки одна команда щоб скомпілювати та запустити
+вашу програму. В
+If you come from a dynamic language like Ruby, Python, or JavaScript, you may
+not be used to compiling and running a program being separate steps. Rust is an
+<em>ahead-of-time compiled</em> language, which means that you can compile a program,
+give it to someone else, and they can run it even without having Rust
+installed. If you give someone a <code>.rb</code>, <code>.py</code>, or <code>.js</code> file, on the other
+hand, they need to have a Ruby, Python, or JavaScript implementation installed
+(respectively), but you only need one command to both compile and run your
+program. Всі переваги мови програмування мають свою ціну.</p>
+<p>Проста компіляція за допомогою <code>rustc</code> годиться для простеньких програм, але зі
+зростанням вашого проекту, вам захочеться мати можливість керувати всіма
+параметрами, що є у вашому проекті і легко ділитися кодом з іншими людьми та
+проектами. Наступний крок - інструмент, що зветься Cargo, який допоможе вам
+писати програми на Rust для реального світу.</p>
+<a class="header" href="ch01-02-hello-world.html#hello-cargo" id="hello-cargo"><h2>Hello, Cargo!</h2></a>
+<p>Cargo is Rust’s build system and package manager, and Rustaceans use Cargo to
+manage their Rust projects because it makes a lot of tasks easier. For example,
+Cargo takes care of building your code, downloading the libraries your code
+depends on, and building those libraries. We call libraries your code needs
+<em>dependencies</em>.</p>
+<p>The simplest Rust programs, like the one we've written so far, don’t have any
+dependencies, so right now, you'd only be using the part of Cargo that can take
+care of building your code. As you write more complex Rust programs, you’ll
+want to add dependencies, and if you start off using Cargo, that will be a lot
+easier to do.</p>
+<p>As the vast, vast majority of Rust projects use Cargo, we will assume that
+you’re using it for the rest of the book. Cargo comes installed with Rust
+itself, if you used the official installers as covered in the Installation
+chapter. If you installed Rust through some other means, you can check if you
+have Cargo installed by typing the following into your terminal:</p>
+<pre><code class="language-text">$ cargo --version
+</code></pre>
+<p>If you see a version number, great! If you see an error like <code>command not found</code>, then you should look at the documentation for your method of
+installation to determine how to install Cargo separately.</p>
+<a class="header" href="ch01-02-hello-world.html#creating-a-project-with-cargo" id="creating-a-project-with-cargo"><h3>Creating a Project with Cargo</h3></a>
+<p>Let's create a new project using Cargo and look at how it differs from our
+project in <code>hello_world</code>. Go back to your projects directory (or wherever you
+decided to put your code):</p>
+<p>Linux and Mac:</p>
+<pre><code class="language-text">$ cd ~/projects
+</code></pre>
+<p>Windows:</p>
+<pre><code class="language-cmd">&gt; cd %USERPROFILE%\projects
+</code></pre>
+<p>And then on any operating system run:</p>
+<pre><code class="language-text">$ cargo new hello_cargo --bin
+$ cd hello_cargo
+</code></pre>
+<p>We passed the <code>--bin</code> argument to <code>cargo new</code> because our goal is to make an
+executable application, as opposed to a library. Executables are binary
+executable files often called just <em>binaries</em>. We've given <code>hello_cargo</code>
+as the name for our project, and Cargo creates its files in a directory
+of the same name that we can then go into.</p>
+<p>If we list the files in the <em>hello_cargo</em> directory, we can see that Cargo has
+generated two files and one directory for us: a <em>Cargo.toml</em> and a <em>src</em>
+directory with a <em>main.rs</em> file inside. It has also initialized a new git
+repository in the <em>hello_cargo</em> directory for us, along with a <em>.gitignore</em>
+file; you can change this to use a different version control system, or no
+version control system, by using the <code>--vcs</code> flag.</p>
+<p>Open up <em>Cargo.toml</em> in your text editor of choice. It should look something
+like this:</p>
+<p><span class="filename">Файл: Cargo.toml</span></p>
+<pre><code class="language-toml">[package]
+name = &quot;hello_cargo&quot;
+version = &quot;0.1.0&quot;
+authors = [&quot;Your Name &lt;you@example.com&gt;&quot;]
+
+[dependencies]
+</code></pre>
+<p>This file is in the <a href="https://github.com/toml-lang/toml"><em>TOML</em></a><!-- ignore --> (Tom's Obvious, Minimal
+Language) format. TOML is similar to INI but has some extra goodies and is used
+as Cargo’s configuration format.</p>
+<p>The first line, <code>[package]</code>, is a section heading that indicates that the
+following statements are configuring a package. As we add more information to
+this file, we’ll add other sections.</p>
+<p>The next three lines set the three bits of configuration that Cargo needs to
+see in order to know that it should compile your program: its name, what
+version it is, and who wrote it. Cargo gets your name and email information
+from your environment. If it’s not correct, go ahead and fix that and save the
+file.</p>
+<p>The last line, <code>[dependencies]</code>, is the start of a section for you to list any
+<em>crates</em> (which is what we call packages of Rust code) that your project will
+depend on so that Cargo knows to download and compile those too. We won't need
+any other crates for this project, but we will in the guessing game tutorial in
+the next chapter.</p>
+<p>Now let's look at <em>src/main.rs</em>:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">fn main() {
+    println!(&quot;Hello, world!&quot;);
+}
+</code></pre></pre>
+<p>Cargo has generated a &quot;Hello World!&quot; for you, just like the one we wrote
+earlier! So that part is the same. The differences between our previous project
+and the project generated by Cargo that we've seen so far are:</p>
+<ul>
+<li>Our code goes in the <em>src</em> directory</li>
+<li>The top level contains a <em>Cargo.toml</em> configuration file</li>
+</ul>
+<p>Cargo expects your source files to live inside the <em>src</em> directory so that the
+top-level project directory is just for READMEs, license information,
+configuration files, and anything else not related to your code. In this way,
+using Cargo helps you keep your projects nice and tidy. There's a place for
+everything, and everything is in its place.</p>
+<p>If you started a project that doesn't use Cargo, as we did with our project in
+the <em>hello_world</em> directory, you can convert it to a project that does use
+Cargo by moving your code into the <em>src</em> directory and creating an appropriate
+<em>Cargo.toml</em>.</p>
+<a class="header" href="ch01-02-hello-world.html#building-and-running-a-cargo-project" id="building-and-running-a-cargo-project"><h3>Building and Running a Cargo Project</h3></a>
+<p>Now let's look at what's different about building and running your Hello World
+program through Cargo! To do so, enter the following commands:</p>
+<pre><code class="language-text">$ cargo build
+   Compiling hello_cargo v0.1.0 (file:///projects/hello_cargo)
+</code></pre>
+<p>This should have created an executable file in <em>target/debug/hello_cargo</em> (or
+<em>target\debug\hello_cargo.exe</em> on Windows), which you can run with this command:</p>
+<pre><code class="language-text">$ ./target/debug/hello_cargo # or .\target\debug\hello_cargo.exe on Windows
+Hello, world!
+</code></pre>
+<p>Bam! If all goes well, <code>Hello, world!</code> should print to the terminal once more.</p>
+<p>Running <code>cargo build</code> for the first time also causes Cargo to create a new file
+at the top level called <em>Cargo.lock</em>, which looks like this:</p>
+<p><span class="filename">Filename: Cargo.lock</span></p>
+<pre><code class="language-toml">[root]
+name = &quot;hello_cargo&quot;
+version = &quot;0.1.0&quot;
+</code></pre>
+<p>Cargo uses the <em>Cargo.lock</em> to keep track of dependencies in your application.
+This project doesn't have dependencies, so the file is a bit sparse.
+Realistically, you won't ever need to touch this file yourself; just let Cargo
+handle it.</p>
+<p>We just built a project with <code>cargo build</code> and ran it with
+<code>./target/debug/hello_cargo</code>, but we can also use <code>cargo run</code> to compile
+and then run:</p>
+<pre><code class="language-text">$ cargo run
+     Running `target/debug/hello_cargo`
+Hello, world!
+</code></pre>
+<p>Notice that this time, we didn't see the output telling us that Cargo was
+compiling <code>hello_cargo</code>. Cargo figured out that the files haven’t changed, so
+it just ran the binary. If you had modified your source code, Cargo would have
+rebuilt the project before running it, and you would have seen something like
+this:</p>
+<pre><code class="language-text">$ cargo run
+   Compiling hello_cargo v0.1.0 (file:///projects/hello_cargo)
+     Running `target/debug/hello_cargo`
+Hello, world!
+</code></pre>
+<p>So a few more differences we've now seen:</p>
+<ul>
+<li>Instead of using <code>rustc</code>, build a project using <code>cargo build</code> (or build and
+run it in one step with <code>cargo run</code>)</li>
+<li>Instead of the result of the build being put in the same directory as our
+code, Cargo will put it in the <em>target/debug</em> directory.</li>
+</ul>
+<p>The other advantage of using Cargo is that the commands are the same no matter
+what operating system you're on, so at this point we will no longer be
+providing specific instructions for Linux and Mac versus Windows.</p>
+<a class="header" href="ch01-02-hello-world.html#building-for-release" id="building-for-release"><h3>Building for Release</h3></a>
+<p>When your project is finally ready for release, you can use <code>cargo build --release</code> to compile your project with optimizations. This will create an
+executable in <em>target/release</em> instead of <em>target/debug</em>. These optimizations
+make your Rust code run faster, but turning them on makes your program take
+longer to compile. This is why there are two different profiles: one for
+development when you want to be able to rebuild quickly and often, and one for
+building the final program you’ll give to a user that won't be rebuilt and
+that we want to run as fast as possible. If you're benchmarking the running
+time of your code, be sure to run <code>cargo build --release</code> and benchmark with
+the executable in <em>target/release</em>.</p>
+<a class="header" href="ch01-02-hello-world.html#cargo-as-convention" id="cargo-as-convention"><h3>Cargo as Convention</h3></a>
+<p>With simple projects, Cargo doesn't provide a whole lot of value over just
+using <code>rustc</code>, but it will prove its worth as you continue. With complex
+projects composed of multiple crates, it’s much easier to let Cargo coordinate
+the build. With Cargo, you can just run <code>cargo build</code>, and it should work the
+right way. Even though this project is simple, it now uses much of the real
+tooling you’ll use for the rest of your Rust career. In fact, you can get
+started with virtually all Rust projects you want to work
+on with the following commands:</p>
+<pre><code class="language-text">$ git clone someurl.com/someproject
+$ cd someproject
+$ cargo build
+</code></pre>
+<blockquote>
+<p>Note: If you want to look at Cargo in more detail, check out the official
+<a href="http://doc.crates.io/guide.html">Cargo guide</a>, which covers all of its features.</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch01-01-installation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch01-03-hello-cargo.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="ch01-01-installation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ch01-03-hello-cargo.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if (getComputedStyle(document.querySelector(".fa")).fontFamily !== "FontAwesome") {
+                var link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = '_FontAwesome/css/font-awesome.css';
+                document.head.insertBefore(link, document.head.firstChild)
+            }
+        </script>
+
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

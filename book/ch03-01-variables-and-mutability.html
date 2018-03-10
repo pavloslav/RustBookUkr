@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Variables and Mutability - The Rust Programming Language</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+    </head>
+    <body class="light">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme;
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            document.querySelector('html').classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li class="affix"><a href="foreword.html">Foreword</a></li><li class="affix"><a href="ch00-00-introduction.html">Introduction</a></li><li><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Guessing Game Tutorial</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html" class="active"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References &amp; Borrowing</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T> Points to Data on the Heap and Has a Known Size</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>, the Reference Counted Smart Pointer</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T> and the Interior Mutability Pattern</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions &amp; Closures</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                        </div>
+
+                        <h1 class="menu-title">The Rust Programming Language</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="ch03-01-variables-and-mutability.html#Змінні-і-сталість" id="Змінні-і-сталість"><h2>Змінні і сталість</h2></a>
+<p>Як вже згадувалося у Розділі 2, типопо змінні є <em>сталими</em> (<em>immutable</em>). Це -
+один з численних штурханців, якими Rust заохочує вас писати код, що користується
+перевагами у безпеці та швидкості, які надає Rust. Тим не менш, ви все ж маєте
+можливість зробити змінні несталими. Дослідимо, як і чому Rust заохочує вас
+надавати перевагу сталості, та чому ви можете захотіти відмовитися від цього.</p>
+<p>Якщо змінна є сталою, це означає, що відколи значення стає прив'язаним до імені,
+ви не можете змінити це значення. Для прикладу згенеруємо новий проект з назвою
+<em>variables</em> (&quot;змінні&quot;) у вашій теці <em>projects</em> за допомгою
+<code>cargo new --bin variables</code>.</p>
+<p>Потім, у новоствореній теці <em>variables</em>, відкрийте <em>src/main.rs</em> і замініть його
+код таким:</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><code class="language-rust ignore">fn main() {
+    let x = 5;
+    println!(&quot;Значення x: {}&quot;, x);
+    x = 6;
+    println!(&quot;Значення x: {}&quot;, x);
+}
+</code></pre>
+<p>Збережіть і запустіть програму за допомогою <code>cargo run</code>. Ви дістанете
+повідомлення про помилку, як показано тут:</p>
+<pre><code class="language-text">$ cargo run
+   Compiling variables v0.0.1 (file:///projects/variables)
+error[E0384]: re-assignment of immutable variable `x`
+ --&gt; src/main.rs:4:5
+  |
+2 |     let x = 5;
+  |         - first assignment to `x`
+3 |     println!(&quot;Значення x: {}&quot;, x);
+4 |     x = 6;
+  |     ^^^^^ re-assignment of immutable variable
+</code></pre>
+<p>Цей приклад показує, як компілятор допомагає вам знаходити помилки у ваших
+програмах. Хоча повідомлення компілятора про помилки й можуть бути неприємними,
+вони лише означають, що ваша програма ще не робить те, що ви хотіли, у безпечний
+спосіб; вони <em>не</em> означають, що ви поганий програміст! Досвідчені растацеанці
+також отримують повідомлення про помилки від компілятора. Повідомлення вказує,
+що причиною помилки є &quot;переприсвоєння сталій змінній&quot; (<code>re-assignment of immutable variable</code>), бо ми намагалися присвоїти друге значення сталій змінній
+<code>x</code>.</p>
+<p>Важливо, що ми отримали помилку часу компіляції, коли намагалися змінити
+значення, яке раніше визначили як стале, тому що ця ситуація може призвести до
+вад у програмі. Якщо одна частина нашого коду працює з припущенням, що значення
+не буде змінене, а інша частина нашого коду змінює це значення, можливо, що
+перша частина коду буде робити не те, для чого вона була зроблена. Цю причину
+вад важко відслідкувати після виявлення, особливо коли другий шмат коду змінює
+значення лише <em>іноді</em>.</p>
+<p>У Rust компілятор гарантує, що, якщо ми заявили, що змінна не зміниться, вона і
+дійсно не зміниться. Це означає, що коли ви читаєте і пишете код, вам не треба
+відстежувати, як і де значення може змінитися, що може полегшити обмірковування
+коду.</p>
+<p>Але несталість може бути вкрай корисною. Змінні є сталими тільки типово; ми
+можемо зробити їх несталими, додавши <code>mut</code> перед ім'ям змінної. На додачу до
+дозволу змінювати це значення, це попереджає майбутніх читачим коду про ваші
+наміри, вказуючи, що інші частини коду будуть змінювати значення цієї змінної.</p>
+<p>Наприклад, змінимо <em>src/main.rs</em> на такий код:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">fn main() {
+    let mut x = 5;
+    println!(&quot;Значення x: {}&quot;, x);
+    x = 6;
+    println!(&quot;Значення x: {}&quot;, x);
+}
+</code></pre></pre>
+<p>Запустивши програму ми отримаємо:</p>
+<pre><code class="language-text">$ cargo run
+   Compiling variables v0.1.0 (file:///projects/variables)
+     Running `target/debug/variables`
+Значення x: 5
+Значення x: 6
+</code></pre>
+<p>Застосувавши <code>mut</code>, ми дозволили змінити значення, прив'язане до <code>x</code>, з <code>5</code> на
+<code>6</code>. У деяких випадках, вам захочеться робити змінні несталими, бо так зручніше
+писати код, ніж в реалізації з виключно сталими змінними.</p>
+<p>Варто розглядати й інші аспекти, крім запобігання вадам. Наприклад, якщо ви
+використовуєте великі структури даних, змінювати екземпляр на місці може бути
+швидше, ніж копіювати і повертати наново виділений екземпляр. Для менших
+структур даних може бути зручнішим розмірковувати про код, написаний у більш
+функціональному стилі, з постійним створенням нових екземплярів, тому може бути
+варто знизити продуктивність заради збільшення ясності.</p>
+<a class="header" href="ch03-01-variables-and-mutability.html#Різниця-між-змінними-та-константами" id="Різниця-між-змінними-та-константами"><h3>Різниця між змінними та константами</h3></a>
+<p>Неможливість змінити значення змінної може нагадати вам про іншу концепцію
+программування, що є в більшості мов: <em>константи</em>. Константи - це так само
+значення, прив'язані до імені, які не можна змінювати, але є кілька відмінностей між константами і змінними. По-перше, використання <code>mut</code> з константами
+неможливе: константи не тільки типово сталі, вони завжди сталі. Константи
+проголошуються ключовим словом <code>const</code> замість <code>let</code>, і тип значення <em>має</em> явно
+позначатися. Ми розкажемо про типи і позначки типів у наступному розділі, &quot;Типи
+даних&quot;, тому не хвилюйтеся зараз про деталі. Константи можуть проголошуватися
+в будь-якій області видимості, у тому числі глобальній, що робить їх корисними
+для зберігання значення, яке використовується у багатьох частинах вашого коду.
+Остання відмнінність полягає в тому, що константи можуть набувати тільки
+значення константних виразів, а не результатів виклику функції чи інших значень,
+які можуть бути використані лише під час виконання програми.</p>
+<p>Ось приклад проголошення константи, де константа зветься <code>MAX_POINTS</code>, а її
+значення є 100,000. Угода про назви констант в Rust вимагає використання
+верхнього регістру із підкресленнями між словам:</p>
+<pre><code>const MAX_POINTS: u32 = 100_000;
+</code></pre>
+<p>Константи діють протягом усього часу життя програми, всередині тієї області
+видимості, де вони були проголошені. Це робить константи корисними для
+зберігання значень у вашому додатку, про які необхідно знати багатьом частинам
+програми, наприклад максимальна кількість балів, яку може отримати гравець чи
+кількість секунд у році.</p>
+<p>Корисно документувати жорстко задані значення, що використовуються по всій
+програмі, позначаючи їх константами, щоб передати сенс цього значення тим, хто
+супроводжуватиме код. Це також корисно тим, що ви в коді буде тільки одне місце,
+яке буде необхідно змінити, у разі потреби оновити жорстко задане значення.</p>
+<a class="header" href="ch03-01-variables-and-mutability.html#Затінення" id="Затінення"><h3>Затінення</h3></a>
+<p>Як ми бачили у Розділі 2, можна проголошувати нові змінні із таким самим іменем,
+як і в минулих змінних, і нова змінна <em>затінює</em> (<em>shadows</em>) попередню змінну.
+Растацеанці кажуть, що перша змінна <em>затінена</em> (<em>shadowed</em>) другою, що означає,
+що при використанні змінної ми отримаємо значення другої змінної. Ми можемо
+затінити змінну за допомогою ключового слова <code>let</code> та імені цієї змінної:</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">fn main() {
+    let x = 5;
+
+    let x = x + 1;
+
+    let x = x * 2;
+
+    println!(&quot;Значення x: {}&quot;, x);
+}
+</code></pre></pre>
+<p>Ця програма спершу прив'язує <code>x</code> до значення <code>5</code>. Потім затінює <code>x</code> повторенням
+<code>let x =</code>, взявши початкове значення і додавши до нього <code>1</code>, так що значення <code>x</code>
+стає <code>6</code>. Третя інструкція <code>let</code> також затінює <code>x</code>, бере попереднє значення і
+множить його на <code>1</code>, щоб надати <code>x</code> остатночного значення <code>12</code>. Якщо запустити
+цю програму, вона виведе:</p>
+<pre><code class="language-text">$ cargo run
+   Compiling variables v0.1.0 (file:///projects/variables)
+     Running `target/debug/variables`
+Значення x: 12
+</code></pre>
+<p>Це відрізняється від позначення змінної <code>mut</code>, адже якщо ми знову не
+використаємо ключове слово <code>let</code>, отримаємо помилку часу компіляції, якщо
+випадково спробуємо переприсвоїти значення цієї змінної. Ми можемо перетворювати
+значення, але змінна буде сталою після виконання цих перетворень.</p>
+<p>Інша різниця між <code>mut</code> та затіненням полягає в тому, що оскільки коли пишемо
+знову ключове слово <code>let</code>, насправді ми створюємо нову змінну, тоже можемо
+змінити тип значення, але залишити ім'я. Наприклад, хай наша програма просить
+користувача вказати, скільки пробілів має бути всередині якогось тексту, ввівши
+символи пробілу, але насправді ми хочемо зберігати це значення як число:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+let spaces = &quot;   &quot;;
+let spaces = spaces.len();
+#}</code></pre></pre>
+<p>Ця конструкція можлива, бо перша змінна <code>spaces</code> має стрічковий тип, а друга
+змінна <code>spaces</code>, що є повністю новою змінною, якій трапилося мати таке саме
+ім'я, має числовий тип. Затінення, таким чином, позбавляє нас необхідності
+придумувати різні імена, на кшталт <code>spaces_str</code> та <code>spaces_num</code>; натомість, ми
+можемо заново використати простіше ім'я <code>spaces</code>. Але якщо ми спробуємо
+скористатися <code>mut</code>, як показано:</p>
+<pre><code class="language-rust ignore">let mut spaces = &quot;   &quot;;
+spaces = spaces.len();
+</code></pre>
+<p>ми отримаємо помилку часу компіляції, бо не можна змінювати тип змінної:</p>
+<pre><code class="language-text">error[E0308]: mismatched types
+ --&gt; src/main.rs:3:14
+  |
+3 |     spaces = spaces.len();
+  |              ^^^^^^^^^^^^ expected &amp;str, found usize
+  |
+  = note: expected type `&amp;str`
+  = note:    found type `usize`
+</code></pre>
+<p>Тепер, дослідивши, як працюють змінні, погляньмо, які типи данних вони можуть
+зберігати.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch03-00-common-programming-concepts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch03-02-data-types.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="ch03-00-common-programming-concepts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ch03-02-data-types.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if (getComputedStyle(document.querySelector(".fa")).fontFamily !== "FontAwesome") {
+                var link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = '_FontAwesome/css/font-awesome.css';
+                document.head.insertBefore(link, document.head.firstChild)
+            }
+        </script>
+
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>
