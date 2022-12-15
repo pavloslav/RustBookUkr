@@ -1,43 +1,44 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="uk" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Rc&lt;T&gt;, the Reference Counted Smart Pointer - The Rust Programming Language</title>
+        <title>Rc&lt;T&gt;, розумний вказівник з лічильником посилань - Мова програмування Rust</title>
+
+
+        <!-- Custom HTML head -->
+        
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <base href="">
-
-        <link rel="stylesheet" href="book.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
-
+        <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
+        <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
-        <!-- Custom theme -->
-        
-
-        
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
+        <!-- Custom theme stylesheets -->
 
     </head>
-    <body class="light">
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
             try {
@@ -57,55 +58,76 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
-            if (theme === null || theme === undefined) { theme = 'light'; }
-            document.body.className = theme;
-            document.querySelector('html').className = theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script type="text/javascript">
+            var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             }
-            document.querySelector('html').classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="foreword.html">Foreword</a></li><li class="affix"><a href="ch00-00-introduction.html">Introduction</a></li><li><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Guessing Game Tutorial</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References &amp; Borrowing</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T> Points to Data on the Heap and Has a Known Size</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li><a href="ch15-04-rc.html" class="active"><strong aria-hidden="true">15.4.</strong> Rc<T>, the Reference Counted Smart Pointer</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T> and the Interior Mutability Pattern</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions &amp; Closures</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">The Rust Programming Language</a></li><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Початок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Встановлення</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Програмування гри - відгадайки</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Загальні концепції програмування</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Змінні та мутабельність</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Типи даних</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> Функції</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Коментарі</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Управління потоком виконання</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Розуміння володіння</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> Що таке володіння?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> Посилання і позичання</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Тип даних слайс</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Використання структур для структурування пов'язаних даних</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Визначення і інстанціювання структур Struct</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> Приклад програми, що використовує структури</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Синтаксис методів</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Енуми і зіставлення з шаблоном</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Визначення енума</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> Конструкція управління match</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Лаконічний контроль виконання конструкцією if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong aria-hidden="true">7.</strong> Керування проєктами, що зростають, за допомогою пакетів, крейтів та модулів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-packages-and-crates.html"><strong aria-hidden="true">7.1.</strong> Пакети та крейти</a></li><li class="chapter-item expanded "><a href="ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong aria-hidden="true">7.2.</strong> Визначення модулів для управління областями видимості та приватністю</a></li><li class="chapter-item expanded "><a href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li><li class="chapter-item expanded "><a href="ch07-04-bringing-paths-into-scope-with-the-use-keyword.html"><strong aria-hidden="true">7.4.</strong> Підключення шляхів до області видимості за допомогою ключового слова use</a></li><li class="chapter-item expanded "><a href="ch07-05-separating-modules-into-different-files.html"><strong aria-hidden="true">7.5.</strong> Розподіл модулів на різні файли</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Обробка помилок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Невідновні Помилки із panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Помилки, що піддаються відновленню за допомогою Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> panic! чи не panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Узагальнені типи, трейти та лайфтайми</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Узагальнені типи даних</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Трейти: визначення загальної поведінки</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Перевірка коректності посилань за допомогою часів існування</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Написання автоматизованих тестів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Як писати тести</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Контроль над запуском тестів</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Організація тестів</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> Проєкт з введенням/виведенням: створення програми командного рядка</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Приймання аргументів командного рядка</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Читання файлу</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Рефакторизація для покращення модульності та обробки помилок</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Розробка Функціонала Бібліотеки із Test-Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Робота зі Змінними Середовища</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Написання Повідомлень Про Помилки в Standard Error Замість Стандартного Виводу</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Функціональні можливості мови: Ітератори та Замикання</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Замикання: Анонімні Функції що Захоплюють Своє Середовище</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Обробка послідовностей елементів за допомогою ітераторів</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Покращуємо наш проєкт з введенням/виведенням</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Порівняння швидкодії: цикли проти ітераторів</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> Більше про Cargo та Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Налаштування Збірок з Release Профілями</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Публікація Крейта на Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Робочі Області Cargo</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Розширення Cargo із Користувацькими Командами</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Розумні вказівники</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Використання Box&lt;T&gt; для вказування на значення в Heap</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Використання розумних вказівників як звичайних посилань за допомогою трейта Deref</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> Виконання коду при очищенні за допомогою трейту Drop</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html" class="active"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, розумний вказівник з лічильником посилань</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; і шаблон внутрішньої мутабельності</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Цикли посилань можуть призвести до витоку пам'яті</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Конкурентність без страху</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Шаблони та Зіставлення Шаблонів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Спростовуваність: Чи Може Шаблон Бути Невідповідним</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Просунутий функціонал</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Небезпечний Rust</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.2.</strong> Поглиблено про трейти</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.3.</strong> Поглиблено про типи</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.4.</strong> Поглиблено про функції та замикання</a></li><li class="chapter-item expanded "><a href="ch19-06-macros.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Останній проєкт: збірка багатопотокового вебсервера</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> Збірка однопотокового вебсервера</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Перетворюємо наш однопотоковий сервер на багатопотоковий</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Плавне вимикання і очищення</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Додатки</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Ключові слова</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - оператори та символи</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-useful-development-tools.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-editions.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-translation.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> Додаток G - як робиться Rust і "щонічний Rust"</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar" class="menu-bar">
-                    <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
-                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                                <i class="fa fa-paint-brush"></i>
-                            </button>
-                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                            </ul>
-                        </div>
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-                        <h1 class="menu-title">The Rust Programming Language</h1>
+                    <h1 class="menu-title">Мова програмування Rust</h1>
 
-                        <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
-                                <i id="print-button" class="fa fa-print"></i>
-                            </a>
-                        </div>
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
                     </div>
                 </div>
 
@@ -120,100 +142,59 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="ch15-04-rc.html#rct-the-reference-counted-smart-pointer" id="rct-the-reference-counted-smart-pointer"><h2><code>Rc&lt;T&gt;</code>, the Reference Counted Smart Pointer</h2></a>
-<p>In the majority of cases, ownership is clear: you know exactly which variable
-owns a given value. However, there are cases when a single value might have
-multiple owners. For example, in graph data structures, multiple edges might
-point to the same node, and that node is conceptually owned by all of the edges
-that point to it. A node shouldn’t be cleaned up unless it doesn’t have any
-edges pointing to it.</p>
-<p>To enable multiple ownership, Rust has a type called <code>Rc&lt;T&gt;</code>. Its name is an
-abbreviation for <em>reference counting</em>, which keeps track of the number of
-references to a value to know whether or not a value is still in use. If there
-are zero references to a value, the value can be cleaned up without any
-references becoming invalid.</p>
-<p>Imagine <code>Rc&lt;T&gt;</code> as a TV in a family room. When one person enters to watch TV,
-they turn it on. Others can come into the room and watch the TV. When the last
-person leaves the room, they turn off the TV because it’s no longer being used.
-If someone turns off the TV while others are still watching it, there would be
-uproar from the remaining TV watchers!</p>
-<p>We use the <code>Rc&lt;T&gt;</code> type when we want to allocate some data on the heap for
-multiple parts of our program to read, and we can’t determine at compile time
-which part will finish using the data last. If we knew which part would finish
-last, we could just make that part the data’s owner and the normal ownership
-rules enforced at compile time would take effect.</p>
-<p>Note that <code>Rc&lt;T&gt;</code> is only for use in single-threaded scenarios. When we discuss
-concurrency in Chapter 16, we’ll cover how to do reference counting in
-multithreaded programs.</p>
-<a class="header" href="ch15-04-rc.html#using-rct-to-share-data" id="using-rct-to-share-data"><h3>Using <code>Rc&lt;T&gt;</code> to Share Data</h3></a>
-<p>Let’s return to our cons list example in Listing 15-5. Recall that we defined
-it using <code>Box&lt;T&gt;</code>. This time, we’ll create two lists that both share ownership
-of a third list, which conceptually will look similar to Figure 15-3:</p>
-<p><img alt="Two lists that share ownership of a third list" src="img/trpl15-03.svg" class="center" /></p>
-<p><span class="caption">Figure 15-3: Two lists, <code>b</code> and <code>c</code>, sharing ownership of
-a third list, <code>a</code></span></p>
-<p>We’ll create list <code>a</code> that contains 5 and then 10. Then we’ll make two more
-lists: <code>b</code> that starts with 3 and <code>c</code> that starts with 4. Both <code>b</code> and <code>c</code>
-lists will then continue on to the first <code>a</code> list containing 5 and 10. In other
-words, both lists will share the first list containing 5 and 10.</p>
-<p>Trying to implement this scenario using our definition of <code>List</code> with <code>Box&lt;T&gt;</code>
-won’t work, as shown in Listing 15-17:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
-<pre><code class="language-rust ignore">enum List {
+                        <h2 id="rct-розумний-вказівник-з-лічильником-посилань"><a class="header" href="#rct-розумний-вказівник-з-лічильником-посилань"><code>Rc&lt;T&gt;</code>, розумний вказівник з лічильником посилань</a></h2>
+<p>У більшості випадків володіння є прозорим: ви точно знаєте, яка змінна володіє певним значенням. Проте є випадки, коли одне значення може мати декілька власників. Наприклад, в структурах даних - графах багато ребер можуть вказувати на один вузол, і цей вузол концептуально є володінням усіх ребер, які ведуть у нього. Вузол не повинен бути очищений, поки існують ребра, які вказують на нього, і тому він має власників.</p>
+<p>Вам треба явно дозволити множинне володіння, використовуючи тип Rust <code>Rc&lt;T&gt;</code>, що означає <em>лічильник посилань</em>. Тип <code>Rc&lt;T&gt;</code> відстежує кількість посилань на значення, щоб визначити, чи значення все ще використовується. Якщо лишилося нуль посилань на значення, то значення можна очистити, не зробивши жодне посилання некоректним.</p>
+<p>Можна уявити собі <code>Rc&lt;T&gt;</code> як телевізор у сімейній кімнаті. Коли одна людина входить, щоб подивитися телевізор, його вмикають. Інші теж можуть зайти до кімнати і подивитися телевізор. Коли остання людина залишає кімнату, телевізор вимикають, бо його більше не використовують. Якщо хтось вимкне телевізор, поки інші все ще його дивитимуться, решта глядачів телевізора обуриться!</p>
+<p>Ми використовуємо тип <code>Rc&lt;T&gt;</code>, коли ми хочемо виділити деякі дані в купі, щоб різні частини програми могли їх читати, і не можемо визначити під час компіляції, яка частина останньою завершить використовувати ці дані. Якби ми знали, яка частина завершить останньою, то могли б просто надати цій частині володіння, і були б застосовані звичайні правила володіння часу компіляції.</p>
+<p>Зверніть увагу, що <code>Rc&lt;T&gt;</code> використовується тільки в однопотокових сценаріях. Коли ми обговорюватимемо конкурентність у Розділі 16, то розглянемо, як облічувати посилання в багатопотокових програмах.</p>
+<h3 id="Використання-rct-для-спільного-використання-даних"><a class="header" href="#Використання-rct-для-спільного-використання-даних">Використання <code>Rc&lt;T&gt;</code> для спільного використання даних</a></h3>
+<p>Повернімося до прикладу зі списком Cons з Блоку коду 15-5. Пам'ятайте, що ми визначили його за допомогою <code>Box&lt;T&gt;</code>. Цього разу створимо два списки, що спільно володіють третім. Концептуально це схоже на Рисунок 15-3:</p>
+<img alt="Два списки, що спільно володіють третім списком" src="img/trpl15-03.svg" class="center" />
+<p><span class="caption">Рисунок 15-3: Два списки, <code>b</code> and <code>c</code>, спільно володіють третім списком, <code>a</code></span></p>
+<p>Ми створимо список <code>a</code>, що містить 5, а потім 10. Тоді ми зробимо ще два списки: <code>b</code>, що починається з 3 і <code>c</code>, що починається з 4. Обидва списки <code>b</code> та <code>c</code> далі продовжуються першим списком <code>a</code>, що містить 5 і 10. Іншими словами, обидва списки спільно використовують перший, що містить 5 і 10.</p>
+<p>Спроба реалізувати цией сценарій за допомогою нашого визначення <code>List</code> із <code>Box&lt;T&gt;</code> не спрацює, як показано в Блоці коду 15-17:</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><code class="language-rust ignore does_not_compile">enum List {
     Cons(i32, Box&lt;List&gt;),
     Nil,
 }
 
-use List::{Cons, Nil};
+use crate::List::{Cons, Nil};
 
 fn main() {
-    let a = Cons(5,
-        Box::new(Cons(10,
-            Box::new(Nil))));
+    let a = Cons(5, Box::new(Cons(10, Box::new(Nil))));
     let b = Cons(3, Box::new(a));
     let c = Cons(4, Box::new(a));
 }
 </code></pre>
-<p><span class="caption">Listing 15-17: Demonstrating we’re not allowed to have
-two lists using <code>Box&lt;T&gt;</code> that try to share ownership of a third list</span></p>
-<p>When we compile this code, we get this error:</p>
-<pre><code class="language-text">error[E0382]: use of moved value: `a`
-  --&gt; src/main.rs:13:30
+<p><span class="caption">Блок коду 15-17: демонстрація, що ми не можемо мати два списки, створені з <code>Box&lt;T&gt;</code>, які намагаються спільно володіти третім списком</span></p>
+<p>Якщо ми скомпілюємо цей код, ми отримаємо цю помилку:</p>
+<pre><code class="language-console">$ cargo run
+   Compiling cons-list v0.1.0 (file:///projects/cons-list)
+error[E0382]: use of moved value: `a`
+  --&gt; src/main.rs:11:30
    |
-12 |     let b = Cons(3, Box::new(a));
+9  |     let a = Cons(5, Box::new(Cons(10, Box::new(Nil))));
+   |         - move occurs because `a` has type `List`, which does not implement the `Copy` trait
+10 |     let b = Cons(3, Box::new(a));
    |                              - value moved here
-13 |     let c = Cons(4, Box::new(a));
+11 |     let c = Cons(4, Box::new(a));
    |                              ^ value used here after move
-   |
-   = note: move occurs because `a` has type `List`, which does not implement
-   the `Copy` trait
+
+For more information about this error, try `rustc --explain E0382`.
+error: could not compile `cons-list` due to previous error
 </code></pre>
-<p>The <code>Cons</code> variants own the data they hold, so when we create the <code>b</code> list, <code>a</code>
-is moved into <code>b</code> and <code>b</code> owns <code>a</code>. Then, when we try to use <code>a</code> again when
-creating <code>c</code>, we’re not allowed to because <code>a</code> has been moved.</p>
-<p>We could change the definition of <code>Cons</code> to hold references instead, but then
-we would have to specify lifetime parameters. By specifying lifetime
-parameters, we would be specifying that every element in the list will live at
-least as long as the entire list. The borrow checker wouldn’t let us compile
-<code>let a = Cons(10, &amp;Nil);</code> for example, because the temporary <code>Nil</code> value would
-be dropped before <code>a</code> could take a reference to it.</p>
-<p>Instead, we’ll change our definition of <code>List</code> to use <code>Rc&lt;T&gt;</code> in place of
-<code>Box&lt;T&gt;</code>, as shown in Listing 15-18. Each <code>Cons</code> variant will now hold a value
-and an <code>Rc&lt;T&gt;</code> pointing to a <code>List</code>. When we create <code>b</code>, instead of taking
-ownership of <code>a</code>, we’ll clone the <code>Rc&lt;List&gt;</code> that <code>a</code> is holding, which
-increases the number of references from one to two and lets <code>a</code> and <code>b</code> share
-ownership of the data in that <code>Rc&lt;List&gt;</code>. We’ll also clone <code>a</code> when creating
-<code>c</code>, which increases the number of references from two to three. Every time we
-call <code>Rc::clone</code>, the reference count to the data within the <code>Rc&lt;List&gt;</code> will
-increase, and the data won’t be cleaned up unless there are zero references to
-it:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
-<pre><pre class="playpen"><code class="language-rust">enum List {
+<p>Варіанти <code>Cons</code> володіють даними, що в них знаходяться, тож коли ми створюємо список <code>b</code>, <code>a</code> переміщується в <code>b</code> і <code>b</code> володіє <code>a</code>. Тоді ж, коли ми намагаємося знову використати <code>а</code> при створенні <code>c</code>, нам це заборонено через те, що <code>a</code> було переміщено.</p>
+<p>Ми могли б змінити визначення <code>Cons</code>, щоб він зберігав посилання, але тоді нам потрібно було б вказати параметри часу існування. Вказуючи параметри часу існування, ми вказуємо, що кожен елемент у списку буде існувати принаймні стільки ж, скільки весь список. Це так для елементів і списків у Блоці коду 15-17, але не для кожного сценарію.</p>
+<p>Натомість ми змінимо наше визначення <code>List</code>, застосувавши <code>Rc&lt;T&gt;</code> замість <code>Box&lt;T&gt;</code>, як показано в Блоці коду 15-18. Варіант <code>Cons</code> тепер буде складатися зі значення і <code>Rc&lt;T&gt;</code>, що вказує на <code>List</code>. Коли ми створюємо <code>b</code>, замість того, перебрати володіння <code>a</code>, ми клонуватимемо <code>Rc&lt;List&gt;</code>, що <code>a</code> містить, збільшуючи таким чином кількість посилань з одного до двох і дозволяючи <code>а</code> та <code>b</code> розділити володіння даними в цьому <code>Rc&lt;List&gt;</code>. Ми також склонуємо <code>a</code>, коли створюватимемо <code>c</code>, збільшуючи кількість посилань з двох до трьох. Кожного разу, як ми викликаємо <code>Rc::clone</code>, кількість посилань на дані в <code>Rc&lt;List&gt;</code> буде збільшуватися, і дані не будуть очищені, поки кількість посилань на них не сягне нуля.</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">enum List {
     Cons(i32, Rc&lt;List&gt;),
     Nil,
 }
 
-use List::{Cons, Nil};
+use crate::List::{Cons, Nil};
 use std::rc::Rc;
 
 fn main() {
@@ -222,43 +203,22 @@ fn main() {
     let c = Cons(4, Rc::clone(&amp;a));
 }
 </code></pre></pre>
-<p><span class="caption">Listing 15-18: A definition of <code>List</code> that uses
-<code>Rc&lt;T&gt;</code></span></p>
-<p>We need to add a <code>use</code> statement to bring <code>Rc&lt;T&gt;</code> into scope because it’s not
-in the prelude. In <code>main</code>, we create the list holding 5 and 10 and store it in
-a new <code>Rc&lt;List&gt;</code> in <code>a</code>. Then when we create <code>b</code> and <code>c</code>, we call the
-<code>Rc::clone</code> function and pass a reference to the <code>Rc&lt;List&gt;</code> in <code>a</code> as an
-argument.</p>
-<p>We could have called <code>a.clone()</code> rather than <code>Rc::clone(&amp;a)</code>, but Rust’s
-convention is to use <code>Rc::clone</code> in this case. The implementation of
-<code>Rc::clone</code> doesn’t make a deep copy of all the data like most types’
-implementations of <code>clone</code> do. The call to <code>Rc::clone</code> only increments the
-reference count, which doesn’t take much time. Deep copies of data can take a
-lot of time. By using <code>Rc::clone</code> for reference counting, we can visually
-distinguish between the deep copy kinds of clones and the kinds of clones that
-increase the reference count. When looking for performance problems in the
-code, we only need to consider the deep copy clones and can disregard calls to
-<code>Rc::clone</code>.</p>
-<a class="header" href="ch15-04-rc.html#cloning-an-rct-increases-the-reference-count" id="cloning-an-rct-increases-the-reference-count"><h3>Cloning an <code>Rc&lt;T&gt;</code> Increases the Reference Count</h3></a>
-<p>Let’s change our working example in Listing 15-18 so we can see the reference
-counts changing as we create and drop references to the <code>Rc&lt;List&gt;</code> in <code>a</code>.</p>
-<p>In Listing 15-19, we’ll change <code>main</code> so it has an inner scope around list <code>c</code>;
-then we can see how the reference count changes when <code>c</code> goes out of scope. At
-each point in the program where the reference count changes, we’ll print the
-reference count, which we can get by calling the <code>Rc::strong_count</code> function.
-This function is named <code>strong_count</code> rather than <code>count</code> because the <code>Rc&lt;T&gt;</code>
-type also has a <code>weak_count</code>; we’ll see what <code>weak_count</code> is used for in the
-“Preventing Reference Cycles” section.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
-<pre><pre class="playpen"><code class="language-rust"># enum List {
-#     Cons(i32, Rc&lt;List&gt;),
-#     Nil,
-# }
-#
-# use List::{Cons, Nil};
-# use std::rc::Rc;
-#
-fn main() {
+<p><span class="caption">Блок коду 15-18: визначення <code>List</code> за допомогою <code>Rc&lt;T&gt;</code></span></p>
+<p>Нам потрібно додати інструкцію <code>use</code>, щоб винести <code>Rc&lt;T&gt;</code> в область видимості, оскільки його немає у прелюдії. У <code>main</code> ми створюємо список, що складається з 5 і 10 і зберігаємо його у новому <code>Rc&lt;List&gt;</code> <code>a</code>. Потім ми створюємо <code>b</code> і <code>c</code>, викликаємо функцію <code>Rc::clone</code> і передаємо посилання на <code>Rc&lt;List&gt;</code> в <code>a</code> як аргумент.</p>
+<p>Ми могли б викликати <code>a.clone()</code>, а не <code>Rc::clone(&amp;a)</code>, але в Rust діє домовленість використовувати в цьому випадку <code>Rc::clone</code>. Реалізація <code>Rc::clone</code> не робить глибокої копії всіх даних, на відміну від реалізацій реалізації <code>clone</code> для більшості типів. Виклик <code>Rc::clone</code> тільки збільшує кількість посилань, що не забирає багато часу. Глибокі копії даних можуть зайняти багато часу. Використовуючи <code>Rc:::clone</code> для обліку посилань, ми можемо візуально розрізняти clone, що роблять глибоку копію, і ті, які збільшують кількість посилань. При пошуку проблем з продуктивністю в коді нам потрібно лише розглянути clone глибокого копіювання і може не враховувати виклики <code>Rc::clone</code>.</p>
+<h3 id="Клонування-rct-збільшує-кількість-посилань"><a class="header" href="#Клонування-rct-збільшує-кількість-посилань">Клонування <code>Rc&lt;T&gt;</code> збільшує кількість посилань</a></h3>
+<p>Змінімо наш робочий приклад у Блоці коду 15-18 так, щоб ми могли переглянути зміни лічильника посилань, коли ми створюємо і очищуємо посилання на <code>Rc&lt;List&gt;</code> в <code>a</code>.</p>
+<p>У Блоці коду 15-19 ми змінимо <code>main</code> так, щоб вона мала внутрішню область видимості навколо списку <code>c</code>; тоді ми можемо побачити, як змінюється кількість посилань, коли <code>c</code> виходить за межі видимості.</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">enum List {
+</span><span class="boring">    Cons(i32, Rc&lt;List&gt;),
+</span><span class="boring">    Nil,
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">use crate::List::{Cons, Nil};
+</span><span class="boring">use std::rc::Rc;
+</span><span class="boring">
+</span>fn main() {
     let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));
     println!(&quot;count after creating a = {}&quot;, Rc::strong_count(&amp;a));
     let b = Cons(3, Rc::clone(&amp;a));
@@ -270,48 +230,33 @@ fn main() {
     println!(&quot;count after c goes out of scope = {}&quot;, Rc::strong_count(&amp;a));
 }
 </code></pre></pre>
-<p><span class="caption">Listing 15-19: Printing the reference count</span></p>
-<p>This code prints the following:</p>
-<pre><code class="language-text">count after creating a = 1
+<p><span class="caption">Список 15-19: виведення лічильника посилань</span></p>
+<p>У кожній точці програми, в якій змінюється кількість посилань, ми виводимо кількість посилань, які ми отримаємо, викликавши функцію <code>Rc::strong_count</code>. Ця функція зветься <code>strong_count</code>, а не просто <code>count</code>, бо тип <code>Rc&lt;T&gt;</code> також має <code>weak_count</code>; ми побачимо, нащо потрібен <code>weak_count</code>, у підрозділі <a href="ch15-06-reference-cycles.html#preventing-reference-cycles-turning-an-rct-into-a-weakt">“Запобігання циклам посилань: перетворення <code>Rc&lt;T&gt;</code> на <code>Weak&lt;T&gt;</code>”</a><!-- ignore --> .</p>
+<p>Цей код виводить таке:</p>
+<pre><code class="language-console">$ cargo run
+   Compiling cons-list v0.1.0 (file:///projects/cons-list)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.45s
+     Running `target/debug/cons-list`
+count after creating a = 1
 count after creating b = 2
 count after creating c = 3
 count after c goes out of scope = 2
 </code></pre>
-<p>We can see that the <code>Rc&lt;List&gt;</code> in <code>a</code> has an initial reference count of one;
-then each time we call <code>clone</code>, the count goes up by one. When <code>c</code> goes out of
-scope, the count goes down by one. We don’t have to call a function to decrease
-the reference count like we have to call <code>Rc::clone</code> to increase the reference
-count: the implementation of the <code>Drop</code> trait decreases the reference count
-automatically when an <code>Rc&lt;T&gt;</code> value goes out of scope.</p>
-<p>What we can’t see in this example is that when <code>b</code> and then <code>a</code> go out of scope
-at the end of <code>main</code>, the count is then 0, and the <code>Rc&lt;List&gt;</code> is cleaned up
-completely at that point. Using <code>Rc&lt;T&gt;</code> allows a single value to have
-multiple owners, and the count ensures that the value remains valid as long as
-any of the owners still exist.</p>
-<p>Via immutable references, <code>Rc&lt;T&gt;</code> allows us to share data between multiple
-parts of our program for reading only. If <code>Rc&lt;T&gt;</code> allowed us to have multiple
-mutable references too, we might violate one of the borrowing rules discussed
-in Chapter 4: multiple mutable borrows to the same place can cause data races
-and inconsistencies. But being able to mutate data is very useful! In the next
-section, we’ll discuss the interior mutability pattern and the <code>RefCell&lt;T&gt;</code>
-type that we can use in conjunction with an <code>Rc&lt;T&gt;</code> to work with this
-immutability restriction.</p>
+<p>Як ми можемо бачити, <code>Rc&lt;List&gt;</code> в <code>a</code> має початкове значення лічильника 1; потім кожного разу при виклику <code>clone</code> кількість збільшується на 1. Коли <code>c</code> виходить з області видимості, кількість знижується на 1. Там не треба викликати функцію, щоб зменшити лічильник посилань, на відміну від виклику <code>Rc::clone</code> для його збільшення: реалізація трейту <code>Drop</code> зменшує лічильник посилань автоматично, коли <code>Rc&lt;T&gt;</code> виходить з області видимості.</p>
+<p>Чого ми не можемо бачити в цьому прикладі, то це того, що коли <code>b</code>, а потім <code>a</code> виходять з області видимості в кінці <code>main</code>, лічильник стає 0, а тоді <code>Rc&lt;List&gt;</code> повністю очищується. Використання <code>Rc&lt;T&gt;</code> дозволяє одному значенню мати кілька власників, а лічильник гарантує, що значення залишається коректним доти, поки існує хоч один із власників.</p>
+<p>За допомогою іммутабельних посилань <code>Rc&lt;T&gt;</code> дозволяє спільно використовувати дані лише для читання у багатьох частинах вашої програми. Якби <code>Rc&lt;T&gt;</code> дозволяв також мати кілька повторюваних посилань, ви змогли б порушити одне з правил запозичення, що обговорювалися в Розділі 4: кілька мутабельних позичань до одного місця можуть спричинити гонитву даних і неузгодженість. Але ж мати можливість змінювати дані так зручно! У наступному підрозділі ми обговоримо шаблон внутрішньої мутабельності та тип <code>RefCell&lt;T&gt;</code>, який ви можете використовувати разом з <code>Rc&lt;T&gt;</code> для роботи з цим обмеженням немутабельності.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="ch15-03-drop.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
 
-                        
                             <a rel="next" href="ch15-05-interior-mutability.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -319,46 +264,35 @@ immutability restriction.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
-                    <a href="ch15-03-drop.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ch15-03-drop.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
 
-                
-                    <a href="ch15-05-interior-mutability.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="ch15-05-interior-mutability.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
 
-        <!-- Local fallback for Font Awesome -->
-        <script>
-            if (getComputedStyle(document.querySelector(".fa")).fontFamily !== "FontAwesome") {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.href = '_FontAwesome/css/font-awesome.css';
-                document.head.insertBefore(link, document.head.firstChild)
-            }
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
         </script>
 
-        
 
-        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
 
-        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
-        
+        <!-- Custom JS scripts -->
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
-
-        <!-- Custom JS script -->
-        
 
     </body>
 </html>

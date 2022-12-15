@@ -1,43 +1,44 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="uk" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>To panic! or Not To panic! - The Rust Programming Language</title>
+        <title>panic! чи не panic! - Мова програмування Rust</title>
+
+
+        <!-- Custom HTML head -->
+        
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <base href="">
-
-        <link rel="stylesheet" href="book.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
-
+        <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
+        <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
-        <!-- Custom theme -->
-        
-
-        
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
+        <!-- Custom theme stylesheets -->
 
     </head>
-    <body class="light">
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
             try {
@@ -57,55 +58,76 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
-            if (theme === null || theme === undefined) { theme = 'light'; }
-            document.body.className = theme;
-            document.querySelector('html').className = theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script type="text/javascript">
+            var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             }
-            document.querySelector('html').classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="foreword.html">Foreword</a></li><li class="affix"><a href="ch00-00-introduction.html">Introduction</a></li><li><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Guessing Game Tutorial</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References &amp; Borrowing</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html" class="active"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T> Points to Data on the Heap and Has a Known Size</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>, the Reference Counted Smart Pointer</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T> and the Interior Mutability Pattern</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions &amp; Closures</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">The Rust Programming Language</a></li><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Початок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Встановлення</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Програмування гри - відгадайки</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Загальні концепції програмування</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Змінні та мутабельність</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Типи даних</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> Функції</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Коментарі</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Управління потоком виконання</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Розуміння володіння</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> Що таке володіння?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> Посилання і позичання</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Тип даних слайс</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Використання структур для структурування пов'язаних даних</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Визначення і інстанціювання структур Struct</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> Приклад програми, що використовує структури</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Синтаксис методів</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Енуми і зіставлення з шаблоном</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Визначення енума</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> Конструкція управління match</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Лаконічний контроль виконання конструкцією if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong aria-hidden="true">7.</strong> Керування проєктами, що зростають, за допомогою пакетів, крейтів та модулів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-packages-and-crates.html"><strong aria-hidden="true">7.1.</strong> Пакети та крейти</a></li><li class="chapter-item expanded "><a href="ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong aria-hidden="true">7.2.</strong> Визначення модулів для управління областями видимості та приватністю</a></li><li class="chapter-item expanded "><a href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li><li class="chapter-item expanded "><a href="ch07-04-bringing-paths-into-scope-with-the-use-keyword.html"><strong aria-hidden="true">7.4.</strong> Підключення шляхів до області видимості за допомогою ключового слова use</a></li><li class="chapter-item expanded "><a href="ch07-05-separating-modules-into-different-files.html"><strong aria-hidden="true">7.5.</strong> Розподіл модулів на різні файли</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Обробка помилок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Невідновні Помилки із panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Помилки, що піддаються відновленню за допомогою Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html" class="active"><strong aria-hidden="true">9.3.</strong> panic! чи не panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Узагальнені типи, трейти та лайфтайми</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Узагальнені типи даних</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Трейти: визначення загальної поведінки</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Перевірка коректності посилань за допомогою часів існування</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Написання автоматизованих тестів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Як писати тести</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Контроль над запуском тестів</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Організація тестів</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> Проєкт з введенням/виведенням: створення програми командного рядка</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Приймання аргументів командного рядка</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Читання файлу</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Рефакторизація для покращення модульності та обробки помилок</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Розробка Функціонала Бібліотеки із Test-Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Робота зі Змінними Середовища</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Написання Повідомлень Про Помилки в Standard Error Замість Стандартного Виводу</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Функціональні можливості мови: Ітератори та Замикання</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Замикання: Анонімні Функції що Захоплюють Своє Середовище</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Обробка послідовностей елементів за допомогою ітераторів</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Покращуємо наш проєкт з введенням/виведенням</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Порівняння швидкодії: цикли проти ітераторів</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> Більше про Cargo та Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Налаштування Збірок з Release Профілями</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Публікація Крейта на Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Робочі Області Cargo</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Розширення Cargo із Користувацькими Командами</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Розумні вказівники</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Використання Box&lt;T&gt; для вказування на значення в Heap</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Використання розумних вказівників як звичайних посилань за допомогою трейта Deref</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> Виконання коду при очищенні за допомогою трейту Drop</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, розумний вказівник з лічильником посилань</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; і шаблон внутрішньої мутабельності</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Цикли посилань можуть призвести до витоку пам'яті</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Конкурентність без страху</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Шаблони та Зіставлення Шаблонів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Спростовуваність: Чи Може Шаблон Бути Невідповідним</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Просунутий функціонал</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Небезпечний Rust</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.2.</strong> Поглиблено про трейти</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.3.</strong> Поглиблено про типи</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.4.</strong> Поглиблено про функції та замикання</a></li><li class="chapter-item expanded "><a href="ch19-06-macros.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Останній проєкт: збірка багатопотокового вебсервера</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> Збірка однопотокового вебсервера</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Перетворюємо наш однопотоковий сервер на багатопотоковий</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Плавне вимикання і очищення</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Додатки</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Ключові слова</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - оператори та символи</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-useful-development-tools.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-editions.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-translation.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> Додаток G - як робиться Rust і "щонічний Rust"</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar" class="menu-bar">
-                    <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
-                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                                <i class="fa fa-paint-brush"></i>
-                            </button>
-                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                            </ul>
-                        </div>
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-                        <h1 class="menu-title">The Rust Programming Language</h1>
+                    <h1 class="menu-title">Мова програмування Rust</h1>
 
-                        <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
-                                <i id="print-button" class="fa fa-print"></i>
-                            </a>
-                        </div>
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
                     </div>
                 </div>
 
@@ -120,239 +142,128 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="ch09-03-to-panic-or-not-to-panic.html#to-panic-or-not-to-panic" id="to-panic-or-not-to-panic"><h2>To <code>panic!</code> or Not to <code>panic!</code></h2></a>
-<p>So how do you decide when you should <code>panic!</code> and when you should return
-<code>Result</code>? When code panics, there’s no way to recover. You could call <code>panic!</code>
-for any error situation, whether there’s a possible way to recover or not, but
-then you’re making the decision on behalf of the code calling your code that a
-situation is unrecoverable. When you choose to return a <code>Result</code> value, you
-give the calling code options rather than making the decision for it. The
-calling code could choose to attempt to recover in a way that’s appropriate for
-its situation, or it could decide that an <code>Err</code> value in this case is
-unrecoverable, so it can call <code>panic!</code> and turn your recoverable error into an
-unrecoverable one. Therefore, returning <code>Result</code> is a good default choice when
-you’re defining a function that might fail.</p>
-<p>In a few situations it’s more appropriate to write code that panics instead of
-returning a <code>Result</code>, but they are less common. Let’s explore why it’s
-appropriate to panic in examples, prototype code, and tests; then in situations
-where you as a human can know a method won’t fail that the compiler can’t
-reason about; and conclude with some general guidelines on how to decide
-whether to panic in library code.</p>
-<a class="header" href="ch09-03-to-panic-or-not-to-panic.html#examples-prototype-code-and-tests-are-all-places-its-perfectly-fine-to-panic" id="examples-prototype-code-and-tests-are-all-places-its-perfectly-fine-to-panic"><h3>Examples, Prototype Code, and Tests Are All Places it’s Perfectly Fine to Panic</h3></a>
-<p>When you’re writing an example to illustrate some concept, having robust error
-handling code in the example as well can make the example less clear. In
-examples, it’s understood that a call to a method like <code>unwrap</code> that could
-<code>panic!</code> is meant as a placeholder for the way that you’d want your application
-to handle errors, which can differ based on what the rest of your code is doing.</p>
-<p>Similarly, the <code>unwrap</code> and <code>expect</code> methods are very handy when prototyping,
-before you’re ready to decide how to handle errors. They leave clear markers in
-your code for when you’re ready to make your program more robust.</p>
-<p>If a method call fails in a test, we’d want the whole test to fail, even if
-that method isn’t the functionality under test. Because <code>panic!</code> is how a test
-is marked as a failure, calling <code>unwrap</code> or <code>expect</code> is exactly what should
-happen.</p>
-<a class="header" href="ch09-03-to-panic-or-not-to-panic.html#cases-when-you-have-more-information-than-the-compiler" id="cases-when-you-have-more-information-than-the-compiler"><h3>Cases When You Have More Information Than the Compiler</h3></a>
-<p>It would also be appropriate to call <code>unwrap</code> when you have some other logic
-that ensures the <code>Result</code> will have an <code>Ok</code> value, but the logic isn’t
-something the compiler understands. You’ll still have a <code>Result</code> value that you
-need to handle: whatever operation you’re calling still has the possibility of
-failing in general, even though it’s logically impossible in your particular
-situation. If you can ensure by manually inspecting the code that you’ll never
-have an <code>Err</code> variant, it’s perfectly acceptable to call <code>unwrap</code>. Here’s an
-example:</p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-use std::net::IpAddr;
+                        <h2 id="panic-чи-не-panic"><a class="header" href="#panic-чи-не-panic"><code>panic!</code> чи не <code>panic!</code></a></h2>
+<p>Отже, як приймається рішення, коли слід викликати <code>panic!</code>, а коли повернути <code>Result</code>? При паніці код не може відновити своє виконання. Можна було б викликати <code>panic!</code> для будь-якої помилкової ситуації, незалежно від того, чи є спосіб відновлення, чи ні, але з іншого боку, ви приймаєте рішення від імені коду, який викликає, що ситуація необоротна. Коли ви повертаєте значення <code>Result</code>, ви делегуєте прийняття рішення коду, що викликає. Код, що викликає, може спробувати виконати відновлення способом, який підходить в даній ситуації, або ж він може вирішити, що з помилки в <code>Err</code> не можна відновитися і викличе <code>panic!</code>, перетворивши вашу помилку, що виправляється, в невиправну. Тому повернення <code>Result</code> є гарним вибором за замовчуванням для функції, яка може дати збій.</p>
+<p>У таких ситуаціях як приклади, прототипи та тести, більш доречно писати код, який панікує замість повернення <code>Result</code>. Розгляньмо чому, а потім обговоримо ситуації, коли компілятор не може довести, що помилка неможлива, але ви, як людина, можете це зробити. Глава закінчуватиметься деякими загальними керівними принципами про те, як вирішити, чи варто панікувати в коді бібліотеки.</p>
+<h3 id="Приклади-прототипування-та-тести"><a class="header" href="#Приклади-прототипування-та-тести">Приклади, прототипування та тести</a></h3>
+<p>Коли ви пишете приклад, який ілюструє деяку концепцію, наявність гарного коду обробки помилок може зробити приклад менш зрозумілим. В прикладах виклик методу <code>unwrap</code>, який може призвести до паніки, є лише позначенням способу обробки помилок у додатку, який може відрізнятися в залежності від того, що робить решта коду.</p>
+<p>Так само методи <code>unwrap</code> та <code>expect</code> є дуже зручними при створенні прототипу, перш ніж ви будете готові вирішити, як обробляти помилки. Вони залишають чіткі маркери в коді до моменту, коли ви будете готові зробити програму надійнішою.</p>
+<p>Якщо в тесті відбувається збій при виклику методу, то ви б хотіли, щоб весь тест не пройшов, навіть якщо цей метод не є функціональністю, що тестується. Оскільки виклик <code>panic!</code> це спосіб, яким тест позначається як невдалий, використання <code>unwrap</code> чи <code>expect</code> – саме те, що потрібно.</p>
+<h3 id="Випадки-коли-у-вас-більше-інформації-ніж-у-компілятора"><a class="header" href="#Випадки-коли-у-вас-більше-інформації-ніж-у-компілятора">Випадки, коли у вас більше інформації, ніж у компілятора.</a></h3>
+<p>Також було б доцільно викликати <code>unwrap</code> або <code>expect</code>, коли у вас є якась інша логіка, яка гарантує, що <code>Result</code> буде мати значення <code>Ok</code>, але вашу логіку не розуміє компілятор. У вас, як і раніше, буде значення <code>Result</code>, яке потрібно обробити: будь-яка операція, яку ви викликаєте, все ще має можливість невдачі в цілому, хоча це логічно неможливо у вашій конкретній ситуації. Якщо, перевіряючи код вручну, ви можете переконатися, що ніколи не буде варіанту <code>Err</code>, то можна викликати <code>unwrap</code>, а ще краще задокументувати причину, з якої ви думаєте, що ніколи не матимете варіант <code>Err</code> у тексті <code>expect</code>. Ось приклад:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>    use std::net::IpAddr;
 
-let home: IpAddr = &quot;127.0.0.1&quot;.parse().unwrap();
-#}</code></pre></pre>
-<p>We’re creating an <code>IpAddr</code> instance by parsing a hardcoded string. We can see
-that <code>127.0.0.1</code> is a valid IP address, so it’s acceptable to use <code>unwrap</code>
-here. However, having a hardcoded, valid string doesn’t change the return type
-of the <code>parse</code> method: we still get a <code>Result</code> value, and the compiler will
-still make us handle the <code>Result</code> as if the <code>Err</code> variant is still a
-possibility because the compiler isn’t smart enough to see that this string is
-always a valid IP address. If the IP address string came from a user rather
-than being hardcoded into the program, and therefore <em>did</em> have a possibility
-of failure, we’d definitely want to handle the <code>Result</code> in a more robust way
-instead.</p>
-<a class="header" href="ch09-03-to-panic-or-not-to-panic.html#guidelines-for-error-handling" id="guidelines-for-error-handling"><h3>Guidelines for Error Handling</h3></a>
-<p>It’s advisable to have your code <code>panic!</code> when it’s possible that your code
-could end up in a bad state. In this context, bad state is when some
-assumption, guarantee, contract, or invariant has been broken, such as when
-invalid values, contradictory values, or missing values are passed to your
-code—plus one or more of the following:</p>
+    let home: IpAddr = &quot;127.0.0.1&quot;
+        .parse()
+        .expect(&quot;Hardcoded IP address should be valid&quot;);
+<span class="boring">}
+</span></code></pre></pre>
+<p>Ми створюємо екземпляр <code>IpAddr</code> шляхом аналізу жорстко заданого рядка. Можна побачити що <code>127.0.0.1</code> є дійсною IP-адресою, тому доречно використовувати <code>expect</code> тут. Однак наявність жорстко заданого правильного рядка не змінює тип повертаємого значення методу <code>parse</code>: ми все ще отримуємо значення <code>Result</code>, і компілятор досі змушує нас обробляти <code>Result</code> так, ніби варіант <code>Err</code> є можливим, тому що компілятор недостатньо розумний, щоб побачити, що цей рядок завжди є дійсною IP-адресою. Якщо рядок IP-адреси надійшов від користувача, а не є жорстко заданим у програмі, він <em>може</em> призвести до помилки, тому ми точно хотіли б обробити <code>Result</code> більш надійним способом. Згадка про припущення, що ця IP-адреса жорстко задана, спонукатиме нас до зміни <code>expect</code> на кращий код обробки помилок, якщо в майбутньому нам знадобиться отримати IP-адресу з іншого джерела.</p>
+<h3 id="Інструкція-з-обробки-помилок"><a class="header" href="#Інструкція-з-обробки-помилок">Інструкція з обробки помилок</a></h3>
+<p>Бажано, щоб код панікував, якщо він може опинитися в некоректному стані. В цьому контексті <em>некоректний стан</em> це такий стан, коли деяке допущення, гарантія, контракт чи інваріант були порушені. Наприклад, коли неприпустимі, суперечливі чи пропущенні значення передаються у ваш код, та інші приклади зі списку нижче:</p>
 <ul>
-<li>The bad state is not something that’s <em>expected</em> to happen occasionally.</li>
-<li>Your code after this point needs to rely on not being in this bad state.</li>
-<li>There’s not a good way to encode this information in the types you use.</li>
+<li>Некоректний стан - це щось неочікуване, відмінне від того, що може відбуватися час від часу, наприклад, коли користувач вводить дані у неправильному форматі.</li>
+<li>Ваш код після цієї точки повинен покладатися на те, що він не знаходиться у некоректному стані, замість перевірок наявності проблеми на кожному етапі.</li>
+<li>Немає гарного способу закодувати цю інформацію в типах, які ви використовуєте. Ми подивимося приклад того, що ми маємо на увазі в розділі <a href="ch17-03-oo-design-patterns.html#encoding-states-and-behavior-as-types">“Кодування станів та поведінки на основі типів”</a><!-- ignore --> розділу 17.</li>
 </ul>
-<p>If someone calls your code and passes in values that don’t make sense, the best
-choice might be to <code>panic!</code> and alert the person using your library to the bug
-in their code so they can fix it during development. Similarly, <code>panic!</code> is
-often appropriate if you’re calling external code that is out of your control,
-and it returns an invalid state that you have no way of fixing.</p>
-<p>When a bad state is reached, but it’s expected to happen no matter how well you
-write your code, it’s still more appropriate to return a <code>Result</code> rather than
-making a <code>panic!</code> call. Examples of this include a parser being given malformed
-data or an HTTP request returning a status that indicates you have hit a rate
-limit. In these cases, you should indicate that failure is an expected
-possibility by returning a <code>Result</code> to propagate these bad states upwards so
-the calling code can decide how to handle the problem. To <code>panic!</code> wouldn’t be
-the best way to handle these cases.</p>
-<p>When your code performs operations on values, your code should verify the
-values are valid first, and <code>panic!</code> if the values aren’t valid. This is mostly
-for safety reasons: attempting to operate on invalid data can expose your code
-to vulnerabilities. This is the main reason the standard library will <code>panic!</code>
-if you attempt an out-of-bounds memory access: trying to access memory that
-doesn’t belong to the current data structure is a common security problem.
-Functions often have <em>contracts</em>: their behavior is only guaranteed if the
-inputs meet particular requirements. Panicking when the contract is violated
-makes sense because a contract violation always indicates a caller-side bug,
-and it’s not a kind of error you want the calling code to have to explicitly
-handle. In fact, there’s no reasonable way for calling code to recover: the
-calling <em>programmers</em> need to fix the code. Contracts for a function,
-especially when a violation will cause a panic, should be explained in the API
-documentation for the function.</p>
-<p>However, having lots of error checks in all of your functions would be verbose
-and annoying. Fortunately, you can use Rust’s type system (and thus the type
-checking the compiler does) to do many of the checks for you. If your function
-has a particular type as a parameter, you can proceed with your code’s logic
-knowing that the compiler has already ensured you have a valid value. For
-example, if you have a type rather than an <code>Option</code>, your program expects to
-have <em>something</em> rather than <em>nothing</em>. Your code then doesn’t have to handle
-two cases for the <code>Some</code> and <code>None</code> variants: it will only have one case for
-definitely having a value. Code trying to pass nothing to your function won’t
-even compile, so your function doesn’t have to check for that case at runtime.
-Another example is using an unsigned integer type like <code>u32</code>, which ensures the
-parameter is never negative.</p>
-<a class="header" href="ch09-03-to-panic-or-not-to-panic.html#creating-custom-types-for-validation" id="creating-custom-types-for-validation"><h3>Creating Custom Types for Validation</h3></a>
-<p>Let’s take the idea of using Rust’s type system to ensure we have a valid value
-one step further and look at creating a custom type for validation. Recall the
-guessing game in Chapter 2 where our code asked the user to guess a number
-between 1 and 100. We never validated that the user’s guess was between those
-numbers before checking it against our secret number; we only validated that
-the guess was positive. In this case, the consequences were not very dire: our
-output of “Too high” or “Too low” would still be correct. It would be a useful
-enhancement to guide the user toward valid guesses and have different behavior
-when a user guesses a number that’s out of range versus when a user types, for
-example, letters instead.</p>
-<p>One way to do this would be to parse the guess as an <code>i32</code> instead of only a
-<code>u32</code> to allow potentially negative numbers, and then add a check for the
-number being in range, like so:</p>
-<pre><code class="language-rust ignore">loop {
-    // --snip--
+<p>Якщо хтось викликає ваш код та передає значення, які не мають сенсу, краще за все повернути помилку, якщо це можливо, щоб користувач бібліотеки мав змогу вирішити, що йому робити в цьому випадку. Однак, у випадках, коли продовження може бути небезпечним чи шкідливим, найкращим вибором може бути виклик <code>panic!</code> для оповіщення користувача бібліотеки, що в його коді є помилка й він може її виправити. Також <code>panic!</code> підходить, якщо ви викликаєте зовнішній, неконтрольований вами код, і він повертає неприпустимий стан, який ви не можете виправити.</p>
+<p>Однак, якщо очікується збій, краще повернути <code>Result</code>, ніж виконати виклик <code>panic!</code>. Як приклад можна привести синтаксичний аналізатор, якому передали неправильно сформовані дані чи статус HTTP-запиту, що повернувся, вказує на те, що ви досягли обмеження частоти запитів. У цих випадках повертання <code>Result</code> вказує на те, що відмова є очікуваною, такою, яку код, що викликає, повинен вирішити, як саме обробити.</p>
+<p>Коли ваш код виконує операцію, яка може бути ризикованою для користувача, якщо використовуються неприпустимі значення, ваш код повинен спочатку перевірити чи вони коректні, та панікувати, якщо це не так. Діяти таким чином рекомендується в основному з міркувань безпеки: спроба оперувати некоректними даними може спричинити вразливість вашого коду. Це основна причина, через що стандартна бібліотека буде викликати <code>panic!</code>, якщо спробувати отримати доступ до пам'яті поза межами масиву: доступ до пам'яті, яка не стосується поточної структури даних, є відомою проблемою безпеки. Функції часто мають <em>контракти</em>: їх поведінка гарантується, тільки якщо вхідні дані відповідають визначеним вимогам. Паніка при порушенні контракту має сенс, тому що це завжди вказує на дефект з боку коду, що викликає, і це не помилка, яку б ви хотіли, щоб код, що викликає, явно обробляв. Насправді немає розумного способу для відновлення коду, що викликає; <em>Програмісти</em>, що викликають ваш код, повинні виправити свій. Контракти для функції, особливо порушення яких викликає паніку, слід описати в документації API функції.</p>
+<p>Проте, наявність великої кількості перевірок помилок у всіх ваших функціях було б багатослівним та дратівливим. На радість, можна використовувати систему типів Rust (отже і перевірку типів компілятором), щоб вона зробила множину перевірок замість вас. Якщо ваша функція має визначений тип в якості параметру, ви можете продовжити роботу з логікою коду знаючи, що компілятор вже забезпечив правильне значення. Наприклад, якщо використовується звичайний тип, а не тип <code>Option</code>, то ваша програма очікує наявність <em>чогось</em> замість <em>нічого</em>. Ваш код не повинен буде опрацювати обидва варіанти <code>Some</code> та <code>None</code>: він буде мати тільки один варіант для певного значення. Код, який намагається нічого не передавати у функцію, не буде навіть компілюватися, тому ваша функція не повинна перевіряти такий випадок під час виконання. Інший приклад - це використання цілого типу без знаку, такого як <code>u32</code>, який гарантує, що параметр ніколи не буде від'ємним.</p>
+<h3 id="Створення-користувацьких-типів-для-перевірки"><a class="header" href="#Створення-користувацьких-типів-для-перевірки">Створення користувацьких типів для перевірки</a></h3>
+<p>Розвиньмо ідею використання системи типів Rust щоб переконатися, що в нас є коректне значення, та розглянемо створення користувацького типа для валідації. Згадаємо гру вгадування числа з розділу 2, в якому наш код просив користувача вгадати число між 1 й 100. Ми ніколи не перевіряли, що припущення користувача знаходяться в межах цих чисел, перед порівнянням з задуманим нами числом; ми тільки перевіряли, що воно додатне. У цьому випадку наслідки були не дуже страшними: наші повідомлення “Забагато” чи “Замало”, які виводилися у консоль, все одно були коректними. Але було б краще підштовхувати користувача до правильних догадок та мати різну поведінку для випадків, коли користувач пропонує число за межами діапазону, і коли користувач вводить, наприклад, літери замість цифр.</p>
+<p>One way to do this would be to parse the guess as an <code>i32</code> instead of only a <code>u32</code> to allow potentially negative numbers, and then add a check for the number being in range, like so:</p>
+<pre><code class="language-rust ignore"><span class="boring">use rand::Rng;
+</span><span class="boring">use std::cmp::Ordering;
+</span><span class="boring">use std::io;
+</span><span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    println!(&quot;Guess the number!&quot;);
+</span><span class="boring">
+</span><span class="boring">    let secret_number = rand::thread_rng().gen_range(1..=100);
+</span><span class="boring">
+</span>    loop {
+        // --snip--
 
-    let guess: i32 = match guess.trim().parse() {
-        Ok(num) =&gt; num,
-        Err(_) =&gt; continue,
-    };
+<span class="boring">        println!(&quot;Please input your guess.&quot;);
+</span><span class="boring">
+</span><span class="boring">        let mut guess = String::new();
+</span><span class="boring">
+</span><span class="boring">        io::stdin()
+</span><span class="boring">            .read_line(&amp;mut guess)
+</span><span class="boring">            .expect(&quot;Failed to read line&quot;);
+</span><span class="boring">
+</span>        let guess: i32 = match guess.trim().parse() {
+            Ok(num) =&gt; num,
+            Err(_) =&gt; continue,
+        };
 
-    if guess &lt; 1 || guess &gt; 100 {
-        println!(&quot;The secret number will be between 1 and 100.&quot;);
-        continue;
-    }
+        if guess &lt; 1 || guess &gt; 100 {
+            println!(&quot;The secret number will be between 1 and 100.&quot;);
+            continue;
+        }
 
-    match guess.cmp(&amp;secret_number) {
-    // --snip--
-}
-</code></pre>
-<p>The <code>if</code> expression checks whether our value is out of range, tells the user
-about the problem, and calls <code>continue</code> to start the next iteration of the loop
-and ask for another guess. After the <code>if</code> expression, we can proceed with the
-comparisons between <code>guess</code> and the secret number knowing that <code>guess</code> is
-between 1 and 100.</p>
-<p>However, this is not an ideal solution: if it was absolutely critical that the
-program only operated on values between 1 and 100, and it had many functions
-with this requirement, it would be tedious (and potentially impact performance)
-to have a check like this in every function.</p>
-<p>Instead, we can make a new type and put the validations in a function to create
-an instance of the type rather than repeating the validations everywhere. That
-way, it’s safe for functions to use the new type in their signatures and
-confidently use the values they receive. Listing 9-9 shows one way to define a
-<code>Guess</code> type that will only create an instance of <code>Guess</code> if the <code>new</code> function
-receives a value between 1 and 100:</p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-pub struct Guess {
-    value: u32,
+        match guess.cmp(&amp;secret_number) {
+            // --snip--
+<span class="boring">            Ordering::Less =&gt; println!(&quot;Too small!&quot;),
+</span><span class="boring">            Ordering::Greater =&gt; println!(&quot;Too big!&quot;),
+</span><span class="boring">            Ordering::Equal =&gt; {
+</span><span class="boring">                println!(&quot;You win!&quot;);
+</span><span class="boring">                break;
+</span><span class="boring">            }
+</span><span class="boring">        }
+</span>    }
+<span class="boring">}
+</span></code></pre>
+<p>Вираз <code>if</code> перевіряє, чи знаходиться наше значення поза діапазону, повідомляє користувачу про проблему та викликає <code>continue</code>, щоб почати наступну ітерацію циклу й попросити ввести інше число. Після виразу <code>if</code> ми можемо продовжити порівняння значення <code>guess</code> із задуманим числом, знаючи, що <code>guess</code> належить діапазону від 1 до 100.</p>
+<p>However, this is not an ideal solution: if it was absolutely critical that the program only operated on values between 1 and 100, and it had many functions with this requirement, having a check like this in every function would be tedious (and might impact performance).</p>
+<p>Замість цього можна створити новий тип та помістити перевірки у функцію створення екземпляру цього типу, не повторюючи їх повсюди. Таким чином, функції можуть використовувати новий тип у своїх сигнатурах та бути впевненими у значеннях, які їм передають. Лістинг 9-13 демонструє один зі способів, як визначити тип <code>Guess</code>, так щоб екземпляр <code>Guess</code> створювався лише при умові, що функція <code>new</code> отримує значення від 1 до 100.</p>
+<!-- Deliberately not using rustdoc_include here; the `main` function in the
+file requires the `rand` crate. We do want to include it for reader
+experimentation purposes, but don't want to include it for rustdoc testing
+purposes. -->
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct Guess {
+    value: i32,
 }
 
 impl Guess {
-    pub fn new(value: u32) -&gt; Guess {
+    pub fn new(value: i32) -&gt; Guess {
         if value &lt; 1 || value &gt; 100 {
             panic!(&quot;Guess value must be between 1 and 100, got {}.&quot;, value);
         }
 
-        Guess {
-            value
-        }
+        Guess { value }
     }
 
-    pub fn value(&amp;self) -&gt; u32 {
+    pub fn value(&amp;self) -&gt; i32 {
         self.value
     }
 }
-#}</code></pre></pre>
-<p><span class="caption">Listing 9-9: A <code>Guess</code> type that will only continue with
-values between 1 and 100</span></p>
-<p>First, we define a struct named <code>Guess</code> that has a field named <code>value</code> that
-holds a <code>u32</code>. This is where the number will be stored.</p>
-<p>Then we implement an associated function named <code>new</code> on <code>Guess</code> that creates
-instances of <code>Guess</code> values. The <code>new</code> function is defined to have one
-parameter named <code>value</code> of type <code>u32</code> and to return a <code>Guess</code>. The code in the
-body of the <code>new</code> function tests <code>value</code> to make sure it’s between 1 and 100.
-If <code>value</code> doesn’t pass this test, we make a <code>panic!</code> call, which will alert
-the programmer who is writing the calling code that they have a bug they need
-to fix, because creating a <code>Guess</code> with a <code>value</code> outside this range would
-violate the contract that <code>Guess::new</code> is relying on. The conditions in which
-<code>Guess::new</code> might panic should be discussed in its public-facing API
-documentation; we’ll cover documentation conventions indicating the possibility
-of a <code>panic!</code> in the API documentation that you create in Chapter 14. If
-<code>value</code> does pass the test, we create a new <code>Guess</code> with its <code>value</code> field set
-to the <code>value</code> parameter and return the <code>Guess</code>.</p>
-<p>Next, we implement a method named <code>value</code> that borrows <code>self</code>, doesn’t have any
-other parameters, and returns a <code>u32</code>. This is a kind of method sometimes
-called a <em>getter</em>, because its purpose is to get some data from its fields and
-return it. This public method is necessary because the <code>value</code> field of the
-<code>Guess</code> struct is private. It’s important that the <code>value</code> field is private so
-code using the <code>Guess</code> struct is not allowed to set <code>value</code> directly: code
-outside the module <em>must</em> use the <code>Guess::new</code> function to create an instance
-of <code>Guess</code>, which ensures there’s no way for a <code>Guess</code> to have a <code>value</code> that
-hasn’t been checked by the conditions in the <code>Guess::new</code> function.</p>
-<p>A function that has a parameter or returns only numbers between 1 and 100 could
-then declare in its signature that it takes or returns a <code>Guess</code> rather than a
-<code>u32</code> and wouldn’t need to do any additional checks in its body.</p>
-<a class="header" href="ch09-03-to-panic-or-not-to-panic.html#summary" id="summary"><h2>Summary</h2></a>
-<p>Rust’s error handling features are designed to help you write more robust code.
-The <code>panic!</code> macro signals that your program is in a state it can’t handle and
-lets you tell the process to stop instead of trying to proceed with invalid or
-incorrect values. The <code>Result</code> enum uses Rust’s type system to indicate that
-operations might fail in a way that your code could recover from. You can use
-<code>Result</code> to tell code that calls your code that it needs to handle potential
-success or failure as well. Using <code>panic!</code> and <code>Result</code> in the appropriate
-situations will make your code more reliable in the face of inevitable problems.</p>
-<p>Now that you’ve seen useful ways that the standard library uses generics with
-the <code>Option</code> and <code>Result</code> enums, we’ll talk about how generics work and how you
-can use them in your code in the next chapter.</p>
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listing 9-13: A <code>Guess</code> type that will only continue with values between 1 and 100</span></p>
+<p>Спочатку ми визначимо структуру з ім'ям <code>Guess</code>, яка має поле з іменем <code>value</code> типу <code>i32</code>. Ось де буде збережено число.</p>
+<p>Потім ми реалізуємо асоційовану функцію <code>new</code> структури <code>Guess</code>, яка створює нові екземпляри значень типу <code>Guess</code>. Функція <code>new</code> має один параметр <code>value</code> типу <code>i32</code> та повертає <code>Guess</code>. Код у тілі функції <code>new</code> перевіряє, що значення <code>value</code> знаходиться між 1 та 100. Якщо <code>value</code> не проходить цю перевірку, ми викликаємо <code>panic!</code>, що сповістить програміста, який написав код, що в його коді є помилка, яку необхідно виправити, оскільки спроба створення <code>Guess</code> зі значенням <code>value</code> поза заданого діапазону порушує контракт, на який покладається <code>Guess::new</code>. Умови, за яких <code>Guess::new</code> панікує, повинні бути описані в документації до API; ми розглянемо угоди про документації, що вказують на можливість виникнення <code>panic!</code> в документації API, яку ви створите в розділі 14. Якщо <code>value</code> проходить перевірку, ми створюємо новий екземпляр <code>Guess</code>, у якого значення поля <code>value</code> дорівнює значенню параметра <code>value</code>, і повертаємо <code>Guess</code>.</p>
+<p>Потім ми реалізуємо метод з назвою <code>value</code>, який запозичує <code>self</code>, не має інших параметрів, та повертає значення типу <code>i32</code>. Цей метод іноді називають <em>витягувач (getter)</em>, тому що його метою є вилучити дані з полів структури та повернути їх. Цей публічний метод є необхідним, оскільки поле <code>value</code> структури <code>Guess</code> є приватним. Важливо, щоб поле <code>value</code> було приватним, щоб код, який використовує структуру <code>Guess</code>, не міг встановлювати <code>value</code> напряму: код зовні модуля <em>повинен</em> використовувати функцію <code>Guess::new</code> для створення екземпляру <code>Guess</code>, таким чином гарантуючи, що у <code>Guess</code> немає можливості отримати <code>value</code>, не перевірене умовами у функції <code>Guess::new</code>.</p>
+<p>A function that has a parameter or returns only numbers between 1 and 100 could then declare in its signature that it takes or returns a <code>Guess</code> rather than an <code>i32</code> and wouldn’t need to do any additional checks in its body.</p>
+<h2 id="Підсумок"><a class="header" href="#Підсумок">Підсумок</a></h2>
+<p>Можливості обробки помилок в Rust покликані допомогти написанню більш надійного коду. Макрос <code>panic!</code> сигналізує, що ваша програма знаходиться у стані, яке вона не може обробити, та дозволяє сказати процесу щоб він зупинив своє виконання, замість спроби продовжити виконання з некоректними чи невірними значеннями. Перерахунок (enum) <code>Result</code> використовує систему типів Rust, щоб повідомити, що операції можуть завершитися невдачею, і ваш код мав змогу відновитися. Можна використовувати <code>Result</code>, щоб повідомити коду, що викликає, що він повинен обробити потенціальний успіх чи потенційну невдачу. Використання <code>panic!</code> та <code>Result</code> правильним чином зробить ваш код більш надійним перед обличчям неминучих помилок.</p>
+<p>Now that you’ve seen useful ways that the standard library uses generics with the <code>Option</code> and <code>Result</code> enums, we’ll talk about how generics work and how you can use them in your code.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="ch09-02-recoverable-errors-with-result.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
 
-                        
                             <a rel="next" href="ch10-00-generics.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -360,46 +271,35 @@ can use them in your code in the next chapter.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
-                    <a href="ch09-02-recoverable-errors-with-result.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ch09-02-recoverable-errors-with-result.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
 
-                
-                    <a href="ch10-00-generics.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="ch10-00-generics.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
 
-        <!-- Local fallback for Font Awesome -->
-        <script>
-            if (getComputedStyle(document.querySelector(".fa")).fontFamily !== "FontAwesome") {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.href = '_FontAwesome/css/font-awesome.css';
-                document.head.insertBefore(link, document.head.firstChild)
-            }
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
         </script>
 
-        
 
-        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
 
-        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
-        
+        <!-- Custom JS scripts -->
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
-
-        <!-- Custom JS script -->
-        
 
     </body>
 </html>

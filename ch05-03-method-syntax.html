@@ -1,43 +1,44 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="uk" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Method Syntax - The Rust Programming Language</title>
+        <title>Синтаксис методів - Мова програмування Rust</title>
+
+
+        <!-- Custom HTML head -->
+        
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <base href="">
-
-        <link rel="stylesheet" href="book.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
-
+        <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
+        <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
-        <!-- Custom theme -->
-        
-
-        
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
+        <!-- Custom theme stylesheets -->
 
     </head>
-    <body class="light">
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
             try {
@@ -57,55 +58,76 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
-            if (theme === null || theme === undefined) { theme = 'light'; }
-            document.body.className = theme;
-            document.querySelector('html').className = theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script type="text/javascript">
+            var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             }
-            document.querySelector('html').classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="foreword.html">Foreword</a></li><li class="affix"><a href="ch00-00-introduction.html">Introduction</a></li><li><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Guessing Game Tutorial</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References &amp; Borrowing</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li><a href="ch05-03-method-syntax.html" class="active"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T> Points to Data on the Heap and Has a Known Size</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>, the Reference Counted Smart Pointer</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T> and the Interior Mutability Pattern</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions &amp; Closures</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">The Rust Programming Language</a></li><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Початок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Встановлення</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Програмування гри - відгадайки</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Загальні концепції програмування</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Змінні та мутабельність</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Типи даних</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> Функції</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Коментарі</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Управління потоком виконання</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Розуміння володіння</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> Що таке володіння?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> Посилання і позичання</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Тип даних слайс</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Використання структур для структурування пов'язаних даних</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Визначення і інстанціювання структур Struct</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> Приклад програми, що використовує структури</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html" class="active"><strong aria-hidden="true">5.3.</strong> Синтаксис методів</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Енуми і зіставлення з шаблоном</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Визначення енума</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> Конструкція управління match</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Лаконічний контроль виконання конструкцією if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong aria-hidden="true">7.</strong> Керування проєктами, що зростають, за допомогою пакетів, крейтів та модулів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-packages-and-crates.html"><strong aria-hidden="true">7.1.</strong> Пакети та крейти</a></li><li class="chapter-item expanded "><a href="ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong aria-hidden="true">7.2.</strong> Визначення модулів для управління областями видимості та приватністю</a></li><li class="chapter-item expanded "><a href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li><li class="chapter-item expanded "><a href="ch07-04-bringing-paths-into-scope-with-the-use-keyword.html"><strong aria-hidden="true">7.4.</strong> Підключення шляхів до області видимості за допомогою ключового слова use</a></li><li class="chapter-item expanded "><a href="ch07-05-separating-modules-into-different-files.html"><strong aria-hidden="true">7.5.</strong> Розподіл модулів на різні файли</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Обробка помилок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Невідновні Помилки із panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Помилки, що піддаються відновленню за допомогою Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> panic! чи не panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Узагальнені типи, трейти та лайфтайми</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Узагальнені типи даних</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Трейти: визначення загальної поведінки</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Перевірка коректності посилань за допомогою часів існування</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Написання автоматизованих тестів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Як писати тести</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Контроль над запуском тестів</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Організація тестів</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> Проєкт з введенням/виведенням: створення програми командного рядка</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Приймання аргументів командного рядка</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Читання файлу</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Рефакторизація для покращення модульності та обробки помилок</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Розробка Функціонала Бібліотеки із Test-Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Робота зі Змінними Середовища</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Написання Повідомлень Про Помилки в Standard Error Замість Стандартного Виводу</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Функціональні можливості мови: Ітератори та Замикання</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Замикання: Анонімні Функції що Захоплюють Своє Середовище</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Обробка послідовностей елементів за допомогою ітераторів</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Покращуємо наш проєкт з введенням/виведенням</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Порівняння швидкодії: цикли проти ітераторів</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> Більше про Cargo та Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Налаштування Збірок з Release Профілями</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Публікація Крейта на Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Робочі Області Cargo</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Розширення Cargo із Користувацькими Командами</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Розумні вказівники</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Використання Box&lt;T&gt; для вказування на значення в Heap</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Використання розумних вказівників як звичайних посилань за допомогою трейта Deref</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> Виконання коду при очищенні за допомогою трейту Drop</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, розумний вказівник з лічильником посилань</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; і шаблон внутрішньої мутабельності</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Цикли посилань можуть призвести до витоку пам'яті</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Конкурентність без страху</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Шаблони та Зіставлення Шаблонів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Спростовуваність: Чи Може Шаблон Бути Невідповідним</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Просунутий функціонал</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Небезпечний Rust</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.2.</strong> Поглиблено про трейти</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.3.</strong> Поглиблено про типи</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.4.</strong> Поглиблено про функції та замикання</a></li><li class="chapter-item expanded "><a href="ch19-06-macros.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Останній проєкт: збірка багатопотокового вебсервера</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> Збірка однопотокового вебсервера</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Перетворюємо наш однопотоковий сервер на багатопотоковий</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Плавне вимикання і очищення</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Додатки</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Ключові слова</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - оператори та символи</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-useful-development-tools.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-editions.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-translation.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> Додаток G - як робиться Rust і "щонічний Rust"</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar" class="menu-bar">
-                    <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
-                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                                <i class="fa fa-paint-brush"></i>
-                            </button>
-                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                            </ul>
-                        </div>
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-                        <h1 class="menu-title">The Rust Programming Language</h1>
+                    <h1 class="menu-title">Мова програмування Rust</h1>
 
-                        <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
-                                <i id="print-button" class="fa fa-print"></i>
-                            </a>
-                        </div>
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
                     </div>
                 </div>
 
@@ -120,20 +142,12 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="ch05-03-method-syntax.html#method-syntax" id="method-syntax"><h2>Method Syntax</h2></a>
-<p><em>Methods</em> are similar to functions: they’re declared with the <code>fn</code> keyword and
-their name, they can have parameters and a return value, and they contain some
-code that is run when they’re called from somewhere else. However, methods are
-different from functions in that they’re defined within the context of a struct
-(or an enum or a trait object, which we cover in Chapters 6 and 17,
-respectively), and their first parameter is always <code>self</code>, which represents the
-instance of the struct the method is being called on.</p>
-<a class="header" href="ch05-03-method-syntax.html#defining-methods" id="defining-methods"><h3>Defining Methods</h3></a>
-<p>Let’s change the <code>area</code> function that has a <code>Rectangle</code> instance as a parameter
-and instead make an <code>area</code> method defined on the <code>Rectangle</code> struct, as shown
-in Listing 5-13:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
-<pre><pre class="playpen"><code class="language-rust">#[derive(Debug)]
+                        <h2 id="Синтаксис-методів"><a class="header" href="#Синтаксис-методів">Синтаксис методів</a></h2>
+<p><em>Методи</em> подібні до функцій: вони проголошуються ключовим словом <code>fn</code> і іменем, можуть мати параметри та повертати значення, і містять код, що виконується, коли їх викликають з іншого місця. Однак методи відрізняються від функцій тим, що визначені в контексті структури (чи енума, чи трейт-об'єкта, про що піде мова в Розділах 6 та 17, відповідно), і їхнім першим параметром завжди є <code>self</code>, що представляє екземпляр структури, з якої викликається метод.</p>
+<h3 id="Визначення-методів"><a class="header" href="#Визначення-методів">Визначення методів</a></h3>
+<p>Let’s change the <code>area</code> function that has a <code>Rectangle</code> instance as a parameter and instead make an <code>area</code> method defined on the <code>Rectangle</code> struct, as shown in Listing 5-13.</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">#[derive(Debug)]
 struct Rectangle {
     width: u32,
     height: u32,
@@ -146,7 +160,10 @@ impl Rectangle {
 }
 
 fn main() {
-    let rect1 = Rectangle { width: 30, height: 50 };
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
 
     println!(
         &quot;The area of the rectangle is {} square pixels.&quot;,
@@ -154,126 +171,103 @@ fn main() {
     );
 }
 </code></pre></pre>
-<p><span class="caption">Listing 5-13: Defining an <code>area</code> method on the
-<code>Rectangle</code> struct</span></p>
-<p>To define the function within the context of <code>Rectangle</code>, we start an <code>impl</code>
-(<em>implementation</em>) block. Then we move the <code>area</code> function within the <code>impl</code>
-curly brackets and change the first (and in this case, only) parameter to be
-<code>self</code> in the signature and everywhere within the body. In <code>main</code> where we
-called the <code>area</code> function and passed <code>rect1</code> as an argument, we can instead
-use <em>method syntax</em> to call the <code>area</code> method on our <code>Rectangle</code> instance.
-The method syntax goes after an instance: we add a dot followed by the method
-name, parentheses, and any arguments.</p>
-<p>In the signature for <code>area</code>, we use <code>&amp;self</code> instead of <code>rectangle: &amp;Rectangle</code>
-because Rust knows the type of <code>self</code> is <code>Rectangle</code> due to this method being
-inside the <code>impl Rectangle</code> context. Note that we still need to use the <code>&amp;</code>
-before <code>self</code>, just like we did in <code>&amp;Rectangle</code>. Methods can take ownership of
-<code>self</code>, borrow <code>self</code> immutably as we’ve done here, or borrow <code>self</code> mutably,
-just like any other parameter.</p>
-<p>We’ve chosen <code>&amp;self</code> here for the same reason we used <code>&amp;Rectangle</code> in the
-function version: we don’t want to take ownership, and we just want to read the
-data in the struct, not write to it. If we wanted to change the instance that
-we’ve called the method on as part of what the method does, we’d use <code>&amp;mut self</code> as the first parameter. Having a method that takes ownership of the
-instance by using just <code>self</code> as the first parameter is rare; this technique is
-usually used when the method transforms <code>self</code> into something else and we want
-to prevent the caller from using the original instance after the transformation.</p>
-<p>The main benefit of using methods instead of functions, in addition to using
-method syntax and not having to repeat the type of <code>self</code> in every method’s
-signature, is for organization. We’ve put all the things we can do with an
-instance of a type in one <code>impl</code> block rather than making future users of our
-code search for capabilities of <code>Rectangle</code> in various places in the library we
-provide.</p>
+<p><span class="caption">Listing 5-13: Defining an <code>area</code> method on the <code>Rectangle</code> struct</span></p>
+<p>Щоб визначити функцію в контексті <code>Rectangle</code>, ми починаємо блок <code>impl</code> (від implementation, &quot;реалізація&quot;) для <code>Rectangle</code>. Все в цьому блоці <code>impl</code> буде пов'язано з типом <code>Rectangle</code>. Потім ми переносимо функцію <code>area</code> до фігурних дужок після <code>impl</code> і замінюємо перший (а в цьому випадку єдиний) параметр на <code>self</code> у сигнатурі та повсюди в тілі. У <code>main</code>, де ми викликали функцію <code>area</code> і передавали аргументом <code>rect1</code>, тепер використаємо <em>синтаксис виклику метода</em>, щоб викликати метод <code>area</code> нашого екземпляра <code>Rectangle</code>. Синтаксис виклику методу записується після екземпляру: ми додаємо крапку, за якою - ім'я методу, дужки, і параметри, якщо такі є.</p>
+<p>У сигнатурі <code>area</code> ми використовуємо <code>&amp;self</code> замість <code>rectangle: &amp;Rectangle</code>. <code>&amp;self</code> є насправді скороченням для <code>self: &amp;Self</code>. Усередині блоку <code>impl</code> тип <code>Self</code> є псевдонімом для типу, для якого призначено цей блок <code>impl</code>. Методи мусять мати перший параметр на ім'я <code>self</code> типу <code>Self</code>, тому Rust дозволяє вам скоротити це до лише імені <code>self</code> на місці першого параметра. Зверніть увагу, що нам все ще потрібно використовувати <code>&amp;</code> перед скороченням <code>self</code>, щоб вказати, що цей метод запозичує екземпляр <code>Self</code>, так само як ми це зробили в <code>rectangle: &amp;Rectangle</code>. Методи можуть перебирати володіння над <code>self</code>, позичати <code>self</code> немутабельно, як у цьому випадку, чи позичати <code>self</code> мутабельно, як і будь-який інший параметр.</p>
+<p>Ми обрали <code>&amp;self</code> з тих самих причин, що й <code>&amp;Rectangle</code> у версії з функцією: ми не хочемо брати володіння, ми хочемо просто читати дані структури, не писати їх. Якби ми хотіли змінити екземпляр, для якого викликали метод, десь у методі, то перший параметр мав би бути <code>&amp;mut self</code>. Методи, що беруть володіння над екземпляром за допомогою просто <code>self</code>, зустрічаються нечасто; ця техніка зазвичай використовується, коли метод перетворює <code>self</code> у щось інше і ми не хочемо, щоб оригінальний екземпляр використовувався після трансформації.</p>
+<p>Основна перевага використання методів замість функцій, окрім використання синтаксису виклику метода та відсутності необхідності повторювати тип <code>self</code> у сигнатурі кожного метода - це організація коду. Ми збираємо все, що ми можемо зробити з екземпляром типа, в один блок <code>impl</code>, не примушуючи майбутніх користувачів нашого коду шукати можливостей використання <code>Rectangle</code> у різних місцях у нашій бібліотеці.</p>
+<p>Зверніть увагу, що ми можемо вирішити назвати метод так само як зветься одне з полів структури. Наприклад, ми можемо визначити метод <code>Rectangle</code>, що також зватиметься <code>width</code>:</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#[derive(Debug)]
+</span><span class="boring">struct Rectangle {
+</span><span class="boring">    width: u32,
+</span><span class="boring">    height: u32,
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl Rectangle {
+    fn width(&amp;self) -&gt; bool {
+        self.width &gt; 0
+    }
+}
+
+fn main() {
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    if rect1.width() {
+        println!(&quot;The rectangle has a nonzero width; it is {}&quot;, rect1.width);
+    }
+}
+</code></pre></pre>
+<p>Тут ми вирішили, що метод <code>width</code> має повертати <code>true</code>, якщо значення у полі екземпляра <code>width</code> більше за 0, і <code>false</code>, якщо його значення 0: ми можемо як завгодно використати поле в методі з тим самим іменем. У <code>main</code>, коли ми пишемо <code>rect1.width</code> з дужками, Rust знає, що ми маємо на увазі метод <code>width</code>. Коли ми не використовуємо дужки, Rust знає, що ми маємо на увазі поле <code>width</code>.</p>
+<p>Часто, але не завжди, коли ми даємо методам ім'я, що має поле, ми хочемо, щоб цей метод лише повертав значення поля і більше нічого не робив. Такі методи називаються <em>ґеттерами</em>, і Rust не реалізує їх автоматично для полів структур, як деякі інші мови. Ґеттери є корисними, бо дозволяють зробити поле приватним, а метод публічним, і таким чином уможливити доступ лише для читання як частину публічного API цього типу. Ми обговоримо, що таке публічне і приватне, і як позначити поле або метод публічним чи приватним у Розділі 7.</p>
 <blockquote>
-<a class="header" href="ch05-03-method-syntax.html#wheres-the---operator" id="wheres-the---operator"><h3>Where’s the <code>-&gt;</code> Operator?</h3></a>
-<p>In languages like C++, two different operators are used for calling methods:
-you use <code>.</code> if you’re calling a method on the object directly and <code>-&gt;</code> if
-you’re calling the method on a pointer to the object and need to dereference
-the pointer first. In other words, if <code>object</code> is a pointer,
-<code>object-&gt;something()</code> is similar to <code>(*object).something()</code>.</p>
-<p>Rust doesn’t have an equivalent to the <code>-&gt;</code> operator; instead, Rust has a
-feature called <em>automatic referencing and dereferencing</em>. Calling methods is
-one of the few places in Rust that has this behavior.</p>
-<p>Here’s how it works: when you call a method with <code>object.something()</code>, Rust
-automatically adds in <code>&amp;</code>, <code>&amp;mut</code>, or <code>*</code> so <code>object</code> matches the signature of
-the method. In other words, the following are the same:</p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-# #[derive(Debug,Copy,Clone)]
-# struct Point {
-#     x: f64,
-#     y: f64,
-# }
-#
-# impl Point {
-#    fn distance(&amp;self, other: &amp;Point) -&gt; f64 {
-#        let x_squared = f64::powi(other.x - self.x, 2);
-#        let y_squared = f64::powi(other.y - self.y, 2);
-#
-#        f64::sqrt(x_squared + y_squared)
-#    }
-# }
-# let p1 = Point { x: 0.0, y: 0.0 };
-# let p2 = Point { x: 5.0, y: 6.5 };
-p1.distance(&amp;p2);
+<h3 id="А-де-ж-оператор--"><a class="header" href="#А-де-ж-оператор--">А де ж оператор <code>-&gt;</code>?</a></h3>
+<p>У C та C++ використовуються два різні оператори для виклику методів: <code>.</code>, якщо метод викликається для об'єкта безпосередньо, і <code>-&gt;</code>, якщо ви викликаєте метод для вказівника на об'єкт і спершу вказівник слід розіменувати. Іншими словами, якщо <code>object</code> - це вказівник, то <code>object-&gt;something()</code> робить те саме, що й <code>(*object).something()</code>.</p>
+<p>Rust не має еквівалента оператора<code>-&gt;</code>; натомість, Rust має особливість, що зветься <em>автоматичне посилання і розіменування</em> (automatic referencing and dereferencing). Виклик методів - це одне з небагатьох місць у Rust з такою поведінкою.</p>
+<p>Ось як це працює: коли ви викликаєте метод з  <code>object.something()</code>, Rust автоматично додає <code>&amp;</code>, <code>&amp;mut</code>, або <code>*</code>, щоб <code>object</code> відповідав сигнатурі методу. Іншими словами, наступними вирази означають одне й те саме:</p>
+<!-- CAN'T EXTRACT SEE BUG https://github.com/rust-lang/mdBook/issues/1127 -->
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">#[derive(Debug,Copy,Clone)]
+</span><span class="boring">struct Point {
+</span><span class="boring">    x: f64,
+</span><span class="boring">    y: f64,
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Point {
+</span><span class="boring">   fn distance(&amp;self, other: &amp;Point) -&gt; f64 {
+</span><span class="boring">       let x_squared = f64::powi(other.x - self.x, 2);
+</span><span class="boring">       let y_squared = f64::powi(other.y - self.y, 2);
+</span><span class="boring">
+</span><span class="boring">       f64::sqrt(x_squared + y_squared)
+</span><span class="boring">   }
+</span><span class="boring">}
+</span><span class="boring">let p1 = Point { x: 0.0, y: 0.0 };
+</span><span class="boring">let p2 = Point { x: 5.0, y: 6.5 };
+</span>p1.distance(&amp;p2);
 (&amp;p1).distance(&amp;p2);
-#}</code></pre></pre>
-<p>The first one looks much cleaner. This automatic referencing behavior works
-because methods have a clear receiver—the type of <code>self</code>. Given the receiver
-and name of a method, Rust can figure out definitively whether the method is
-reading (<code>&amp;self</code>), mutating (<code>&amp;mut self</code>), or consuming (<code>self</code>). The fact
-that Rust makes borrowing implicit for method receivers is a big part of
-making ownership ergonomic in practice.</p>
+<span class="boring">}
+</span></code></pre></pre>
+<p>Але перший вираз є значно яснішим. Ці автоматичні посилання працюють, бо методи мають чітко заданого отримувача - тип  <code>self</code>. Знаючи отримувача і назву метода, Rust може однозначно з'ясувати, чи цей метод для читання  (<code>&amp;self</code>), змін (<code>&amp;mut self</code>) чи поглинання (<code>self</code>). Те, що Rust робить позичання неявним для отримувача метода є суттєвою частиною того, що робить володіння ергономічним на практиці.</p>
 </blockquote>
-<a class="header" href="ch05-03-method-syntax.html#methods-with-more-parameters" id="methods-with-more-parameters"><h3>Methods with More Parameters</h3></a>
-<p>Let’s practice using methods by implementing a second method on the <code>Rectangle</code>
-struct. This time, we want an instance of <code>Rectangle</code> to take another instance
-of <code>Rectangle</code> and return <code>true</code> if the second <code>Rectangle</code> can fit completely
-within <code>self</code>; otherwise it should return <code>false</code>. That is, we want to be able
-to write the program shown in Listing 5-14, once we’ve defined the <code>can_hold</code>
-method:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<h3 id="Методи-з-більшою-кількістю-параметрів"><a class="header" href="#Методи-з-більшою-кількістю-параметрів">Методи з більшою кількістю параметрів</a></h3>
+<p>Попрактикуймося використовувати методи, створивши другий метод для структури <code>Rectangle</code>. Цього разу ми хочемо, щоб екземпляр <code>Rectangle</code> прийняв інший екземпляр <code>Rectangle</code> і повернув <code>true</code>, якщо другий <code>Rectangle</code> може повністю поміститися в межах <code>self</code> (першого <code>Rectangle</code>); інакше він повинен повернути <code>false</code>. Тобто, після визначення метода <code>can_hold</code>, ми хочемо мати можливість написати програму, показану в Блоці коду 5-14.</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
 <pre><code class="language-rust ignore">fn main() {
-    let rect1 = Rectangle { width: 30, height: 50 };
-    let rect2 = Rectangle { width: 10, height: 40 };
-    let rect3 = Rectangle { width: 60, height: 45 };
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    let rect2 = Rectangle {
+        width: 10,
+        height: 40,
+    };
+    let rect3 = Rectangle {
+        width: 60,
+        height: 45,
+    };
 
     println!(&quot;Can rect1 hold rect2? {}&quot;, rect1.can_hold(&amp;rect2));
     println!(&quot;Can rect1 hold rect3? {}&quot;, rect1.can_hold(&amp;rect3));
 }
 </code></pre>
-<p><span class="caption">Listing 5-14: Demonstration of using the as-yet-unwritten
-<code>can_hold</code> method</span></p>
-<p>And the expected output would look like the following, because both dimensions
-of <code>rect2</code> are smaller than the dimensions of <code>rect1</code>, but <code>rect3</code> is wider
-than <code>rect1</code>:</p>
+<p><span class="caption">Listing 5-14: Using the as-yet-unwritten <code>can_hold</code> method</span></p>
+<p>And the expected output would look like the following, because both dimensions of <code>rect2</code> are smaller than the dimensions of <code>rect1</code> but <code>rect3</code> is wider than <code>rect1</code>:</p>
 <pre><code class="language-text">Can rect1 hold rect2? true
 Can rect1 hold rect3? false
 </code></pre>
-<p>We know we want to define a method, so it will be within the <code>impl Rectangle</code>
-block. The method name will be <code>can_hold</code>, and it will take an immutable borrow
-of another <code>Rectangle</code> as a parameter. We can tell what the type of the
-parameter will be by looking at the code that calls the method:
-<code>rect1.can_hold(&amp;rect2)</code> passes in <code>&amp;rect2</code>, which is an immutable borrow to
-<code>rect2</code>, an instance of <code>Rectangle</code>. This makes sense because we only need to
-read <code>rect2</code> (rather than write, which would mean we’d need a mutable borrow),
-and we want <code>main</code> to retain ownership of <code>rect2</code> so we can use it again after
-calling the <code>can_hold</code> method. The return value of <code>can_hold</code> will be a
-Boolean, and the implementation will check whether the width and height of
-<code>self</code> are both greater than the width and height of the other <code>Rectangle</code>,
-respectively. Let’s add the new <code>can_hold</code> method to the <code>impl</code> block from
-Listing 5-13, shown in Listing 5-15:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-# #[derive(Debug)]
-# struct Rectangle {
-#     width: u32,
-#     height: u32,
-# }
-#
-impl Rectangle {
+<p>Ми знаємо, що хочемо визначити метод, тож він буде написаний у блоці <code>impl  Rectangle</code>. Метод буде зватися <code>can_hold</code>, і буде приймати параметром немутабельне позичання іншого <code>Rectangle</code>. Ми можемо зрозуміти, якого типу буде параметр, подивившися на код, що викликає метод: <code>rect1.can_hold(&amp;rect2)</code> передає <code>&amp;rect2</code>`, тобто немутабельно позичає <code>rect2</code>, екземпляр <code>Rectangle</code>. Це зрозуміло, бо нам треба лише читати <code>rect2</code> (а не писати, бо тоді б було потрібне мутабельне позичання), і ми хочемо, щоб <code>main</code> залишав собі володіння <code>rect2</code>, щоб його можна було використовувати після виклику методі <code>can_hold</code>. Значення, що повертає <code>can_hold</code>, буде булевого типу, а реалізація перевірить, чи ширина та висота <code>self</code> більші за відповідно ширину та висоту іншого <code>Rectangle</code>. Додамо метод <code>can_hold</code> до блоку <code>impl</code> з Блоку коду 5-13, як показано в Блоці коду 5-15.</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#[derive(Debug)]
+</span><span class="boring">struct Rectangle {
+</span><span class="boring">    width: u32,
+</span><span class="boring">    height: u32,
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl Rectangle {
     fn area(&amp;self) -&gt; u32 {
         self.width * self.height
     }
@@ -282,59 +276,61 @@ impl Rectangle {
         self.width &gt; other.width &amp;&amp; self.height &gt; other.height
     }
 }
-#}</code></pre></pre>
-<p><span class="caption">Listing 5-15: Implementing the <code>can_hold</code> method on
-<code>Rectangle</code> that takes another <code>Rectangle</code> instance as a parameter</span></p>
-<p>When we run this code with the <code>main</code> function in Listing 5-14, we’ll get our
-desired output. Methods can take multiple parameters that we add to the
-signature after the <code>self</code> parameter, and those parameters work just like
-parameters in functions.</p>
-<a class="header" href="ch05-03-method-syntax.html#associated-functions" id="associated-functions"><h3>Associated Functions</h3></a>
-<p>Another useful feature of <code>impl</code> blocks is that we’re allowed to define
-functions within <code>impl</code> blocks that <em>don’t</em> take <code>self</code> as a parameter. These
-are called <em>associated functions</em> because they’re associated with the struct.
-They’re still functions, not methods, because they don’t have an instance of
-the struct to work with. You’ve already used the <code>String::from</code> associated
-function.</p>
-<p>Associated functions are often used for constructors that will return a new
-instance of the struct. For example, we could provide an associated function
-that would have one dimension parameter and use that as both width and height,
-thus making it easier to create a square <code>Rectangle</code> rather than having to
-specify the same value twice:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-# #[derive(Debug)]
-# struct Rectangle {
-#     width: u32,
-#     height: u32,
-# }
-#
-impl Rectangle {
-    fn square(size: u32) -&gt; Rectangle {
-        Rectangle { width: size, height: size }
+<span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    let rect1 = Rectangle {
+</span><span class="boring">        width: 30,
+</span><span class="boring">        height: 50,
+</span><span class="boring">    };
+</span><span class="boring">    let rect2 = Rectangle {
+</span><span class="boring">        width: 10,
+</span><span class="boring">        height: 40,
+</span><span class="boring">    };
+</span><span class="boring">    let rect3 = Rectangle {
+</span><span class="boring">        width: 60,
+</span><span class="boring">        height: 45,
+</span><span class="boring">    };
+</span><span class="boring">
+</span><span class="boring">    println!(&quot;Can rect1 hold rect2? {}&quot;, rect1.can_hold(&amp;rect2));
+</span><span class="boring">    println!(&quot;Can rect1 hold rect3? {}&quot;, rect1.can_hold(&amp;rect3));
+</span><span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listing 5-15: Implementing the <code>can_hold</code> method on <code>Rectangle</code> that takes another <code>Rectangle</code> instance as a parameter</span></p>
+<p>Коли ми запустимо цей код з функції <code>main</code> у Блоці коду 5-14, ми отримаємо вивід, який хотіли. Методи можуть приймати багато параметрів, які ми додаємо до сигнатури після параметру <code>self</code>, і ці параметри працюють так само як у функціях.</p>
+<h3 id="Асоційовані-функції"><a class="header" href="#Асоційовані-функції">Асоційовані функції</a></h3>
+<p>Усі функції, визначені в блоці <code>impl</code>, звуться <em>асоційованими функціями</em>, бо вони асоційовані з типом, названим після <code>impl</code>. Ми можемо визначити асоційовані функції, що не мають першим параметром <code>self</code> (і відтак не є методами), і вони не потребують екземпляра типа, щоб із ним працювати. Ми вже користалися такою асоційованою функцією, а саме функцією <code>String::from</code>, визначеною на типі <code>String</code>.</p>
+<p>Асоційовані функції, що не є методами, часто використовуються як конструктори, що повертають новий екземпляр структури. Вони часто називаються <code>new</code>, але <code>new</code> не є спеціальним ім'ям і не вбудовано в мову. Наприклад, ми можемо написати асоційовану функцію <code>square</code>, що матиме один параметр розміру і використовуватиме його і як ширину, і як висоту, щоб створити таким чином квадратний <code>Rectangle</code>, не вказуючи одне й те саме значення двічі:</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#[derive(Debug)]
+</span><span class="boring">struct Rectangle {
+</span><span class="boring">    width: u32,
+</span><span class="boring">    height: u32,
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl Rectangle {
+    fn square(size: u32) -&gt; Self {
+        Self {
+            width: size,
+            height: size,
+        }
     }
 }
-#}</code></pre></pre>
-<p>To call this associated function, we use the <code>::</code> syntax with the struct name,
-like <code>let sq = Rectangle::square(3);</code>, for example. This function is
-namespaced by the struct: the <code>::</code> syntax is used for both associated functions
-and namespaces created by modules, which we’ll discuss in Chapter 7.</p>
-<a class="header" href="ch05-03-method-syntax.html#multiple-impl-blocks" id="multiple-impl-blocks"><h3>Multiple <code>impl</code> Blocks</h3></a>
-<p>Each struct is allowed to have multiple <code>impl</code> blocks. For example, Listing
-5-15 is equivalent to the code shown in Listing 5-16, which has each method
-in its own <code>impl</code> block:</p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-# #[derive(Debug)]
-# struct Rectangle {
-#     width: u32,
-#     height: u32,
-# }
-#
-impl Rectangle {
+<span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    let sq = Rectangle::square(3);
+</span><span class="boring">}
+</span></code></pre></pre>
+<p>The <code>Self</code> keywords in the return type and in the body of the function are aliases for the type that appears after the <code>impl</code> keyword, which in this case is <code>Rectangle</code>.</p>
+<p>Щоб викликати асоційовану функцію, ми використовуємо запис <code>::</code> з іменем структури, наприклад <code>let sq = Rectangle::square(3);</code>. Ця функція включена до простору імен структури: запис <code>::</code> використовується і для асоційованих функцій, і для просторів імен, створених модулями. Про модулі ми поговоримо в Розділі 7.</p>
+<h3 id="Кілька-однакових-блоків-impl"><a class="header" href="#Кілька-однакових-блоків-impl">Кілька однакових блоків <code>impl</code></a></h3>
+<p>Кожна структура може мати кілька блоків <code>impl</code>. Наприклад, Блок коду 5-15 тотожний коду, показаному в Блоці коду 5-16, де кожен метод знаходиться у власному блоці <code>impl</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#[derive(Debug)]
+</span><span class="boring">struct Rectangle {
+</span><span class="boring">    width: u32,
+</span><span class="boring">    height: u32,
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl Rectangle {
     fn area(&amp;self) -&gt; u32 {
         self.width * self.height
     }
@@ -345,37 +341,42 @@ impl Rectangle {
         self.width &gt; other.width &amp;&amp; self.height &gt; other.height
     }
 }
-#}</code></pre></pre>
-<p><span class="caption">Listing 5-16: Rewriting Listing 5-15 using multiple <code>impl</code>
-blocks</span></p>
-<p>There’s no reason to separate these methods into multiple <code>impl</code> blocks here,
-but it’s valid syntax. We will see a case when multiple <code>impl</code> blocks are useful
-in Chapter 10 when we discuss generic types and traits.</p>
-<a class="header" href="ch05-03-method-syntax.html#summary" id="summary"><h2>Summary</h2></a>
-<p>Structs let us create custom types that are meaningful for our domain. By using
-structs, we can keep associated pieces of data connected to each other and name
-each piece to make our code clear. Methods let us specify the behavior that
-instances of our structs have, and associated functions let us namespace
-functionality that is particular to our struct without having an instance
-available.</p>
-<p>But structs aren’t the only way we can create custom types: let’s turn to
-Rust’s enum feature to add another tool to our toolbox.</p>
+<span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    let rect1 = Rectangle {
+</span><span class="boring">        width: 30,
+</span><span class="boring">        height: 50,
+</span><span class="boring">    };
+</span><span class="boring">    let rect2 = Rectangle {
+</span><span class="boring">        width: 10,
+</span><span class="boring">        height: 40,
+</span><span class="boring">    };
+</span><span class="boring">    let rect3 = Rectangle {
+</span><span class="boring">        width: 60,
+</span><span class="boring">        height: 45,
+</span><span class="boring">    };
+</span><span class="boring">
+</span><span class="boring">    println!(&quot;Can rect1 hold rect2? {}&quot;, rect1.can_hold(&amp;rect2));
+</span><span class="boring">    println!(&quot;Can rect1 hold rect3? {}&quot;, rect1.can_hold(&amp;rect3));
+</span><span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listing 5-16: Rewriting Listing 5-15 using multiple <code>impl</code> blocks</span></p>
+<p>Тут немає підстав розділяти ці методи у декілька блоків <code>impl</code>, але це коректний синтаксис. Ми побачимо випадок, де кілька блоків <code>impl</code> можуть бути корисні, у Розділі 10, де ми поговоримо про узагальнені типи і трейти.</p>
+<h2 id="Підсумок"><a class="header" href="#Підсумок">Підсумок</a></h2>
+<p>Структури дозволяють вам створювати власні типи, що мають значення для предметної області програми. Використовуючи структури, ми можемо зберігати пов’язані між собою фрагменти даних разом і давати ім'я кожному фрагменту, щоб зробити наш код зрозумілим. У блоках <code>impl</code> ви можете визначити функції, асоційовані з вашим типом, а методи - це різновид асоційованих функцій, що дозволяють визначити поведінку, яку мають екземпляри ваших структур.</p>
+<p>But structs aren’t the only way you can create custom types: let’s turn to Rust’s enum feature to add another tool to your toolbox.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="ch05-02-example-structs.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
 
-                        
                             <a rel="next" href="ch06-00-enums.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -383,46 +384,35 @@ Rust’s enum feature to add another tool to our toolbox.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
-                    <a href="ch05-02-example-structs.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ch05-02-example-structs.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
 
-                
-                    <a href="ch06-00-enums.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="ch06-00-enums.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
 
-        <!-- Local fallback for Font Awesome -->
-        <script>
-            if (getComputedStyle(document.querySelector(".fa")).fontFamily !== "FontAwesome") {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.href = '_FontAwesome/css/font-awesome.css';
-                document.head.insertBefore(link, document.head.firstChild)
-            }
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
         </script>
 
-        
 
-        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
 
-        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
-        
+        <!-- Custom JS scripts -->
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
-
-        <!-- Custom JS script -->
-        
 
     </body>
 </html>

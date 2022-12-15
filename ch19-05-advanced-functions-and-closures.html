@@ -1,43 +1,44 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="uk" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Advanced Functions &amp; Closures - The Rust Programming Language</title>
+        <title>Поглиблено про функції та замикання - Мова програмування Rust</title>
+
+
+        <!-- Custom HTML head -->
+        
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <base href="">
-
-        <link rel="stylesheet" href="book.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
-
+        <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
+        <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
-        <!-- Custom theme -->
-        
-
-        
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
+        <!-- Custom theme stylesheets -->
 
     </head>
-    <body class="light">
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
             try {
@@ -57,55 +58,76 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
-            if (theme === null || theme === undefined) { theme = 'light'; }
-            document.body.className = theme;
-            document.querySelector('html').className = theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script type="text/javascript">
+            var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             }
-            document.querySelector('html').classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="foreword.html">Foreword</a></li><li class="affix"><a href="ch00-00-introduction.html">Introduction</a></li><li><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Guessing Game Tutorial</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References &amp; Borrowing</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T> Points to Data on the Heap and Has a Known Size</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>, the Reference Counted Smart Pointer</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T> and the Interior Mutability Pattern</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li><a href="ch19-05-advanced-functions-and-closures.html" class="active"><strong aria-hidden="true">19.5.</strong> Advanced Functions &amp; Closures</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">The Rust Programming Language</a></li><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Початок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Встановлення</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Програмування гри - відгадайки</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Загальні концепції програмування</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Змінні та мутабельність</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Типи даних</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> Функції</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Коментарі</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Управління потоком виконання</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Розуміння володіння</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> Що таке володіння?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> Посилання і позичання</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Тип даних слайс</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Використання структур для структурування пов'язаних даних</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Визначення і інстанціювання структур Struct</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> Приклад програми, що використовує структури</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Синтаксис методів</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Енуми і зіставлення з шаблоном</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Визначення енума</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> Конструкція управління match</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Лаконічний контроль виконання конструкцією if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong aria-hidden="true">7.</strong> Керування проєктами, що зростають, за допомогою пакетів, крейтів та модулів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-packages-and-crates.html"><strong aria-hidden="true">7.1.</strong> Пакети та крейти</a></li><li class="chapter-item expanded "><a href="ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong aria-hidden="true">7.2.</strong> Визначення модулів для управління областями видимості та приватністю</a></li><li class="chapter-item expanded "><a href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li><li class="chapter-item expanded "><a href="ch07-04-bringing-paths-into-scope-with-the-use-keyword.html"><strong aria-hidden="true">7.4.</strong> Підключення шляхів до області видимості за допомогою ключового слова use</a></li><li class="chapter-item expanded "><a href="ch07-05-separating-modules-into-different-files.html"><strong aria-hidden="true">7.5.</strong> Розподіл модулів на різні файли</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Обробка помилок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Невідновні Помилки із panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Помилки, що піддаються відновленню за допомогою Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> panic! чи не panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Узагальнені типи, трейти та лайфтайми</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Узагальнені типи даних</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Трейти: визначення загальної поведінки</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Перевірка коректності посилань за допомогою часів існування</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Написання автоматизованих тестів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Як писати тести</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Контроль над запуском тестів</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Організація тестів</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> Проєкт з введенням/виведенням: створення програми командного рядка</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Приймання аргументів командного рядка</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Читання файлу</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Рефакторизація для покращення модульності та обробки помилок</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Розробка Функціонала Бібліотеки із Test-Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Робота зі Змінними Середовища</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Написання Повідомлень Про Помилки в Standard Error Замість Стандартного Виводу</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Функціональні можливості мови: Ітератори та Замикання</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Замикання: Анонімні Функції що Захоплюють Своє Середовище</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Обробка послідовностей елементів за допомогою ітераторів</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Покращуємо наш проєкт з введенням/виведенням</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Порівняння швидкодії: цикли проти ітераторів</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> Більше про Cargo та Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Налаштування Збірок з Release Профілями</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Публікація Крейта на Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Робочі Області Cargo</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Розширення Cargo із Користувацькими Командами</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Розумні вказівники</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Використання Box&lt;T&gt; для вказування на значення в Heap</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Використання розумних вказівників як звичайних посилань за допомогою трейта Deref</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> Виконання коду при очищенні за допомогою трейту Drop</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, розумний вказівник з лічильником посилань</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; і шаблон внутрішньої мутабельності</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Цикли посилань можуть призвести до витоку пам'яті</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Конкурентність без страху</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Шаблони та Зіставлення Шаблонів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Спростовуваність: Чи Може Шаблон Бути Невідповідним</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Просунутий функціонал</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Небезпечний Rust</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.2.</strong> Поглиблено про трейти</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.3.</strong> Поглиблено про типи</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html" class="active"><strong aria-hidden="true">19.4.</strong> Поглиблено про функції та замикання</a></li><li class="chapter-item expanded "><a href="ch19-06-macros.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Останній проєкт: збірка багатопотокового вебсервера</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> Збірка однопотокового вебсервера</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Перетворюємо наш однопотоковий сервер на багатопотоковий</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Плавне вимикання і очищення</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Додатки</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Ключові слова</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - оператори та символи</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-useful-development-tools.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-editions.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-translation.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> Додаток G - як робиться Rust і "щонічний Rust"</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar" class="menu-bar">
-                    <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
-                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                                <i class="fa fa-paint-brush"></i>
-                            </button>
-                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                            </ul>
-                        </div>
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-                        <h1 class="menu-title">The Rust Programming Language</h1>
+                    <h1 class="menu-title">Мова програмування Rust</h1>
 
-                        <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
-                                <i id="print-button" class="fa fa-print"></i>
-                            </a>
-                        </div>
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
                     </div>
                 </div>
 
@@ -120,24 +142,13 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="ch19-05-advanced-functions-and-closures.html#advanced-functions--closures" id="advanced-functions--closures"><h2>Advanced Functions &amp; Closures</h2></a>
-<p>Finally, let’s discuss some advanced features related to functions and
-closures: function pointers, diverging functions, and returning closures.</p>
-<a class="header" href="ch19-05-advanced-functions-and-closures.html#function-pointers" id="function-pointers"><h3>Function Pointers</h3></a>
-<!-- Maybe give an example of when we'd want to use this? -->
-<!-- Added a short sentence, but we discuss interfacing with languages that
-don't have closures below, which I don't think makes sense until we define how
-function pointers are different than closures... /Carol -->
-<p>We’ve talked about how to pass closures to functions; you can also pass regular
-functions to functions! This is useful when we want to pass a function we’ve
-already defined rather than defining a new closure. We do this using function
-pointers to allow us to use functions as arguments to other functions.
-Functions coerce to the type <code>fn</code>, with a lower case ‘f’ not to be confused
-with the <code>Fn</code> closure trait. The <code>fn</code> type is called a <em>function pointer</em>. The
-syntax for specifying that a parameter is a function pointer is similar to that
-of closures, as shown in Listing 19-35:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
-<pre><pre class="playpen"><code class="language-rust">fn add_one(x: i32) -&gt; i32 {
+                        <h2 id="Поглиблено-про-функції-та-замикання"><a class="header" href="#Поглиблено-про-функції-та-замикання">Поглиблено про функції та замикання</a></h2>
+<p>Цей підрозділ поглиблено досліджує функціонал, що стосується функцій та замикань, і включає з вказівники на функції та повернення замикань.</p>
+<h3 id="Вказівники-на-функції"><a class="header" href="#Вказівники-на-функції">Вказівники на функції</a></h3>
+<p>Ми говорили про те, як передати замикання до функцій; ви також можете передати звичайні функції до функцій! Ця техніка є корисною, коли ви хочете передати вже визначену функцію, а не визначати нове замикання. Функції приводяться до типу <code>fn</code> (f у нижньому регістрі), не плутайте з трейтом замикань <code>Fn</code>. Тип <code>fn</code> зветься <em>вказівником на функцію</em>. Передача функцій за допомогою вказівників на функції дозволяє вам використовувати функції як аргументи до інших функцій.</p>
+<p>Синтаксис для зазначення, що параметр є вказівником на функцію, схожий на замикання, як показано у Блоці коду 19-27, де ми визначили функцію <code>add_one</code>, яка додає один до свого параметра. Функція <code>do_twice</code> приймає два параметри: вказівник на функцію для будь-якої функції, що приймає параметр <code>i32</code> і повертає <code>i32</code>, та інше значення <code>i32</code>. Функція <code>do_twice</code> викликає функцію <code>f</code> двічі, передаючи їй значення <code>arg</code>, а потім додає результати двох викликів. Функція <code>main</code> викликає <code>do_twice</code> з аргументами <code>add_one</code> та <code>5</code>.</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">fn add_one(x: i32) -&gt; i32 {
     x + 1
 }
 
@@ -151,114 +162,83 @@ fn main() {
     println!(&quot;The answer is: {}&quot;, answer);
 }
 </code></pre></pre>
-<p><span class="caption">Listing 19-35: Using the <code>fn</code> type to accept a function
-pointer as an argument</span></p>
-<p>This prints <code>The answer is: 12</code>. We specify that the parameter <code>f</code> in
-<code>do_twice</code> is an <code>fn</code> that takes one parameter of type <code>i32</code> and returns an
-<code>i32</code>. We can then call <code>f</code> in the body of <code>do_twice</code>. In <code>main</code>, we can pass
-the function name <code>add_one</code> as the first argument to <code>do_twice</code>.</p>
-<p>Unlike closures, <code>fn</code> is a type rather than a trait, so we specify <code>fn</code> as the
-parameter type directly, rather than declaring a generic type parameter with
-one of the <code>Fn</code> traits as a trait bound.</p>
-<p>Function pointers implement all three of the closure traits (<code>Fn</code>, <code>FnMut</code>, and
-<code>FnOnce</code>), so we can always pass a function pointer as an argument for a
-function that expects a closure. Prefer to write functions using a generic type
-and one of the closure traits, so that your functions can accept either
-functions or closures.</p>
-<p>An example of a case where you’d want to only accept <code>fn</code> and not closures is
-when interfacing with external code that doesn’t have closures: C functions can
-accept functions as arguments, but C doesn’t have closures.</p>
-<p>For an example where we can use either a closure defined inline or a named
-function, let’s look at a use of <code>map</code>. To use the <code>map</code> function to turn a
-vector of numbers into a vector of strings, we could use a closure:</p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-let list_of_numbers = vec![1, 2, 3];
-let list_of_strings: Vec&lt;String&gt; = list_of_numbers
-    .iter()
-    .map(|i| i.to_string())
-    .collect();
-#}</code></pre></pre>
-<p>Or we could name a function as the argument to <code>map</code> instead of the closure:</p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-let list_of_numbers = vec![1, 2, 3];
-let list_of_strings: Vec&lt;String&gt; = list_of_numbers
-    .iter()
-    .map(ToString::to_string)
-    .collect();
-#}</code></pre></pre>
-<p>Note that we do have to use the fully qualified syntax that we talked about in
-the “Advanced Traits” section because there are multiple functions available
-named <code>to_string</code>; here, we’re using the <code>to_string</code> function defined in the
-<code>ToString</code> trait, which the standard library has implemented for any type that
-implements <code>Display</code>.</p>
-<p>Some people prefer this style, some people prefer to use closures. They end up
-with the same code, so use whichever feels more clear to you.</p>
-<a class="header" href="ch19-05-advanced-functions-and-closures.html#returning-closures" id="returning-closures"><h3>Returning Closures</h3></a>
-<p>Closures are represented by traits, which means we can’t return closures
-directly. In most cases where we may want to return a trait, we can instead use
-the concrete type that implements the trait as the return value of the
-function. We can’t do that with closures, though, because they don’t have a
-concrete type that’s returnable; we’re not allowed to use the function pointer
-<code>fn</code> as a return type, for example.</p>
-<p>This code that tries to return a closure directly won’t compile:</p>
-<pre><code class="language-rust ignore">fn returns_closure() -&gt; Fn(i32) -&gt; i32 {
+<p><span class="caption">Блок коду 19-27: використання типу <code>fn</code> для прийняття вказівник на функцію як аргументу</span></p>
+<p>Цей код виводить <code>The answer is: 12</code>. Ми вказуємо, що параметр <code>f</code>у <code>do_twice</code> є <code>fn</code>, що приймає один параметр <code>i32</code> і повертає <code>i32</code>. Тоді ми можемо викликати <code>f</code> у тілі <code>do_twice</code>. У <code>main</code> ми можемо передати назву функції <code>add_one</code> першим аргументом <code>do_twice</code>.</p>
+<p>На відміну від замикань, <code>fn</code> є типом, а не трейтом, тож ми вказуємо <code>fn</code> як тип параметра безпосередньо, а не заявляємо узагальнений параметр типу одного з трейтів <code>Fn</code>, як обмеження трейту.</p>
+<p>Вказівники на функції реалізують усі три трейти замикань (<code>Fn</code>, <code>FnMut</code> і <code>FnOnce</code>), тобто ви завжди можете передати вказівник на функції аргументом до функції, що очікує на замикання. Найкраще писати функції, використовуючи узагальнений тип і один з трейтів замикань, щоб ваші функції могли приймати і функції, і замикання.</p>
+<p>До слова, один приклад того, де ви хочете приймати лише <code>fn</code>, а не замикання - це коли ви надаєте інтерфейс зовнішньому коду, що не має замикань: функції C можуть приймати функції як аргументи, але у C немає замикань.</p>
+<p>Як приклад того, де ви можете використовувати або визначене на місці замикання, або функцію, подивімося на використання методу <code>map</code> з трейту <code>Iterator</code> у стандартній бібліотеці. Щоб використати функцію <code>map</code> для перетворення вектора чисел на вектор стрічок, ми можемо використати замикання, ось так:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>    let list_of_numbers = vec![1, 2, 3];
+    let list_of_strings: Vec&lt;String&gt; =
+        list_of_numbers.iter().map(|i| i.to_string()).collect();
+<span class="boring">}
+</span></code></pre></pre>
+<p>Або ж ми можемо передати функцію аргументом до <code>map</code> замість замикання, ось так:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>    let list_of_numbers = vec![1, 2, 3];
+    let list_of_strings: Vec&lt;String&gt; =
+        list_of_numbers.iter().map(ToString::to_string).collect();
+<span class="boring">}
+</span></code></pre></pre>
+<p>Зверніть увагу, що ми повинні використовувати повністю кваліфікований синтаксис, про який ми говорили раніше у підрозділі <a href="">&quot;Поглиблено про трейти&quot;</a><!-- ignore --> , бо існує багато доступних функцій, що звуться <code>to_string</code>. Тут ми використовуємо функцію <code>to_string</code>, визначену у трейті <code>ToString</code>, який стандартна бібліотека реалізує для будь-якого типу, що реалізує <code>Display</code>.</p>
+<p>Згадайте з підрозділу <a href="ch06-01-defining-an-enum.html#enum-values">&quot;Значення енумів&quot;</a><!-- ignore --> Розділу 6, що назва кожного варіанту енуму, який ми визначаємо, також стає функціює ініціалізації. Ми можемо використовувати ці функції ініціалізації як вказівники на функції, які реалізовують трейти замикань, що значить, що функції ініціалізації можуть бути аргументами для методів, що приймають замикання, ось так:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>    enum Status {
+        Value(u32),
+        Stop,
+    }
+
+    let list_of_statuses: Vec&lt;Status&gt; = (0u32..20).map(Status::Value).collect();
+<span class="boring">}
+</span></code></pre></pre>
+<p>Тут ми створюємо екземпляри <code>Status::Value</code>, використовуючи кожне значення <code>u32</code> у діапазоні, для якого викликається <code>mao</code>, використовуючи функцію ініціалізації <code>Status::Value</code>. Деякі люди надають перевагу цьому стилю, а деякі люди вважають за краще використовувати замикання. Вони компілюються в однаковий код, тому використовуйте стиль, зрозуміліший для вас.</p>
+<h3 id="Повертання-замикань"><a class="header" href="#Повертання-замикань">Повертання замикань</a></h3>
+<p>Закриття представлено трейтами, що означає, що ви не можете повертати замикання безпосередньо. У більшості випадків, коли ви могли б повернути трейт, ви можете натомість використовувати конкретний тип, який реалізує трейт, як значення, що повертає функція. Однак ви не можете зробити цього з замиканнями, оскільки у них немає конкретного типу, який можна було б повернути; наприклад, ви не можете використовувати вказівник на функцію <code>fn</code> як типу, що повертається.</p>
+<p>Наступний код намагається повернути замикання безпосередньо, але він не компілюється:</p>
+<pre><code class="language-rust ignore does_not_compile">fn returns_closure() -&gt; dyn Fn(i32) -&gt; i32 {
     |x| x + 1
 }
 </code></pre>
-<p>The compiler error is:</p>
-<pre><code class="language-text">error[E0277]: the trait bound `std::ops::Fn(i32) -&gt; i32 + 'static:
-std::marker::Sized` is not satisfied
- --&gt;
+<p>Ось помилка компілятора:</p>
+<pre><code class="language-console">$ cargo build
+   Compiling functions-example v0.1.0 (file:///projects/functions-example)
+error[E0746]: return type cannot have an unboxed trait object
+ --&gt; src/lib.rs:1:25
   |
-1 | fn returns_closure() -&gt; Fn(i32) -&gt; i32 {
-  |                         ^^^^^^^^^^^^^^ `std::ops::Fn(i32) -&gt; i32 + 'static`
-  does not have a constant size known at compile-time
+1 | fn returns_closure() -&gt; dyn Fn(i32) -&gt; i32 {
+  |                         ^^^^^^^^^^^^^^^^^^ doesn't have a size known at compile-time
   |
-  = help: the trait `std::marker::Sized` is not implemented for
-  `std::ops::Fn(i32) -&gt; i32 + 'static`
-  = note: the return type of a function must have a statically known size
+  = note: for information on `impl Trait`, see &lt;https://doc.rust-lang.org/book/ch10-02-traits.html#returning-types-that-implement-traits&gt;
+help: use `impl Fn(i32) -&gt; i32` as the return type, as all return paths are of type `[closure@src/lib.rs:2:5: 2:14]`, which implements `Fn(i32) -&gt; i32`
+  |
+1 | fn returns_closure() -&gt; impl Fn(i32) -&gt; i32 {
+  |                         ~~~~~~~~~~~~~~~~~~~
+
+For more information about this error, try `rustc --explain E0746`.
+error: could not compile `functions-example` due to previous error
 </code></pre>
-<p>Our error references the <code>Sized</code> trait again! Rust doesn’t know how much space
-it will need to store the closure. We saw a solution to this in the previous
-section: we can use a trait object:</p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-fn returns_closure() -&gt; Box&lt;Fn(i32) -&gt; i32&gt; {
+<p>Помилка знову посилається на трейт <code>Sized</code>! Іржа не знає, скільки місця потрібно для зберігання замикання. Ви вже бачили розв'язок цієї проблеми. Ми можемо скористатися трейтовим об'єктом:</p>
+<pre><code class="language-rust noplayground">fn returns_closure() -&gt; Box&lt;dyn Fn(i32) -&gt; i32&gt; {
     Box::new(|x| x + 1)
 }
-#}</code></pre></pre>
-<p>This code will compile just fine. For more about trait objects, refer back to
-the “Trait Objects” section in Chapter 17.</p>
-<a class="header" href="ch19-05-advanced-functions-and-closures.html#summary" id="summary"><h2>Summary</h2></a>
-<p>Whew! Now we’ve gone over features of Rust that aren’t used often, but are
-available if you need them in very particular circumstances. We’ve introduced a
-lot of complex topics so that, when you encounter them in error message
-suggestions or in others’ code, you’ll at least have seen these concepts and
-syntax once before. You can use this chapter as a reference to guide you to
-your solutions.</p>
-<p>Now, let’s put everything we’ve learned throughout the book into practice with
-one more project!</p>
+</code></pre>
+<p>Цей код чудово компілюється. Щоб дізнатися більше про трейтові об'єкти, зверніться до підрозділу <a href="">&quot;Використання трейтових об'єктів, що можуть бути значеннями різних типів&quot;</a><!--
+ignore --> з Розділу 17.</p>
+<p>Далі розгляньмо макроси!
+ch19-03-advanced-traits.html#advanced-traits ch17-02-trait-objects.html#using-trait-objects-that-allow-for-values-of-different-types</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="ch19-04-advanced-types.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
 
-                        
-                            <a rel="next" href="ch20-00-final-project-a-web-server.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="ch19-06-macros.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -266,46 +246,35 @@ one more project!</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
-                    <a href="ch19-04-advanced-types.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ch19-04-advanced-types.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
 
-                
-                    <a href="ch20-00-final-project-a-web-server.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="ch19-06-macros.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
 
-        <!-- Local fallback for Font Awesome -->
-        <script>
-            if (getComputedStyle(document.querySelector(".fa")).fontFamily !== "FontAwesome") {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.href = '_FontAwesome/css/font-awesome.css';
-                document.head.insertBefore(link, document.head.firstChild)
-            }
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
         </script>
 
-        
 
-        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
 
-        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
-        
+        <!-- Custom JS scripts -->
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
-
-        <!-- Custom JS script -->
-        
 
     </body>
 </html>

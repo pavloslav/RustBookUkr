@@ -1,0 +1,460 @@
+<!DOCTYPE HTML>
+<html lang="uk" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Підключення шляхів до області видимості за допомогою ключового слова use - Мова програмування Rust</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">The Rust Programming Language</a></li><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Початок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Встановлення</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Програмування гри - відгадайки</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Загальні концепції програмування</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Змінні та мутабельність</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Типи даних</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> Функції</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Коментарі</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Управління потоком виконання</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Розуміння володіння</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> Що таке володіння?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> Посилання і позичання</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Тип даних слайс</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Використання структур для структурування пов'язаних даних</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Визначення і інстанціювання структур Struct</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> Приклад програми, що використовує структури</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Синтаксис методів</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Енуми і зіставлення з шаблоном</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Визначення енума</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> Конструкція управління match</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Лаконічний контроль виконання конструкцією if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong aria-hidden="true">7.</strong> Керування проєктами, що зростають, за допомогою пакетів, крейтів та модулів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-packages-and-crates.html"><strong aria-hidden="true">7.1.</strong> Пакети та крейти</a></li><li class="chapter-item expanded "><a href="ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong aria-hidden="true">7.2.</strong> Визначення модулів для управління областями видимості та приватністю</a></li><li class="chapter-item expanded "><a href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li><li class="chapter-item expanded "><a href="ch07-04-bringing-paths-into-scope-with-the-use-keyword.html" class="active"><strong aria-hidden="true">7.4.</strong> Підключення шляхів до області видимості за допомогою ключового слова use</a></li><li class="chapter-item expanded "><a href="ch07-05-separating-modules-into-different-files.html"><strong aria-hidden="true">7.5.</strong> Розподіл модулів на різні файли</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Обробка помилок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Невідновні Помилки із panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Помилки, що піддаються відновленню за допомогою Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> panic! чи не panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Узагальнені типи, трейти та лайфтайми</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Узагальнені типи даних</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Трейти: визначення загальної поведінки</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Перевірка коректності посилань за допомогою часів існування</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Написання автоматизованих тестів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Як писати тести</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Контроль над запуском тестів</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Організація тестів</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> Проєкт з введенням/виведенням: створення програми командного рядка</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Приймання аргументів командного рядка</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Читання файлу</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Рефакторизація для покращення модульності та обробки помилок</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Розробка Функціонала Бібліотеки із Test-Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Робота зі Змінними Середовища</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Написання Повідомлень Про Помилки в Standard Error Замість Стандартного Виводу</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Функціональні можливості мови: Ітератори та Замикання</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Замикання: Анонімні Функції що Захоплюють Своє Середовище</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Обробка послідовностей елементів за допомогою ітераторів</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Покращуємо наш проєкт з введенням/виведенням</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Порівняння швидкодії: цикли проти ітераторів</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> Більше про Cargo та Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Налаштування Збірок з Release Профілями</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Публікація Крейта на Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Робочі Області Cargo</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Розширення Cargo із Користувацькими Командами</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Розумні вказівники</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Використання Box&lt;T&gt; для вказування на значення в Heap</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Використання розумних вказівників як звичайних посилань за допомогою трейта Deref</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> Виконання коду при очищенні за допомогою трейту Drop</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, розумний вказівник з лічильником посилань</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; і шаблон внутрішньої мутабельності</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Цикли посилань можуть призвести до витоку пам'яті</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Конкурентність без страху</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Шаблони та Зіставлення Шаблонів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Спростовуваність: Чи Може Шаблон Бути Невідповідним</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Просунутий функціонал</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Небезпечний Rust</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.2.</strong> Поглиблено про трейти</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.3.</strong> Поглиблено про типи</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.4.</strong> Поглиблено про функції та замикання</a></li><li class="chapter-item expanded "><a href="ch19-06-macros.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Останній проєкт: збірка багатопотокового вебсервера</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> Збірка однопотокового вебсервера</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Перетворюємо наш однопотоковий сервер на багатопотоковий</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Плавне вимикання і очищення</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Додатки</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Ключові слова</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - оператори та символи</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-useful-development-tools.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-editions.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-translation.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> Додаток G - як робиться Rust і "щонічний Rust"</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Мова програмування Rust</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="Підключення-шляхів-до-області-видимості-за-допомогою-ключового-слова-use"><a class="header" href="#Підключення-шляхів-до-області-видимості-за-допомогою-ключового-слова-use">Підключення шляхів до області видимості за допомогою ключового слова <code>use</code></a></h2>
+<p>Необхідність переписувати шляхи для виклику функцій може здатися незручною та повторюваною. В Лістингу 7-7 незалежно від того, чи ми вказували абсолютний чи відносний шлях до функції <code>add_to_waitlist</code>, для того щоб її викликати ми кожного разу мали також вказувати <code>front_of_house</code> та <code>hosting</code>. На щастя, існує спосіб спростити цей процес: достатньо один раз створити ярлик (shortcut) для шляху за допомогою ключового слова <code>use</code> і потім використовувати коротке імʼя будь-де в області видимості.</p>
+<p>In Listing 7-11, we bring the <code>crate::front_of_house::hosting</code> module into the scope of the <code>eat_at_restaurant</code> function so we only have to specify <code>hosting::add_to_waitlist</code> to call the <code>add_to_waitlist</code> function in <code>eat_at_restaurant</code>.</p>
+<p><span class="filename">Файл: src/lib.rs</span></p>
+<pre><code class="language-rust noplayground test_harness">mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+use crate::front_of_house::hosting;
+
+pub fn eat_at_restaurant() {
+    hosting::add_to_waitlist();
+}
+</code></pre>
+<p><span class="caption">Listing 7-11: Bringing a module into scope with <code>use</code></span></p>
+<p>Додання <code>use</code> та шляху до області видимості схоже на створення символічного посилання (symbolic link) у файловій системі. При додаванні <code>use crate::front_of_house::hosting</code> в корені крейта, <code>hosting</code> стає коректним імʼям в цій області видимості, так як би модуль ``hosting<code>був визначений в корені крейта. Шляхи, додані до області видимості за допомогою</code>use`, також перевіряються на приватність, як і будь-які інші.</p>
+<p>Зауважте, що <code>use</code> лише створює ярлик для конкретної області видимості, в якій знаходиться цей самий <code>use</code>. Лістинг 7-12 переносить функцію <code>eat_at_restaurant</code> до нового дочірнього модуля <code>customer</code>, що має відмінну від <code>use</code> область видимості, а отже, тіло фінкції зкомпільовано не буде:</p>
+<p><span class="filename">Файл: src/lib.rs</span></p>
+<pre><code class="language-rust noplayground test_harness does_not_compile ignore">mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+use crate::front_of_house::hosting;
+
+mod customer {
+    pub fn eat_at_restaurant() {
+        hosting::add_to_waitlist();
+    }
+}
+</code></pre>
+<p><span class="caption">Listing 7-12: A <code>use</code> statement only applies in the scope it’s in</span></p>
+<p>The compiler error shows that the shortcut no longer applies within the <code>customer</code> module:</p>
+<pre><code class="language-console">$ cargo build
+   Compiling restaurant v0.1.0 (file:///projects/restaurant)
+error[E0433]: failed to resolve: use of undeclared crate or module `hosting`
+  --&gt; src/lib.rs:11:9
+   |
+11 |         hosting::add_to_waitlist();
+   |         ^^^^^^^ use of undeclared crate or module `hosting`
+
+warning: unused import: `crate::front_of_house::hosting`
+ --&gt; src/lib.rs:7:5
+  |
+7 | use crate::front_of_house::hosting;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+For more information about this error, try `rustc --explain E0433`.
+warning: `restaurant` (lib) generated 1 warning
+error: could not compile `restaurant` due to previous error; 1 warning emitted
+</code></pre>
+<p>Зверніть увагу також на попередження компілятора, що <code>use</code> не використовується у власній області видимості! Для вирішення цієї проблеми треба перемістити <code>use</code> до модуля <code>customer</code>, або послатися на його ярлик у батьківському модулі за допомогою <code>super::hosting</code> всередині дочірнього модуля<code>customer</code>.</p>
+<h3 id="Створення-ідіоматичних-шляхів-use"><a class="header" href="#Створення-ідіоматичних-шляхів-use">Створення ідіоматичних шляхів <code>use</code></a></h3>
+<p>In Listing 7-11, you might have wondered why we specified <code>use crate::front_of_house::hosting</code> and then called <code>hosting::add_to_waitlist</code> in <code>eat_at_restaurant</code> rather than specifying the <code>use</code> path all the way out to the <code>add_to_waitlist</code> function to achieve the same result, as in Listing 7-13.</p>
+<p><span class="filename">Файл: src/lib.rs</span></p>
+<pre><code class="language-rust noplayground test_harness">mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+use crate::front_of_house::hosting::add_to_waitlist;
+
+pub fn eat_at_restaurant() {
+    add_to_waitlist();
+}
+</code></pre>
+<p><span class="caption">Listing 7-13: Bringing the <code>add_to_waitlist</code> function into scope with <code>use</code>, which is unidiomatic</span></p>
+<p>Хоча Лістинги 7-11 та 7-13 і виконують одну й ту саму задачу, Лістинг 7-11 є ідіоматичним способом додавання функції до області видимості за допомогою <code>use</code>. Щоб додати батьківський модуль функції до області видимості з <code>use</code> треба його вказати при виклику функції. Вказання батьківського модуля при виклику функції явно показує, що функція не оголошена локально, але разом з тим це зводить до мінімуму необхідність повторень повного шляху. З коду в Лістингу 7-13 не ясно, де саме визначено <code>add_to_waitlist</code>.</p>
+<p>З іншого боку при додаванні структур, переліків та інших елементів за допомогою <code>use</code>, вказання повного шляху є ідіоматичним. Лістинг 7-14 демонструє ідіоматичний спосіб для додавання стандартної структури з бібліотеки <code>HashMap</code>` до області видимості бінарного крейту.</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">use std::collections::HashMap;
+
+fn main() {
+    let mut map = HashMap::new();
+    map.insert(1, 2);
+}
+</code></pre></pre>
+<p><span class="caption">Listing 7-14: Bringing <code>HashMap</code> into scope in an idiomatic way</span></p>
+<p>There’s no strong reason behind this idiom: it’s just the convention that has emerged, and folks have gotten used to reading and writing Rust code this way.</p>
+<p>Винятком з цієї ідіоми є випадок, коли треба підключити два елементи з однаковими іменами до області видимості з оператором <code>use</code>, оскільки Rust не дозволяє зробити це. Лістинг 7-15 демонструє як підключити до області видимості два типи <code>Result</code>, що мають однакове імʼя, але різні батьківські модулі, та як до них звертатися.</p>
+<p><span class="filename">Файл: src/lib.rs</span></p>
+<pre><code class="language-rust noplayground">use std::fmt;
+use std::io;
+
+fn function1() -&gt; fmt::Result {
+    // --snip--
+<span class="boring">    Ok(())
+</span>}
+
+fn function2() -&gt; io::Result&lt;()&gt; {
+    // --snip--
+<span class="boring">    Ok(())
+</span>}
+</code></pre>
+<p><span class="caption">Listing 7-15: Bringing two types with the same name into the same scope requires using their parent modules.</span></p>
+<p>Як ви можете бачити, використання батьківських модулів розрізняє дви типа <code>Result</code>. Якщо б натомість ми вказали <code>use std::fmt::Result</code> та <code>use std::io::Result</code>, ми б мали два типи <code>Result</code> в одній області видимості та Rust не знав би, який з них ми маємо на увазі, пишучи <code>Result</code>.</p>
+<h3 id="Впровадження-нових-імен-за-допомогою-ключового-слова-as"><a class="header" href="#Впровадження-нових-імен-за-допомогою-ключового-слова-as">Впровадження нових імен за допомогою ключового слова <code>as</code></a></h3>
+<p>Існує також інше рішення проблеми використання двох типів з одним імʼя в одній області видимості з <code>use</code>: після шляху можна вказати <code>as</code> та нове локальне імʼя, або <em>аліас</em> для даного типу. Лістинг 7-16 показує інший спосіб написання коду з Лістинга 7-15, перейменувавши один з двох типів <code>Result</code> за допомогою <code>as</code>.</p>
+<p><span class="filename">Файл: src/lib.rs</span></p>
+<pre><code class="language-rust noplayground">use std::fmt::Result;
+use std::io::Result as IoResult;
+
+fn function1() -&gt; Result {
+    // --snip--
+<span class="boring">    Ok(())
+</span>}
+
+fn function2() -&gt; IoResult&lt;()&gt; {
+    // --snip--
+<span class="boring">    Ok(())
+</span>}
+</code></pre>
+<p><span class="caption">Listing 7-16: Renaming a type when it’s brought into scope with the <code>as</code> keyword</span></p>
+<p>У другому операторі <code>use</code>ми вказали нове імʼя <code>IoResult</code>для типу ``std::io::Result<code>, що не конфліктуватиме з типом </code>Result<code>з</code>std::fmt`, що ми ойго також додали до області видимості. Підходи з лістингів 7-15 та 7-16 вважаються ідіоматичними. Отже, вибір за вами!</p>
+<h3 id="Реекспорт-імен-із-pub-use"><a class="header" href="#Реекспорт-імен-із-pub-use">Реекспорт імен із <code>pub use</code></a></h3>
+<p>При внесенні імені до області видимості із ключовим словом <code>use</code>, імʼя, доступне в новій області видимості, є приватним. Аби код міг посилатися на це імʼя так, ніби воно визначене в його області видимості, ми можемо комбінувати <code>pub</code> та <code>use</code>. Ця техніка називається <em>re-exporting</em>. тому що ми не лише додаємо елемент до області видимості, а ще й робимо його доступним для підключення в інші області видимості.</p>
+<p>Listing 7-17 shows the code in Listing 7-11 with <code>use</code> in the root module changed to <code>pub use</code>.</p>
+<p><span class="filename">Файл: src/lib.rs</span></p>
+<pre><code class="language-rust noplayground test_harness">mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+pub use crate::front_of_house::hosting;
+
+pub fn eat_at_restaurant() {
+    hosting::add_to_waitlist();
+}
+</code></pre>
+<p><span class="caption">Listing 7-17: Making a name available for any code to use from a new scope with <code>pub use</code></span></p>
+<p>До цієї заміни зовнішній код повинен був викликати функцію <code>add_to_waitlist</code>, використовуючи шлях <code>restaurant::front_of_house::hosting::add_to_waitlist()</code>. Тепер, коли використання <code>pub use</code> дозволило реекспортувати модуль <code>hosting</code> з кореневого модуля, зовнішній код може натомість використовувати шлях <code>restaurant::hosting::add_to_waitlist()</code>.</p>
+<p>Реекспорт є корисним, коли внутрішня структура коду відрізняється від того, як програмісти, що викликають ваш код, думають про предметну область. Наприклад, в нашій ресторанній метафорі люди, що керують рестораном, сприймають його як внутрішню кухню та зал В той час як відвідувачі ресторану, можливо, не сприймають ресторан в таких само термінах. Із <code>pub use</code> ми можемо писати код у вигляді однієї структури, проте виставляти його назовні у вигляді іншої. Завдяки цьому наша бібліотека лишається добре організованою для програмістів, які будуть з нею працювати. Ми також розглянемо інший приклад використання <code>pub use</code> і як це впливає на вашу документацію крейту в частині <a href="ch14-02-publishing-to-crates-io.html#exporting-a-convenient-public-api-with-pub-use">“Експорт зручного публічного API із <code>pub use</code>”</a><!-- ignore --> розділу 14.</p>
+<h3 id="Використання-зовнішніх-пакетів"><a class="header" href="#Використання-зовнішніх-пакетів">Використання зовнішніх пакетів</a></h3>
+<p>У Розділі 2 ми написали гру у вгадування чисел, яка використовувала зовнішній пакет під назвою <code>rand</code> для отримання випадкових чисел. Для використання <code>rand</code> в нашому проекті ми додали наступний рядок до <em>Cargo.toml</em>:</p>
+<!-- When updating the version of `rand` used, also update the version of
+`rand` used in these files so they all match:
+* ch02-00-guessing-game-tutorial.md
+* ch14-03-cargo-workspaces.md
+-->
+<p><span class="filename">Файл: Cargo.toml</span></p>
+<pre><code class="language-toml">rand = &quot;0.8.3&quot;
+</code></pre>
+<p>Adding <code>rand</code> as a dependency in <em>Cargo.toml</em> tells Cargo to download the <code>rand</code> package and any dependencies from <a href="https://crates.io/">crates.io</a> and make <code>rand</code> available to our project.</p>
+<p>Потім, для того щоб додати <code>rand</code> до області видимості нашого пакету, ми додали рядок <code>use</code>, що починався з імені крейту <code>rand</code> та перелічили елементи, які ми хочемо додати до області видимості. Згадайте, що в секції <a href="ch02-00-guessing-game-tutorial.html#generating-a-random-number">“Генерація випадкового числа”</a><!-- ignore --> розділу 2 ми додали трейт <code>Rng</code> до області видимості і викликали функцію <code>rand::thread_rng</code>:</p>
+<pre><code class="language-rust ignore"><span class="boring">use std::io;
+</span>use rand::Rng;
+
+fn main() {
+<span class="boring">    println!(&quot;Guess the number!&quot;);
+</span><span class="boring">
+</span>    let secret_number = rand::thread_rng().gen_range(1..=100);
+<span class="boring">
+</span><span class="boring">    println!(&quot;The secret number is: {secret_number}&quot;);
+</span><span class="boring">
+</span><span class="boring">    println!(&quot;Please input your guess.&quot;);
+</span><span class="boring">
+</span><span class="boring">    let mut guess = String::new();
+</span><span class="boring">
+</span><span class="boring">    io::stdin()
+</span><span class="boring">        .read_line(&amp;mut guess)
+</span><span class="boring">        .expect(&quot;Failed to read line&quot;);
+</span><span class="boring">
+</span><span class="boring">    println!(&quot;You guessed: {guess}&quot;);
+</span>}
+</code></pre>
+<p>Members of the Rust community have made many packages available at <a href="https://crates.io/">crates.io</a>, and pulling any of them into your package involves these same steps: listing them in your package’s <em>Cargo.toml</em> file and using <code>use</code> to bring items from their crates into scope.</p>
+<p>Зверніть увагу, що стандартна бібліотека <code>std</code> є також крейтом, щщо є зовнішнім по відношенню до нашого пакету. Оскільки стандартна бібліотека поставляється в комплекті з мовою Rust, нам не портібно змінювати <em>Cargo.toml</em> для додання <code>std</code>. Але нам потрібно вказати її за допомогою <code>use</code> для того щоб додати її елементи до області видимості нашого пакету. Наприклад, для <code>HashMap</code> ми б використовували такий рядок:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap;
+<span class="boring">}
+</span></code></pre></pre>
+<p>This is an absolute path starting with <code>std</code>, the name of the standard library crate.</p>
+<h3 id="Використаня-вкладенних-шляхів-для-зменшення-величезних-переліків-use"><a class="header" href="#Використаня-вкладенних-шляхів-для-зменшення-величезних-переліків-use">Використаня вкладенних шляхів для зменшення величезних переліків <code>use</code></a></h3>
+<p>Якщо нам треба використовувати багато елементів, визначених в тому самому крейті або модулі, вказання кожного з них на окремому рядку займає багато вертикального простору в файлах. Наприклад, ці два оголошення <code>use</code> ми використовували у грі вгадування чисел в Лістингу 2-4 для додання до області видимості елементів з <code>std</code>:</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><code class="language-rust ignore"><span class="boring">use rand::Rng;
+</span>// --snip--
+use std::cmp::Ordering;
+use std::io;
+// --snip--
+<span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    println!(&quot;Guess the number!&quot;);
+</span><span class="boring">
+</span><span class="boring">    let secret_number = rand::thread_rng().gen_range(1..=100);
+</span><span class="boring">
+</span><span class="boring">    println!(&quot;The secret number is: {secret_number}&quot;);
+</span><span class="boring">
+</span><span class="boring">    println!(&quot;Please input your guess.&quot;);
+</span><span class="boring">
+</span><span class="boring">    let mut guess = String::new();
+</span><span class="boring">
+</span><span class="boring">    io::stdin()
+</span><span class="boring">        .read_line(&amp;mut guess)
+</span><span class="boring">        .expect(&quot;Failed to read line&quot;);
+</span><span class="boring">
+</span><span class="boring">    println!(&quot;You guessed: {guess}&quot;);
+</span><span class="boring">
+</span><span class="boring">    match guess.cmp(&amp;secret_number) {
+</span><span class="boring">        Ordering::Less =&gt; println!(&quot;Too small!&quot;),
+</span><span class="boring">        Ordering::Greater =&gt; println!(&quot;Too big!&quot;),
+</span><span class="boring">        Ordering::Equal =&gt; println!(&quot;You win!&quot;),
+</span><span class="boring">    }
+</span><span class="boring">}
+</span></code></pre>
+<p>Натомість, ми можемо використовувати вкладені шляхи для того щоб додати ці елементи до області видимості лише одним рядком. Для цього ми вказуємо спільну частину шляху, за якою йдуть дві двокрапки, а потім фігурні дужки навколо переліку частин шляхів, що відрізняються, як показано в Лістінгу 7-18.</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><code class="language-rust ignore"><span class="boring">use rand::Rng;
+</span>// --snip--
+use std::{cmp::Ordering, io};
+// --snip--
+<span class="boring">
+</span><span class="boring">fn main() {
+</span><span class="boring">    println!(&quot;Guess the number!&quot;);
+</span><span class="boring">
+</span><span class="boring">    let secret_number = rand::thread_rng().gen_range(1..=100);
+</span><span class="boring">
+</span><span class="boring">    println!(&quot;The secret number is: {secret_number}&quot;);
+</span><span class="boring">
+</span><span class="boring">    println!(&quot;Please input your guess.&quot;);
+</span><span class="boring">
+</span><span class="boring">    let mut guess = String::new();
+</span><span class="boring">
+</span><span class="boring">    io::stdin()
+</span><span class="boring">        .read_line(&amp;mut guess)
+</span><span class="boring">        .expect(&quot;Failed to read line&quot;);
+</span><span class="boring">
+</span><span class="boring">    let guess: u32 = guess.trim().parse().expect(&quot;Please type a number!&quot;);
+</span><span class="boring">
+</span><span class="boring">    println!(&quot;You guessed: {guess}&quot;);
+</span><span class="boring">
+</span><span class="boring">    match guess.cmp(&amp;secret_number) {
+</span><span class="boring">        Ordering::Less =&gt; println!(&quot;Too small!&quot;),
+</span><span class="boring">        Ordering::Greater =&gt; println!(&quot;Too big!&quot;),
+</span><span class="boring">        Ordering::Equal =&gt; println!(&quot;You win!&quot;),
+</span><span class="boring">    }
+</span><span class="boring">}
+</span></code></pre>
+<p><span class="caption">Listing 7-18: Specifying a nested path to bring multiple items with the same prefix into scope</span></p>
+<p>In bigger programs, bringing many items into scope from the same crate or module using nested paths can reduce the number of separate <code>use</code> statements needed by a lot!</p>
+<p>Ми можемо використовувати вкладені шляхи будь-якого рівня вкладеності, що є корисним при комбінуванні двох виразів <code>use</code>, що мають спільну частину шляху. Наприклад, Лістинг 7-19 демонструє два оператора <code>use</code>: один додає до області видимості <code>std::io</code> і один, що додає <code>std::io::Write</code>.</p>
+<p><span class="filename">Файл: src/lib.rs</span></p>
+<pre><code class="language-rust noplayground">use std::io;
+use std::io::Write;
+</code></pre>
+<p><span class="caption">Listing 7-20: Combining the paths in Listing 7-19 into one <code>use</code> statement</span></p>
+<p>Цей рядок додає <code>std::io</code> та <code>std::io::Write</code> до області видимості.</p>
+<h3 id="Глобальний-оператор-"><a class="header" href="#Глобальний-оператор-">Глобальний оператор (*)</a></h3>
+<p>If we want to bring <em>all</em> public items defined in a path into scope, we can specify that path followed by the <code>*</code> glob operator:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::*;
+<span class="boring">}
+</span></code></pre></pre>
+<p>Цей оператор <code>use</code> додає до області видимості всі публічні елементи, визначені в <code>std::collections</code>. Будьте обережні, використовуючи глобальний оператор! Це може ускладнити сприйняття коду, оскільки стає важче визначити, які імена є в області видимості і де саме було визначено певне імʼя, що використовується у вашій програмі.</p>
+<p>Лобальний оператор часто використовується при тестуванні для включення до області видимості всіх елементів з модуля <code>tests</code>. Ми поговоримо про це пізніше у секції <a href="ch11-01-writing-tests.html#how-to-write-tests">“Як писати тести”</a><!-- ignore --> розділу 11. Глобальний оператор також інколи використовується як частина патерну Прелюдія (prelude): див. <a href="../std/prelude/index.html#other-preludes">документацію по стандартній бібліотеці</a><!-- ignore -->
+для отримання додаткової інформації по цьому патерну.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ch07-05-separating-modules-into-different-files.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="ch07-05-separating-modules-into-different-files.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

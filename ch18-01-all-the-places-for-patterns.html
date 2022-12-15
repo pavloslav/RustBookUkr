@@ -1,43 +1,44 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="uk" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>All the Places Patterns May be Used - The Rust Programming Language</title>
+        <title>All the Places Patterns May be Used - Мова програмування Rust</title>
+
+
+        <!-- Custom HTML head -->
+        
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <base href="">
-
-        <link rel="stylesheet" href="book.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
-
+        <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
+        <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
-        <!-- Custom theme -->
-        
-
-        
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
+        <!-- Custom theme stylesheets -->
 
     </head>
-    <body class="light">
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
             try {
@@ -57,55 +58,76 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
-            if (theme === null || theme === undefined) { theme = 'light'; }
-            document.body.className = theme;
-            document.querySelector('html').className = theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script type="text/javascript">
+            var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             }
-            document.querySelector('html').classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="foreword.html">Foreword</a></li><li class="affix"><a href="ch00-00-introduction.html">Introduction</a></li><li><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Guessing Game Tutorial</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References &amp; Borrowing</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T> Points to Data on the Heap and Has a Known Size</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>, the Reference Counted Smart Pointer</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T> and the Interior Mutability Pattern</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html" class="active"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions &amp; Closures</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">The Rust Programming Language</a></li><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Початок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Встановлення</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Програмування гри - відгадайки</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Загальні концепції програмування</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Змінні та мутабельність</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Типи даних</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> Функції</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Коментарі</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Управління потоком виконання</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Розуміння володіння</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> Що таке володіння?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> Посилання і позичання</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Тип даних слайс</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Використання структур для структурування пов'язаних даних</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Визначення і інстанціювання структур Struct</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> Приклад програми, що використовує структури</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Синтаксис методів</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Енуми і зіставлення з шаблоном</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Визначення енума</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> Конструкція управління match</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Лаконічний контроль виконання конструкцією if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong aria-hidden="true">7.</strong> Керування проєктами, що зростають, за допомогою пакетів, крейтів та модулів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-packages-and-crates.html"><strong aria-hidden="true">7.1.</strong> Пакети та крейти</a></li><li class="chapter-item expanded "><a href="ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong aria-hidden="true">7.2.</strong> Визначення модулів для управління областями видимості та приватністю</a></li><li class="chapter-item expanded "><a href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li><li class="chapter-item expanded "><a href="ch07-04-bringing-paths-into-scope-with-the-use-keyword.html"><strong aria-hidden="true">7.4.</strong> Підключення шляхів до області видимості за допомогою ключового слова use</a></li><li class="chapter-item expanded "><a href="ch07-05-separating-modules-into-different-files.html"><strong aria-hidden="true">7.5.</strong> Розподіл модулів на різні файли</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Обробка помилок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Невідновні Помилки із panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Помилки, що піддаються відновленню за допомогою Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> panic! чи не panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Узагальнені типи, трейти та лайфтайми</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Узагальнені типи даних</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Трейти: визначення загальної поведінки</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Перевірка коректності посилань за допомогою часів існування</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Написання автоматизованих тестів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Як писати тести</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Контроль над запуском тестів</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Організація тестів</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> Проєкт з введенням/виведенням: створення програми командного рядка</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Приймання аргументів командного рядка</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Читання файлу</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Рефакторизація для покращення модульності та обробки помилок</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Розробка Функціонала Бібліотеки із Test-Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Робота зі Змінними Середовища</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Написання Повідомлень Про Помилки в Standard Error Замість Стандартного Виводу</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Функціональні можливості мови: Ітератори та Замикання</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Замикання: Анонімні Функції що Захоплюють Своє Середовище</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Обробка послідовностей елементів за допомогою ітераторів</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Покращуємо наш проєкт з введенням/виведенням</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Порівняння швидкодії: цикли проти ітераторів</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> Більше про Cargo та Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Налаштування Збірок з Release Профілями</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Публікація Крейта на Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Робочі Області Cargo</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Розширення Cargo із Користувацькими Командами</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Розумні вказівники</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Використання Box&lt;T&gt; для вказування на значення в Heap</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Використання розумних вказівників як звичайних посилань за допомогою трейта Deref</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> Виконання коду при очищенні за допомогою трейту Drop</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, розумний вказівник з лічильником посилань</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; і шаблон внутрішньої мутабельності</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Цикли посилань можуть призвести до витоку пам'яті</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Конкурентність без страху</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Шаблони та Зіставлення Шаблонів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html" class="active"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Спростовуваність: Чи Може Шаблон Бути Невідповідним</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Просунутий функціонал</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Небезпечний Rust</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.2.</strong> Поглиблено про трейти</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.3.</strong> Поглиблено про типи</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.4.</strong> Поглиблено про функції та замикання</a></li><li class="chapter-item expanded "><a href="ch19-06-macros.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Останній проєкт: збірка багатопотокового вебсервера</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> Збірка однопотокового вебсервера</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Перетворюємо наш однопотоковий сервер на багатопотоковий</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Плавне вимикання і очищення</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Додатки</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Ключові слова</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - оператори та символи</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-useful-development-tools.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-editions.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-translation.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> Додаток G - як робиться Rust і "щонічний Rust"</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar" class="menu-bar">
-                    <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
-                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                                <i class="fa fa-paint-brush"></i>
-                            </button>
-                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                            </ul>
-                        </div>
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-                        <h1 class="menu-title">The Rust Programming Language</h1>
+                    <h1 class="menu-title">Мова програмування Rust</h1>
 
-                        <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
-                                <i id="print-button" class="fa fa-print"></i>
-                            </a>
-                        </div>
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
                     </div>
                 </div>
 
@@ -120,61 +142,37 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="ch18-01-all-the-places-for-patterns.html#all-the-places-patterns-may-be-used" id="all-the-places-patterns-may-be-used"><h2>All the Places Patterns May be Used</h2></a>
-<p>Patterns pop up in a number of places in Rust, and you’ve been using them a lot
-without realizing it! This section is a reference to all the places where
-patterns are valid.</p>
-<a class="header" href="ch18-01-all-the-places-for-patterns.html#match-arms" id="match-arms"><h3><code>match</code> Arms</h3></a>
-<p>As we discussed in Chapter 6, patterns are used in the arms of <code>match</code>
-expressions. Formally, <code>match</code> expressions are defined as the keyword <code>match</code>,
-a value to match on, and one or more match arms that consist of a pattern and
-an expression to run if the value matches that arm’s pattern:</p>
+                        <h2 id="Усі-Місця-Можливого-Використання-Шаблонів"><a class="header" href="#Усі-Місця-Можливого-Використання-Шаблонів">Усі Місця Можливого Використання Шаблонів</a></h2>
+<p>Шаблони з’являються в багатьох місцях в Rust, і ви ними багато користуєтеся навіть не підозрюючи про це! В цьому розділі ми розглянемо всі місця, де допускаються шаблони.</p>
+<h3 id="Рукави-виразу-match"><a class="header" href="#Рукави-виразу-match">Рукави виразу <code>match</code></a></h3>
+<p>Як обговорювалося в Розділі 6, ми використовуємо шаблони в рукавах виразів <code>match</code>. Формально, вирази <code>match</code> визначені як ключове слово <code>match</code>, значення яке буде зіставлятися та один або більше рукавів зіставлення, що складаються з шаблону та виразу для виконання, якщо значення зіставляється зі шаблоном рукава, як тут:</p>
 <pre><code class="language-text">match VALUE {
     PATTERN =&gt; EXPRESSION,
     PATTERN =&gt; EXPRESSION,
     PATTERN =&gt; EXPRESSION,
 }
 </code></pre>
-<p><code>match</code> expressions are required to be <em>exhaustive</em>, in the sense that all
-possibilities for the value in the <code>match</code> expression must be accounted for.
-One way to ensure you have every possibility covered is to have a catch-all
-pattern for the last arm---for example, a variable name matching any value can
-never fail and thus covers every case remaining.</p>
-<p>There’s a particular pattern <code>_</code> that will match anything, but never binds to a
-variable, and so is often used in the last match arm. This can be useful when
-you want to ignore any value not specified, for example. We’ll cover this in
-more detail later in this chapter.</p>
-<a class="header" href="ch18-01-all-the-places-for-patterns.html#conditional-if-let-expressions" id="conditional-if-let-expressions"><h3>Conditional <code>if let</code> Expressions</h3></a>
-<p>In Chapter 6 we discussed how <code>if let</code> expressions are used mainly as a shorter
-way to write the equivalent of a <code>match</code> that only cares about matching one
-case. Optionally,<code>if let</code> can have a corresponding <code>else</code> with code to run if
-the pattern in the <code>if let</code> doesn’t match.</p>
-<!-- Can you say up front why we'd use this, and not just a match? I've just
-added something here, not sure if it's right -->
-<!-- The first sentence says why-- it's a shorter way to write a `match` when
-there's only one case we care about. Can you elaborate on why that's not clear
-or up front? /Carol -->
-<p>Listing 18-1 shows that it’s also possible to mix and match <code>if let</code>, <code>else if</code>, and <code>else if let</code> expressions. This gives us more flexibility than a
-<code>match</code> expression where we can only express one value to compare with the
-patterns; the conditions in a series of <code>if let</code>/<code>else if</code>/<code>else if let</code> arms
-aren’t required to have any relation to each other.</p>
-<p>The code in Listing 18-1 shows a series of checks for a bunch of different
-conditions that decide what the background color should be. For the purposes of
-the example, we’ve created variables with hardcoded values that a real program
-might get by asking the user.</p>
-<p>If the user has specified a favorite color, that is used as the background
-color. If today is Tuesday, the background color will be green. If the user has
-specified their age as a string and we can parse it as a number successfully,
-we’ll use either purple or orange depending on the value of the parsed number.
-Finally, if none of these conditions apply, the background color will be blue:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
-<pre><pre class="playpen"><code class="language-rust">fn main() {
+<p>For example, here's the <code>match</code> expression from Listing 6-5 that matches on an <code>Option&lt;i32&gt;</code> value in the variable <code>x</code>:</p>
+<pre><code class="language-rust ignore">match x {
+    None =&gt; None,
+    Some(i) =&gt; Some(i + 1),
+}
+</code></pre>
+<p>The patterns in this <code>match</code> expression are the <code>None</code> and <code>Some(i)</code> on the left of each arrow.</p>
+<p>Одна з вимог виразів <code>match</code> це необхідність бути <em>вичерпним</em> у сенсі, що всі можливі значення виразу <code>match</code> повинні бути враховані. Один зі способів переконатися, що ви охопили всі можливі варіанти, - це мати загальний шаблон для останнього рукава: наприклад, назва змінної, що збігається з будь-яким значенням, не може не спрацювати і, таким чином, охоплює всі варіанти, що залишилися.</p>
+<p>Зокрема, шаблон <code>_</code> буде відповідати будь-чому, але він ніколи не зв'язується зі змінною, тому його часто використовують в останньому рукаві виразу match. Шаблон <code>_</code> може бути корисним, наприклад, коли потрібно ігнорувати будь-яке не вказане значення. Ми розглянемо шаблон <code>_</code> більш детально в секції <a href="">&quot;Ігнорування Значень в Шаблоні&quot;</a><!-- ignore --> пізніше в цьому розділі.</p>
+<h3 id="Умовні-Вирази-if-let"><a class="header" href="#Умовні-Вирази-if-let">Умовні Вирази <code>if let</code></a></h3>
+<p>В Розділі 6 ми обговорювали використання виразів <code>if let</code> в основному як рівнозначний та коротший спосіб написання <code>match</code>, який лише зіставляється в одному випадку. При необхідності, <code>if let</code> може мати відповідний <code>else</code>, що містить код для виконання на випадок невідповідності шаблону в <code>if let</code>.</p>
+<p>В Блоці Коду 18-1 показано, що також можливо поєднувати вирази <code>if let</code>, <code>else if</code>, та <code>else if let</code>. Це надає нам більшу гнучкість, ніж вираз <code>match</code>, в якому ми можемо представити тільки одне значення для порівняння з шаблонами. Також Rust не вимагає, щоб умови в послідовності <code>if let</code>, <code>else if</code>, <code>else if let</code> стосувалися одна одної.</p>
+<p>Код у Блоці Коду 18-1 визначає, яким кольором зробити ваш фон, виходячи з низки перевірок за кількома умовами. Для цього прикладу ми створили змінні з жорстко заданими значеннями, які справжня програма може отримати з вхідних даних користувача.</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
     let favorite_color: Option&lt;&amp;str&gt; = None;
     let is_tuesday = false;
     let age: Result&lt;u8, _&gt; = &quot;34&quot;.parse();
 
     if let Some(color) = favorite_color {
-        println!(&quot;Using your favorite color, {}, as the background&quot;, color);
+        println!(&quot;Using your favorite color, {color}, as the background&quot;);
     } else if is_tuesday {
         println!(&quot;Tuesday is green day!&quot;);
     } else if let Ok(age) = age {
@@ -188,166 +186,102 @@ Finally, if none of these conditions apply, the background color will be blue:</
     }
 }
 </code></pre></pre>
-<p><span class="caption">Listing 18-1: Mixing <code>if let</code>, <code>else if</code>, <code>else if let</code>,
-and <code>else</code></span></p>
-<p>This conditional structure lets us support complex requirements. With the
-hardcoded values we have here, this example will print <code>Using purple as the background color</code>.</p>
-<p>We can see that <code>if let</code> can also introduce shadowed variables, in the same way
-that <code>match</code> arms can: <code>if let Ok(age) = age</code> introduces a new shadowed <code>age</code>
-variable that contains the value inside the <code>Ok</code> variant. This means we need to
-place the <code>if age &gt; 30</code> condition within that block; we can’t combine these two
-conditions into <code>if let Ok(age) = age &amp;&amp; age &gt; 30</code> because the shadowed <code>age</code>
-we want to compare to 30 isn’t valid until the new scope starts with the curly
-brace.</p>
-<p>The downside of using <code>if let</code> expressions in this way is that exhaustiveness
-is not checked by the compiler, whereas with <code>match</code> expressions it is. If we
-left off the last <code>else</code> block and so missed handling some cases, the compiler
-would not alert us of the possible logic bug.</p>
-<!-- So what would happen, we'd just end up with a program that wasn't correct,
-in the Rust sense? -->
-<!-- Yes, we would have a logic bug. /Carol -->
-<a class="header" href="ch18-01-all-the-places-for-patterns.html#while-let-conditional-loops" id="while-let-conditional-loops"><h3><code>while let</code> Conditional Loops</h3></a>
-<p>Similar in construction to <code>if let</code>, the <code>while let</code> conditional loop allows
-your <code>while</code> loop to run for as long as a pattern continues to match. The
-example in Listing 18-2 shows a <code>while let</code> loop that uses a vector as a stack
-and prints out the values in the vector in the opposite order they were pushed
-in:</p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-let mut stack = Vec::new();
+<p><span class="caption">Listing 18-1: Mixing <code>if let</code>, <code>else if</code>, <code>else if let</code>, and <code>else</code></span></p>
+<p>Якщо користувач вказує улюблений колір, цей колір використовується як фоновий. Якщо улюблений колір не вказано і сьогодні Вівторок, то фоновим кольором буде зелений. Інакше, якщо користувач вказує свій вік стрічкою і ми можемо успішно розібрати її як число, то колір буде фіолетовим або помаранчевим в залежності від значення числа. Якщо жодна з цих умов не застосовується, колір фону буде синім.</p>
+<p>Ця умовна структура дозволяє нам підтримувати складні вимоги. З жорстко заданими значеннями як ми маємо тут, цей приклад виведе в консолі <code>Використовую фіолетовий колір як колір фону</code>.</p>
+<p>Ви можете побачити, що <code>if let</code> також може впроваджувати затінені змінні аналогічним чином що і рукави <code>match</code>: рядок <code>if let Ok(age) = age</code> запроваджує нову затінену змінну <code>age</code>, яка містить значення всередині <code>Ok</code>. Це означає, що нам потрібно помістити умову <code>if age &gt; 30</code> в цей блок: ми не можемо об'єднати ці дві умови в <code>if let Ok(age) = age &amp;&amp; age &gt; 30</code>. Значення затіненої змінної <code>age</code>, яку ми хочемо порівняти з 30, не дійсне до тих пір, поки не почнеться новий діапазон з фігурної дужки.</p>
+<p>Недоліком використання виразів <code>if let</code> є те, що компілятор не перевіряє вичерпність, тоді як при використанні виразів <code>match</code> він це робить. Якби ми пропустили останній блок <code>else</code> і, відповідно, пропустили обробку деяких випадків, компілятор не попередив би нас про можливу логічну помилку.</p>
+<h3 id="Умовні-Цикли-while-let"><a class="header" href="#Умовні-Цикли-while-let">Умовні Цикли <code>while let</code></a></h3>
+<p>Подібно до конструкції <code>if let</code>, умовний цикл <code>while let</code> дозволяє циклу <code>while</code> працювати допоки шаблон продовжує збігатися. У Блоці Коду наведено код циклу <code>while let</code>, який використовує вектор як стек і виводить в консолі значення вектора у зворотному порядку, в якому вони були додані.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>    let mut stack = Vec::new();
 
-stack.push(1);
-stack.push(2);
-stack.push(3);
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
 
-while let Some(top) = stack.pop() {
-    println!(&quot;{}&quot;, top);
-}
-#}</code></pre></pre>
-<p><span class="caption">Listing 18-2: Using a <code>while let</code> loop to print out
-values for as long as <code>stack.pop()</code> returns <code>Some</code></span></p>
-<!-- Some lovely simple, but edifying, examples in this chapter!-->
-<p>This example will print 3, 2, then 1. The <code>pop</code> method takes the last element
-out of the vector and returns <code>Some(value)</code>. If the vector is empty, it returns
-<code>None</code>. The <code>while</code> loop will continue running the code in its block as long as
-<code>pop</code> is returning <code>Some</code>. Once it returns <code>None</code>, the loop stops. We can use
-<code>while let</code> to pop every element off our stack.</p>
-<a class="header" href="ch18-01-all-the-places-for-patterns.html#for-loops" id="for-loops"><h3><code>for</code> Loops</h3></a>
-<p>In Chapter 3 we mentioned that the <code>for</code> loop is the most common loop
-construction in Rust code, but we haven’t yet discussed the pattern that <code>for</code>
-takes. In a <code>for</code> loop, the pattern is the value that directly follows the
-keyword <code>for</code>, so the <code>x</code> in <code>for x in y</code>.</p>
-<!-- Can you check the line I added above? I think it'd help to point out the
-pattern section of a for loop straight away -->
-<!-- Yep, looks good! /Carol -->
-<p>Listing 18-3 demonstrates how to use a pattern in a <code>for</code> loop to destructure,
-or break apart, a tuple as part of the <code>for</code> loop:</p>
-<!-- Liz: We've been using the word "destructure" throughout the book in
-chapters 3, 4, 5, and 16. In chapter 3, in the "Grouping Values into Tuples"
-section, we said "This is called *destructuring*, because it breaks the single
-tuple into three parts.". So I don't think we need to define destructure again
-in this chapter, but I've added a small parenthetical here in case the reader
-forgets. /Carol -->
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-let v = vec!['a', 'b', 'c'];
+    while let Some(top) = stack.pop() {
+        println!(&quot;{}&quot;, top);
+    }
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listing 18-2: Using a <code>while let</code> loop to print values for as long as <code>stack.pop()</code> returns <code>Some</code></span></p>
+<p>Цей приклад виводить в консолі 3, 2, і потім 1. Метод <code>pop</code> бере останній елемент з вектора і повертає <code>Some(значення)</code>. Якщо вектор порожній, <code>pop</code> поверне <code>None</code>. Цикл <code>while</code> продовжує виконання коду в своєму блоці допоки <code>pop</code> повертає <code>Some</code>. Коли <code>pop</code> поверне <code>None</code>, цикл зупиниться. Ми можемо використовувати <code>while let</code> для вилучення кожного елементу зі стека.</p>
+<h3 id="Цикли-for"><a class="header" href="#Цикли-for">Цикли <code>for</code></a></h3>
+<p>В циклі <code>for</code>, значення яке безпосередньо слідує за ключовим словом <code>for</code> є шаблоном. Наприклад, <code>x</code> в <code>for x in y</code> є шаблоном. Блок Коду 18-3 демонструє як використовувати шаблон в циклі <code>for</code> для деструктуризації або розбирання на частини кортежу, як частини циклу <code>for</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>    let v = vec!['a', 'b', 'c'];
 
-for (index, value) in v.iter().enumerate() {
-    println!(&quot;{} is at index {}&quot;, value, index);
-}
-#}</code></pre></pre>
-<p><span class="caption">Listing 18-3: Using a pattern in a <code>for</code> loop to
-destructure a tuple</span></p>
-<p>This will print:</p>
-<pre><code class="language-text">a is at index 0
+    for (index, value) in v.iter().enumerate() {
+        println!(&quot;{} is at index {}&quot;, value, index);
+    }
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listing 18-3: Using a pattern in a <code>for</code> loop to destructure a tuple</span></p>
+<p>Код в Блоці Коду 18-3 виведе в консоль наступне:</p>
+<pre><code class="language-console">$ cargo run
+   Compiling patterns v0.1.0 (file:///projects/patterns)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.52s
+     Running `target/debug/patterns`
+a is at index 0
 b is at index 1
 c is at index 2
 </code></pre>
-<p>We use the <code>enumerate</code> method to adapt an iterator to produce a value and that
-value’s index in the iterator, placed into a tuple. The first call to
-<code>enumerate</code> produces the tuple <code>(0, 'a')</code>. When this value is matched to the
-pattern <code>(index, value)</code>, <code>index</code> will be 0 and <code>value</code> will be 'a', printing our
-first line of output.</p>
-<a class="header" href="ch18-01-all-the-places-for-patterns.html#let-statements" id="let-statements"><h3><code>let</code> Statements</h3></a>
-<p>Before this chapter, we’d only explicitly discussed using patterns with <code>match</code>
-and <code>if let</code>, but in fact we’ve used patterns in other places too, including
-<code>let</code> statements. For example, consider this straightforward variable
-assignment with <code>let</code>:</p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-let x = 5;
-#}</code></pre></pre>
-<p>We’ve done this hundreds of times throughout this book, and though you may not
-have realized it, you were using patterns! A <code>let</code> statement looks like this,
-more formally:</p>
+<p>Ми адаптуємо ітератор використовуючи метод <code>enumerate</code> таким чином, щоб він генерував значення та індекс для цього значення, поміщені в кортеж. Перше згенероване значення - кортеж <code>(0, 'a')</code>. При зіставленні цього значення з шаблоном <code>(index, value)</code>, <code>index</code> буде <code>0</code>, а <code>value</code> буде <code>'a'</code>, виводячи перший рядок виводу в консоль.</p>
+<h3 id="Інструкції-let"><a class="header" href="#Інструкції-let">Інструкції <code>let</code></a></h3>
+<p>До цього розділу ми явно обговорювали тільки використання шаблонів з <code>match</code> та <code>if let</code>, але насправді ми використовували шаблони і в інших місцях, в тому числі і в операторах <code>let</code>. Наприклад, розглянемо це просте присвоювання змінної з використанням <code>let</code>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let x = 5;
+<span class="boring">}
+</span></code></pre></pre>
+<p>Кожного разу, коли ви використовували інструкцію <code>let</code>, ви використовували шаблони, хоча, можливо, ви цього навіть не усвідомлювали! Більш формально, оператор <code>let</code> виглядає так:</p>
 <pre><code class="language-text">let PATTERN = EXPRESSION;
 </code></pre>
-<p>In statements like <code>let x = 5;</code> with a variable name in the <code>PATTERN</code> slot, the
-variable name is just a particularly humble form of pattern. We compare the
-expression against the pattern, and assign any names we find. So for our <code>let x = 5;</code> example, <code>x</code> is a pattern that says “bind what matches here to the
-variable <code>x</code>.” And since the name <code>x</code> is the whole pattern, this pattern
-effectively means “bind everything to the variable <code>x</code>, whatever the value is.”</p>
-<p>To see the pattern matching aspect of <code>let</code> a bit more clearly, consider
-Listing 18-4 where we’re using a pattern with <code>let</code> to destructure a tuple:</p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-let (x, y, z) = (1, 2, 3);
-#}</code></pre></pre>
-<p><span class="caption">Listing 18-4: Using a pattern to destructure a tuple and
-create three variables at once</span></p>
-<p>Here, we match a tuple against a pattern. Rust compares the value <code>(1, 2, 3)</code>
-to the pattern <code>(x, y, z)</code> and sees that the value matches the pattern, so will
-bind <code>1</code> to <code>x</code>, <code>2</code> to <code>y</code>, and <code>3</code> to <code>z</code>. You can think of this tuple
-pattern as nesting three individual variable patterns inside of it.</p>
-<!-- so if we have a pattern of four elements, say (w, x, y, z), but only three
-values, would the values would not bind at all? -->
-<!-- Either too many or too few elements in the pattern is a type error. I've
-added a small example below to illustrate. /Carol -->
-<p>If the number of elements in the pattern don’t match the number of elements in
-the tuple, the overall type won’t match and we’ll get a compiler error. For
-example, Listing 18-5 shows an attempt to destructure into two variables a
-tuple with three elements that won’t work:</p>
-<pre><code class="language-rust ignore">let (x, y) = (1, 2, 3);
-</code></pre>
-<p><span class="caption">Listing 18-5: Incorrectly constructing a pattern whose
-variables don’t match the number of elements in the tuple</span></p>
-<p>Attempting to compile this code gives us this type error:</p>
-<pre><code class="language-text">error[E0308]: mismatched types
+<p>В інструкціях типу <code>let x = 5;</code> з назвою змінної в слоті <code>PATTERN</code> назва змінної є лише особливо простою формою шаблону. Rust порівнює вираз із шаблоном і призначає будь-які знайдені імена. Таким чином, у прикладі <code>let x = 5;</code> <code>x</code> - це шаблон, який означає &quot;прив'язати до змінної <code>x</code> все, що зіставляється з цим виразом.&quot; Оскільки назва <code>x</code> - це весь шаблон, цей шаблон фактично означає &quot;прив'язати все до змінної <code>x</code>, незалежно від її значення.&quot;</p>
+<p>To see the pattern matching aspect of <code>let</code> more clearly, consider Listing 18-4, which uses a pattern with <code>let</code> to destructure a tuple.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>    let (x, y, z) = (1, 2, 3);
+<span class="boring">}
+</span></code></pre></pre>
+<p><span class="caption">Listing 18-4: Using a pattern to destructure a tuple and create three variables at once</span></p>
+<p>Тут ми зіставляємо кортеж з шаблоном. Rust зіставляє значення <code>(1, 2, 3)</code> із шаблоном <code>(x, y, z)</code> та бачить, що значення зіставляються, тому Rust пов'язує <code>1</code> до <code>x</code>, <code>2</code> до <code>y</code> та <code>3</code> до <code>z</code>. Ви можете думати про цей шаблон кортежу як про три окремих вкладених шаблонів змінних всередині.</p>
+<p>Якщо кількість елементів у шаблоні не відповідає кількості елементів у кортежі, то загальний тип не буде збігатися і ми отримаємо помилку компілятора. Наприклад, у Блоці Коду 18-5 показано спробу деструктуризації кортежу з трьома елементами на дві змінні, що не спрацює.</p>
+<pre><code class="language-rust ignore does_not_compile"><span class="boring">fn main() {
+</span>    let (x, y) = (1, 2, 3);
+<span class="boring">}
+</span></code></pre>
+<p><span class="caption">Listing 18-5: Incorrectly constructing a pattern whose variables don’t match the number of elements in the tuple</span></p>
+<p>Спроба скомпілювати цей код призведе до помилки цього типу:</p>
+<pre><code class="language-console">$ cargo run
+   Compiling patterns v0.1.0 (file:///projects/patterns)
+error[E0308]: mismatched types
  --&gt; src/main.rs:2:9
   |
 2 |     let (x, y) = (1, 2, 3);
-  |         ^^^^^^ expected a tuple with 3 elements, found one with 2 elements
+  |         ^^^^^^   --------- this expression has type `({integer}, {integer}, {integer})`
+  |         |
+  |         expected a tuple with 3 elements, found one with 2 elements
   |
-  = note: expected type `({integer}, {integer}, {integer})`
-             found type `(_, _)`
+  = note: expected tuple `({integer}, {integer}, {integer})`
+             found tuple `(_, _)`
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `patterns` due to previous error
 </code></pre>
-<p>If we wanted to ignore one or more of the values in the tuple, we could use <code>_</code>
-or <code>..</code> as we’ll see in the “Ignoring Values in a Pattern” section. If the
-problem was that we had too many variables in the pattern, the solution would
-be to make the types match by removing variables so that the number of
-variables is equal to the number of elements in the tuple.</p>
-<a class="header" href="ch18-01-all-the-places-for-patterns.html#function-parameters" id="function-parameters"><h3>Function Parameters</h3></a>
-<p>Function parameters can also be patterns. The code in Listing 18-6, declaring a
-function named <code>foo</code> that takes one parameter named <code>x</code> of type <code>i32</code>, should
-by now look familiar:</p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-fn foo(x: i32) {
+<p>Щоб виправити помилку, ми можемо проігнорувати один або більше значень кортежу, використовуючи <code>_</code> або <code>..</code>, як ви побачите в секції <a href="">&quot;Ігнорування Значень в Шаблоні&quot;</a><!-- ignore --> . Якщо проблема в тому, що в шаблоні занадто багато змінних, то рішення полягає в узгодженні типів шляхом видалення змінних так, щоб кількість змінних дорівнювала кількості елементів в кортежі.</p>
+<h3 id="Параметри-Функції"><a class="header" href="#Параметри-Функції">Параметри Функції</a></h3>
+<p>Параметри функції також можуть бути шаблонами. Код у Блоці Коду 18-6, який оголошує функцію з назвою <code>foo</code>, яка отримує один параметр з назвою <code>x</code> типу <code>i32</code>, вже повинен виглядати знайомим.</p>
+<pre><pre class="playground"><code class="language-rust">fn foo(x: i32) {
     // code goes here
 }
-#}</code></pre></pre>
-<p><span class="caption">Listing 18-6: A function signature uses patterns in the
-parameters</span></p>
-<p>The <code>x</code> part is a pattern! Like we did with <code>let</code>, we could match a tuple in a
-function’s arguments to the pattern. Listing 18-7 splits apart the values in a
-tuple as we pass it to a function:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
-<pre><pre class="playpen"><code class="language-rust">fn print_coordinates(&amp;(x, y): &amp;(i32, i32)) {
+<span class="boring">
+</span><span class="boring">fn main() {}
+</span></code></pre></pre>
+<p><span class="caption">Listing 18-6: A function signature uses patterns in the parameters</span></p>
+<p>Частина <code>x</code> - це шаблон! Ми можемо зіставляти кортеж в аргументах функції із шаблоном, як ми зробили з <code>let</code>. В Блоці Коду 18-7 значення кортежу розділяються, коли ми передаємо їх до функції.</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">fn print_coordinates(&amp;(x, y): &amp;(i32, i32)) {
     println!(&quot;Current location: ({}, {})&quot;, x, y);
 }
 
@@ -356,32 +290,23 @@ fn main() {
     print_coordinates(&amp;point);
 }
 </code></pre></pre>
-<p><span class="caption">Listing 18-7: A function with parameters that destructure
-a tuple</span></p>
-<p>This will print <code>Current location: (3, 5)</code>. The values <code>&amp;(3, 5)</code> match the
-pattern <code>&amp;(x, y)</code>, so <code>x</code> gets the value 3, and <code>y</code> gets the value 5.</p>
-<p>We can use patterns in closure parameter lists in the same way, too, because
-closures are similar to functions, as we discussed in Chapter 13.</p>
-<p>We’ve seen several ways of using patterns now, but patterns do not work the
-same in every place we can use them; in some places, the patterns must be
-<em>irrefutable</em>, meaning they must match any value provided. In other
-circumstances, they may be refutable. Let’s discuss that next.</p>
+<p><span class="caption">Listing 18-7: A function with parameters that destructure a tuple</span></p>
+<p>Цей код виводить в консоль <code>Current location: (3, 5)</code>. Значення <code>&amp;(3, 5)</code> зіставляються з шаблоном <code>&amp;(x, y)</code>, тому <code>x</code> має значення <code>3</code> та <code>y</code>має значення <code>5</code>.</p>
+<p>We can also use patterns in closure parameter lists in the same way as in function parameter lists, because closures are similar to functions, as discussed in Chapter 13.</p>
+<p>Наразі ви побачили декілька способів використання шаблонів, але вони не працюють однаково у всіх місцях можливого використання. У деяких місцях шаблони мають бути неспростовні; в інших умовах вони можуть бути спростовними. Ми обговоримо ці дві концепції далі.
+ch18-03-pattern-syntax.html#ignoring-values-in-a-pattern</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="ch18-00-patterns.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
 
-                        
                             <a rel="next" href="ch18-02-refutability.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -389,46 +314,35 @@ circumstances, they may be refutable. Let’s discuss that next.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
-                    <a href="ch18-00-patterns.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ch18-00-patterns.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
 
-                
-                    <a href="ch18-02-refutability.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="ch18-02-refutability.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
 
-        <!-- Local fallback for Font Awesome -->
-        <script>
-            if (getComputedStyle(document.querySelector(".fa")).fontFamily !== "FontAwesome") {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.href = '_FontAwesome/css/font-awesome.css';
-                document.head.insertBefore(link, document.head.firstChild)
-            }
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
         </script>
 
-        
 
-        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
 
-        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
-        
+        <!-- Custom JS scripts -->
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
-
-        <!-- Custom JS script -->
-        
 
     </body>
 </html>

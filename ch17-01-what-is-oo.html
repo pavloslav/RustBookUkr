@@ -1,43 +1,44 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="uk" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>What Does Object-Oriented Mean? - The Rust Programming Language</title>
+        <title>What Does Object-Oriented Mean? - Мова програмування Rust</title>
+
+
+        <!-- Custom HTML head -->
+        
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <base href="">
-
-        <link rel="stylesheet" href="book.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
-
+        <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
+        <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
-        <!-- Custom theme -->
-        
-
-        
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
+        <!-- Custom theme stylesheets -->
 
     </head>
-    <body class="light">
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
             try {
@@ -57,55 +58,76 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
-            if (theme === null || theme === undefined) { theme = 'light'; }
-            document.body.className = theme;
-            document.querySelector('html').className = theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script type="text/javascript">
+            var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             }
-            document.querySelector('html').classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="foreword.html">Foreword</a></li><li class="affix"><a href="ch00-00-introduction.html">Introduction</a></li><li><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Guessing Game Tutorial</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References &amp; Borrowing</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T> Points to Data on the Heap and Has a Known Size</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>, the Reference Counted Smart Pointer</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T> and the Interior Mutability Pattern</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html" class="active"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions &amp; Closures</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">The Rust Programming Language</a></li><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Початок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Встановлення</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Програмування гри - відгадайки</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Загальні концепції програмування</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Змінні та мутабельність</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Типи даних</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> Функції</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Коментарі</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Управління потоком виконання</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Розуміння володіння</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> Що таке володіння?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> Посилання і позичання</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Тип даних слайс</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Використання структур для структурування пов'язаних даних</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Визначення і інстанціювання структур Struct</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> Приклад програми, що використовує структури</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Синтаксис методів</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Енуми і зіставлення з шаблоном</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Визначення енума</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> Конструкція управління match</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Лаконічний контроль виконання конструкцією if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong aria-hidden="true">7.</strong> Керування проєктами, що зростають, за допомогою пакетів, крейтів та модулів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-packages-and-crates.html"><strong aria-hidden="true">7.1.</strong> Пакети та крейти</a></li><li class="chapter-item expanded "><a href="ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong aria-hidden="true">7.2.</strong> Визначення модулів для управління областями видимості та приватністю</a></li><li class="chapter-item expanded "><a href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li><li class="chapter-item expanded "><a href="ch07-04-bringing-paths-into-scope-with-the-use-keyword.html"><strong aria-hidden="true">7.4.</strong> Підключення шляхів до області видимості за допомогою ключового слова use</a></li><li class="chapter-item expanded "><a href="ch07-05-separating-modules-into-different-files.html"><strong aria-hidden="true">7.5.</strong> Розподіл модулів на різні файли</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Обробка помилок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Невідновні Помилки із panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Помилки, що піддаються відновленню за допомогою Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> panic! чи не panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Узагальнені типи, трейти та лайфтайми</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Узагальнені типи даних</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Трейти: визначення загальної поведінки</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Перевірка коректності посилань за допомогою часів існування</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Написання автоматизованих тестів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Як писати тести</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Контроль над запуском тестів</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Організація тестів</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> Проєкт з введенням/виведенням: створення програми командного рядка</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Приймання аргументів командного рядка</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Читання файлу</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Рефакторизація для покращення модульності та обробки помилок</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Розробка Функціонала Бібліотеки із Test-Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Робота зі Змінними Середовища</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Написання Повідомлень Про Помилки в Standard Error Замість Стандартного Виводу</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Функціональні можливості мови: Ітератори та Замикання</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Замикання: Анонімні Функції що Захоплюють Своє Середовище</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Обробка послідовностей елементів за допомогою ітераторів</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Покращуємо наш проєкт з введенням/виведенням</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Порівняння швидкодії: цикли проти ітераторів</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> Більше про Cargo та Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Налаштування Збірок з Release Профілями</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Публікація Крейта на Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Робочі Області Cargo</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Розширення Cargo із Користувацькими Командами</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Розумні вказівники</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Використання Box&lt;T&gt; для вказування на значення в Heap</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Використання розумних вказівників як звичайних посилань за допомогою трейта Deref</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> Виконання коду при очищенні за допомогою трейту Drop</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, розумний вказівник з лічильником посилань</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; і шаблон внутрішньої мутабельності</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Цикли посилань можуть призвести до витоку пам'яті</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Конкурентність без страху</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html" class="active"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Шаблони та Зіставлення Шаблонів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Спростовуваність: Чи Може Шаблон Бути Невідповідним</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Просунутий функціонал</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Небезпечний Rust</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.2.</strong> Поглиблено про трейти</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.3.</strong> Поглиблено про типи</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.4.</strong> Поглиблено про функції та замикання</a></li><li class="chapter-item expanded "><a href="ch19-06-macros.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Останній проєкт: збірка багатопотокового вебсервера</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> Збірка однопотокового вебсервера</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Перетворюємо наш однопотоковий сервер на багатопотоковий</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Плавне вимикання і очищення</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Додатки</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Ключові слова</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - оператори та символи</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-useful-development-tools.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-editions.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-translation.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> Додаток G - як робиться Rust і "щонічний Rust"</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar" class="menu-bar">
-                    <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
-                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                                <i class="fa fa-paint-brush"></i>
-                            </button>
-                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                            </ul>
-                        </div>
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-                        <h1 class="menu-title">The Rust Programming Language</h1>
+                    <h1 class="menu-title">Мова програмування Rust</h1>
 
-                        <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
-                                <i id="print-button" class="fa fa-print"></i>
-                            </a>
-                        </div>
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
                     </div>
                 </div>
 
@@ -120,78 +142,30 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="ch17-01-what-is-oo.html#what-does-object-oriented-mean" id="what-does-object-oriented-mean"><h2>What Does Object-Oriented Mean?</h2></a>
-<p>There’s no consensus in the programming community about what features a
-language needs in order to be called object-oriented. Rust is influenced by
-many different programming paradigms including OOP; we explored, for example,
-the features that came from functional programming in Chapter 13. Arguably,
-object-oriented programming languages do tend to share certain common
-characteristics, namely objects, encapsulation, and inheritance. Let’s take a
-look at what each of those mean and whether Rust supports them.</p>
-<a class="header" href="ch17-01-what-is-oo.html#objects-contain-data-and-behavior" id="objects-contain-data-and-behavior"><h3>Objects Contain Data and Behavior</h3></a>
-<!-- Is there a reason we're using this book as the reference, is it generally
-accepted as an authority? -->
-<!-- Yes, it is. For example, Martin Fowler (himself regarded as an authority)
-had this to say about it https://www.martinfowler.com/bliki/GangOfFour.html:
-> In my view the Gang of Four is the best book ever written on object-oriented
-> design - possibly of any style of design.
-/Carol -->
-<p>The book “Design Patterns: Elements of Reusable Object-Oriented Software,”
-colloquially referred to as “The Gang of Four book,” is a catalog of
-object-oriented design patterns. It defines object-oriented programming in this
-way:</p>
+                        <h2 id="Характеристики-обєктно-орієнтованого-програмування"><a class="header" href="#Характеристики-обєктно-орієнтованого-програмування">Характеристики об'єктно орієнтованого програмування</a></h2>
+<p>Спільнота програмістів не дійшла згоди в питані того, що повинна містити мова, щоб вважатися об'єктно орієнтовано. Багато парадигм програмування знаходять своє відображення в мові Rust. Беззаперечно ООП мови містять в собі деякі спільні характеристики: об'єкти, інкапсуляцію і наслідування. Тож розгляньмо, що кожна з цих характеристик значить і як Rust її підтримує.</p>
+<h3 id="Обєкти-котрі-місять-дані-та-поведінку"><a class="header" href="#Обєкти-котрі-місять-дані-та-поведінку">Об'єкти, котрі місять дані та поведінку</a></h3>
+<p>Книга Еріха Гамми, Річарда Гелма, Ральфа Джонсона і Джона Вліссайдса <em>Design Patterns: Elements of Reusable Object-Oriented Software(Addison-Wesley Professional, 1994)</em>, яку в розмовній мові називають книгою <em>Банди Чотирьох</em>, є каталогом шаблонів об'єктно орієнтованого дизайну. В книзі ООП визначається наступним способом:</p>
 <blockquote>
-<p>Object-oriented programs are made up of objects. An <em>object</em> packages both
-data and the procedures that operate on that data. The procedures are
-typically called <em>methods</em> or <em>operations</em>.</p>
+<p>Об'єктно орієнтовані прогарми складаються з об'єктів. <em>Об'єкт</em> формується як даними, так і процедурами, котрі працюють з цими даними. Цими процедурами є так звані <em>методи</em> або <em>операції</em>. Користуючись цим визначенням, Rust є об'єктно орієнтованим: структури і енуми містять дані, а <code>impl</code> блок дозволяє реалізовувати методи для структур і енамів. Не зважаючи на те, що структури і енами з методами не <em>називають</em> об'єктами, вони містять той самий функціонал, що і об'єкти згідно з визначенням Банди Чотирьох.</p>
 </blockquote>
-<p>Under this definition, then, Rust is object-oriented: structs and enums have
-data and <code>impl</code> blocks provide methods on structs and enums. Even though
-structs and enums with methods aren’t <em>called</em> objects, they provide the same
-functionality, under the Gang of Four’s definition of objects.</p>
-<a class="header" href="ch17-01-what-is-oo.html#encapsulation-that-hides-implementation-details" id="encapsulation-that-hides-implementation-details"><h3>Encapsulation that Hides Implementation Details</h3></a>
-<p>Another aspect commonly associated with object-oriented programming is the idea
-of <em>encapsulation</em>: that the implementation details of an object aren’t
-accessible to code using that object. The only way to interact with an object
-therefore is through its public API; code using the object should not be able
-to reach into the object’s internals and change data or behavior directly. This
-enables the programmer to change and refactor an object’s internals without
-needing to change the code that uses the object.</p>
-<p>We discussed an example of this in Chapter 7: We can use the <code>pub</code> keyword to
-decide what modules, types, functions, and methods in our code should be
-public, and by default everything else is private. For example, we can define a
-struct <code>AveragedCollection</code> that has a field containing a vector of <code>i32</code>
-values. The struct can also have a field that contains the average of the
-values in the vector, meaning the average doesn’t have to be computed on-demand
-whenever anyone needs it. In other words, <code>AveragedCollection</code> will cache the
-calculated average for us. Listing 17-1 has the definition of the
-<code>AveragedCollection</code> struct:</p>
-<p><span class="filename">Filename: src/lib.rs</span></p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-pub struct AveragedCollection {
+<h3 id="Інкапсуляція-яка-приховує-деталі-реалізації"><a class="header" href="#Інкапсуляція-яка-приховує-деталі-реалізації">Інкапсуляція, яка приховує деталі реалізації</a></h3>
+<p>Іншим аспектом, який часто асоціюють з ООП, є ідея <em>інкапсуляції</em>. Головною ідеєю цього аспекту є те, що деталі реалізації об'єкту не є доступними з коду, який цей об'єкт користує. З цього випливає, що єдиним способом взаємодії з об'єктом є його публічне АПІ; код, який використовує об'єкт, не повинен мати можливості прямого доступу до даних об'єкту, його внутрішнього стану чи безпосередньої зміни поведінки об'єкту. Це дозволяє програмісту змінювати і рефакторити внутрішній код об'єкту без необхідності зміни коду, який використовує об'єкт.</p>
+<p>Ми обговорили як контролювати інкапсуляцію в розділі 7: ми можемо використовувати ключове слово <code>pub</code>, щоб визначити, які модулі, типи, функції і методи нашого коду повинні бути публічними. Усталено все є приватним. Наприклад: ми можемо визначити структуру <code>AveragedCollection</code>, котра містить поле -- вектор значень<code>i32</code>. Структура також може містити поле, яке зберігає середнє значення в векторі, що дозволяє не перераховувати середнє значення кожен раз, коли хтось його запросить. Іншими словами <code>AveragedCollection</code> буде кешувати підраховане середнє значення для нас. В роздруківці 17-1 міститься декларація структури <code>AveragedCollection</code>:</p>
+<p><span class="filename">Файл: src/lib.rs</span></p>
+<pre><code class="language-rust noplayground">pub struct AveragedCollection {
     list: Vec&lt;i32&gt;,
     average: f64,
 }
-#}</code></pre></pre>
-<p><span class="caption">Listing 17-1: An <code>AveragedCollection</code> struct that
-maintains a list of integers and the average of the items in the
-collection.</span></p>
-<p>The struct itself is marked <code>pub</code> so that other code may use it, but the fields
-within the struct remain private. This is important in this case because we
-want to ensure that whenever a value is added or removed from the list, the
-average is also updated. We do this by implementing <code>add</code>, <code>remove</code>, and
-<code>average</code> methods on the struct as shown in Listing 17-2:</p>
-<p><span class="filename">Filename: src/lib.rs</span></p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-# pub struct AveragedCollection {
-#     list: Vec&lt;i32&gt;,
-#     average: f64,
-# }
-impl AveragedCollection {
+</code></pre>
+<p><span class="caption">Роздруківка 17-1: <code>AveragedCollection</code> структура, що містить список цілих чисел і середнє значення контейнеру</span><br> Структура позначена &lt;0&gt;pub&lt;/0&gt;, щоб інший код міг її використати, але поля залишаються приватними. Це важливо, оскільки ми хочемо гарантувати, що коли б ми не додали чи забрали якесь значення зі списку -- середнє значення теж оновилось. Ми досягаємо цього реалізуючи методи <code>add</code>, <code>remove</code>, і <code>average</code> структури так, як показано в роздруківці 17-2:
+<span class="filename">Файл: src/lib.rs</span></p>
+<pre><code class="language-rust noplayground"><span class="boring">pub struct AveragedCollection {
+</span><span class="boring">    list: Vec&lt;i32&gt;,
+</span><span class="boring">    average: f64,
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl AveragedCollection {
     pub fn add(&amp;mut self, value: i32) {
         self.list.push(value);
         self.update_average();
@@ -203,7 +177,7 @@ impl AveragedCollection {
             Some(value) =&gt; {
                 self.update_average();
                 Some(value)
-            },
+            }
             None =&gt; None,
         }
     }
@@ -217,97 +191,27 @@ impl AveragedCollection {
         self.average = total as f64 / self.list.len() as f64;
     }
 }
-#}</code></pre></pre>
-<p><span class="caption">Listing 17-2: Implementations of the public methods
-<code>add</code>, <code>remove</code>, and <code>average</code> on <code>AveragedCollection</code></span></p>
-<p>The public methods <code>add</code>, <code>remove</code>, and <code>average</code> are the only way to modify an
-instance of <code>AveragedCollection</code>. When an item is added to <code>list</code> using the
-<code>add</code> method or removed using the <code>remove</code> method, the implementations of each
-call the private <code>update_average</code> method that takes care of updating the
-<code>average</code> field as well.</p>
-<p>We leave the <code>list</code> and <code>average</code> fields private so that there’s no way for
-external code to add or remove items to the <code>list</code> field directly, otherwise
-the <code>average</code> field might become out of sync when the <code>list</code> changes. The
-<code>average</code> method returns the value in the <code>average</code> field, allowing external
-code to read the <code>average</code> but not modify it.</p>
-<p>Because we’ve encapsulated the implementation details of <code>AveragedCollection</code>,
-we can easily change aspects like the data structure in the future. For
-instance, we could use a <code>HashSet</code> instead of a <code>Vec</code> for the <code>list</code> field. As
-long as the signatures of the <code>add</code>, <code>remove</code>, and <code>average</code> public methods
-stay the same, code using <code>AveragedCollection</code> wouldn’t need to change. If we
-made <code>list</code> public instead, this wouldn’t necessarily be the case: <code>HashSet</code>
-and <code>Vec</code> have different methods for adding and removing items, so the external
-code would likely have to change if it was modifying <code>list</code> directly.</p>
-<p>If encapsulation is a required aspect for a language to be considered
-object-oriented, then Rust meets that requirement. The option to use <code>pub</code> or
-not for different parts of code enables encapsulation of implementation details.</p>
-<a class="header" href="ch17-01-what-is-oo.html#inheritance-as-a-type-system-and-as-code-sharing" id="inheritance-as-a-type-system-and-as-code-sharing"><h3>Inheritance as a Type System and as Code Sharing</h3></a>
-<p><em>Inheritance</em> is a mechanism whereby an object can inherit from another
-object’s definition, thus gaining the parent object’s data and behavior without
-you having to define them again.</p>
-<p>If a language must have inheritance to be an object-oriented language, then
-Rust is not. There is no way to define a struct that inherits the parent
-struct’s fields and method implementations. However, if you’re used to having
-inheritance in your programming toolbox, there are other solutions in Rust
-depending on your reason for reaching for inheritance in the first place.</p>
-<p>There are two main reasons to choose inheritance. The first is for re-use of
-code: you can implement particular behavior for one type, and inheritance
-enables you to re-use that implementation for a different type. Rust code can
-be shared using default trait method implementations instead, which we saw in
-Listing 10-15 when we added a default implementation of the <code>summarize</code> method
-on the <code>Summary</code> trait. Any type implementing the <code>Summary</code> trait would have
-the <code>summarize</code> method available on it without any further code. This is
-similar to a parent class having an implementation of a method, and an
-inheriting child class then also having the implementation of the method. We
-can also choose to override the default implementation of the <code>summarize</code>
-method when we implement the <code>Summary</code> trait, similar to a child class
-overriding the implementation of a method inherited from a parent class.</p>
-<p>The second reason to use inheritance relates to the type system: to enable a
-child type to be used in the same places as the parent type. This is also
-called <em>polymorphism</em>, which means that multiple objects can be substituted for
-each other at runtime if they share certain characteristics.</p>
-<!-- What does it mean for objects to have the same shape? -->
-<!-- The use of "shape" in this context has to do with the roots of "morph" in
-"polymorphism", but it's not very well defined so I've reworded. /Carol -->
-<!-- PROD: START BOX -->
+</code></pre>
+<p><span class="caption">Список 17-2: Реалізація публічних методів <code>add</code>, <code>remove</code>, та <code>average</code> on <code>AveragedCollection</code></span> Публічні методи <code>додають</code> <code>видалити</code>, і середнє значення `` - є єдиним способом, щоб отримати доступ чи модифікувати екземпляр <code>AveragedCollection</code>. Коли ми додаємо елемент до <code>list</code> за допомогою методу <code>add</code> чи видаляємо методом <code>remove</code>, реалізація всіх методів викличе приватний метод <code>update_average</code>, який обробить зміну середнього значення. Ми залишаємо поля <code>list</code> і <code>average</code> приватними, щоб не було іншого способу отримати доступ до них напряму. В іншому випадку, поле <code>average</code> може виявитися не синхронізованим з полем <code>list</code>. Метод <code>average</code> повертає значення, яке міститься в полі <code>average</code>, дозволяючи користувачам структури прочитати середнє значення, але не модифікувати його. Оскільки ми інкапсулювали деталі реалізації структури <code>AveragedCollection</code>, ми без проблем можемо змінити аспекти реалізації структури в майбутньому. Наприклад, ми можемо використати a <code>HashSet&lt;i32&gt;</code> замість <code>Vec&lt;i32&gt;</code> для поля <code>list</code>. Доки сигнатура публічних методів <code>add</code>, <code>remove</code>і <code>average</code> залишається незмінною, використання <code>AveragedCollection</code> не потрібно буде змінювати. Якби ми зробили <code>list</code> публічним, можливо б довелося змінювати спосіб взаємодії зі структурою: <code>HashSet&lt;i32&gt;</code> і <code>Vec&lt;i32&gt;</code> мають різні способи додавання і видалення елементів, тому користувачеві структури, скоріше за все, довелося б змінювати використання структури <code>list</code>. Якщо інкапсуляція є обов'язковим аспектом для об'єктно орієнтованої мови, то Rust можна вважати такою. Наявність чи відсутність ключового слова <code>pub</code> дозволяє інкапсулювати деталі реалізації.</p>
+<h3 id="Наслідування-як-система-типів-а-також-як-система-спільного-використання-коду"><a class="header" href="#Наслідування-як-система-типів-а-також-як-система-спільного-використання-коду">Наслідування як система типів, а також як система спільного використання коду</a></h3>
+<p><em>Наслідування</em> — це механізм, за допомогою якого об’єкт може успадковувати елементи з визначення іншого об’єкта, таким чином отримуючи дані та поведінку батьківського об’єкта без потреби визначати їх знову. Якщо мова повинна мати наслідування, щоб бути об’єктно орієнтованою, то Rust не є нею. Тут нема способу визначити структуру, яка успадковує поля та реалізації методів батьківської структури, без використання макросу. Однак, якщо ви звикли мати успадкування у своєму наборі інструментів програмування, ви можете використовувати інші рішення в Rust, залежно від того, чому ви спочатку звернулися до успадкування. You would choose inheritance for two main reasons. Є дві основні причини, щоб використовувати наслідування: Перша з них, це щоб перевикористати код: ви можете реалізувати поведінку для якогось одного типа, а наслідування дозволить вам перевикористати реалізацію для іншого типу. Ви можете використати обмежену версію цього підходу в Rust, з допомогою усталеної реалізації трейту, яку ви бачили в роздруківці 10-14, коли ми додали усталену реалізацію методу <code>summarize</code> для трейту <code>Summary</code>. Кожний тип, який реалізовує трейт <code>Summary</code> матиме доступним метод <code>summarize</code> без повторного написання коду. Це є схожим до батьківського класу, який містить реалізацію методу, і дочірнього класу, який успадкувує реалізацію цього ж методу. Також у випадках реалізації трейту <code>Summary</code>, ми можемо перевизначити усталену реалізацію методу <code>summarize</code> власною, що схоже до перевизначення батьківського методу в дочірньому класі. Інша причина використання наслідування пов’язана з системою типів: дозволяти використовувати дочірній тип в тих місцях, де очікується батьківський тип. Це також називається <em>поліморфізмом</em>, що означає, що ви можете без проблем замінити один об'єкт на інший, якщо той задовольняє певні вимоги.</p>
 <blockquote>
-<p>Polymorphism</p>
-<p>To many people, polymorphism is synonymous with inheritance. But it’s
-actually a more general concept that refers to code that can work with data
-of multiple types. For inheritance, those types are generally subclasses.
-Rust instead uses generics to abstract over different possible types, and
-trait bounds to impose constraints on what those types must provide. This is
-sometimes called <em>bounded parametric polymorphism</em>.</p>
+<h3 id="Поліморфізм"><a class="header" href="#Поліморфізм">Поліморфізм</a></h3>
+<p>Для багатьох людей поліморфізм є синонімом до наслідування. Але це більш загальний концепт, що описує код, який працює з декількома типами. При наслідуванні ці типи повинні бути підкласами.</p>
+<p>На заміну цьому, Rust використовує абстрактний тип для абстрагування над різними можливими типами та трейтами, щоб накласти обмеження на те, що мають надавати ці типи. Це іноді називають <em>обмеженим параметричним поліморфізмом</em>. Останнім часом, програмісти почали значно рідше використовувати наслідування, оскільки наявний великий ризик перевикористання більше коду ніж необхідно. Підкласи не завжди повинні мати всі ті ж самі характеристики, що і їхні батьки, однак ми завжди робимо так з наслідуванням. Це може зробити архітектуру програм менш гнучкою. Також це дозволяє викликати методи в класах, незважаючи на те, що цей метод не має сенсу в цьому класі. На додачу до цього, деякі мови забороняють множинне наслідування(іншими словами дочірній клас може мати тільки одного батька), що тільки зменшує гнучкість програм. З цих причин Rust використовує інший підхід: використання трейтів замість успадкування. Подивімось, як трейти забезпечують поліморфізм у Rust.</p>
 </blockquote>
-<!-- PROD: END BOX -->
-<p>Inheritance has recently fallen out of favor as a programming design solution
-in many programming languages because it’s often at risk of sharing more code
-than needs be. Subclasses shouldn’t always share all characteristics of their
-parent class, but will do so with inheritance. This can make a program’s design
-less flexible, and introduces the possibility of calling methods on subclasses
-that don’t make sense or that cause errors because the methods don’t actually
-apply to the subclass. Some languages will also only allow a subclass to
-inherit from one class, further restricting the flexibility of a program’s
-design.</p>
-<p>For these reasons, Rust chose to take a different approach, using trait objects
-instead of inheritance. Let’s take a look at how trait objects enable
-polymorphism in Rust.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="ch17-00-oop.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
 
-                        
                             <a rel="next" href="ch17-02-trait-objects.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -315,46 +219,35 @@ polymorphism in Rust.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
-                    <a href="ch17-00-oop.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ch17-00-oop.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
 
-                
-                    <a href="ch17-02-trait-objects.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="ch17-02-trait-objects.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
 
-        <!-- Local fallback for Font Awesome -->
-        <script>
-            if (getComputedStyle(document.querySelector(".fa")).fontFamily !== "FontAwesome") {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.href = '_FontAwesome/css/font-awesome.css';
-                document.head.insertBefore(link, document.head.firstChild)
-            }
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
         </script>
 
-        
 
-        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
 
-        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
-        
+        <!-- Custom JS scripts -->
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
-
-        <!-- Custom JS script -->
-        
 
     </body>
 </html>

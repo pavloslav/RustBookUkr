@@ -1,43 +1,44 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="uk" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>RefCell&lt;T&gt; and the Interior Mutability Pattern - The Rust Programming Language</title>
+        <title>RefCell&lt;T&gt; і шаблон внутрішньої мутабельності - Мова програмування Rust</title>
+
+
+        <!-- Custom HTML head -->
+        
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <base href="">
-
-        <link rel="stylesheet" href="book.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
-
+        <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
+        <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
-        <!-- Custom theme -->
-        
-
-        
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
+        <!-- Custom theme stylesheets -->
 
     </head>
-    <body class="light">
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
             try {
@@ -57,55 +58,76 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
-            if (theme === null || theme === undefined) { theme = 'light'; }
-            document.body.className = theme;
-            document.querySelector('html').className = theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script type="text/javascript">
+            var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             }
-            document.querySelector('html').classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="foreword.html">Foreword</a></li><li class="affix"><a href="ch00-00-introduction.html">Introduction</a></li><li><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Guessing Game Tutorial</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References &amp; Borrowing</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features: Iterators and Closures</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures: Anonymous Functions that Can Capture Their Environment</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Processing a Series of Items with Iterators</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving Our I/O Project</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T> Points to Data on the Heap and Has a Known Size</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>, the Reference Counted Smart Pointer</a></li><li><a href="ch15-05-interior-mutability.html" class="active"><strong aria-hidden="true">15.5.</strong> RefCell<T> and the Interior Mutability Pattern</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions &amp; Closures</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Turning our Single Threaded Server into a Multithreaded Server</a></li><li><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators and Symbols</a></li><li><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li><a href="appendix-04-macros.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li><a href="appendix-05-translation.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li><a href="appendix-06-newest-features.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol>
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">The Rust Programming Language</a></li><li class="chapter-item expanded affix "><a href="foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-00-introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Початок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Встановлення</a></li><li class="chapter-item expanded "><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="ch01-03-hello-cargo.html"><strong aria-hidden="true">1.3.</strong> Hello, Cargo!</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Програмування гри - відгадайки</a></li><li class="chapter-item expanded "><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Загальні концепції програмування</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Змінні та мутабельність</a></li><li class="chapter-item expanded "><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Типи даних</a></li><li class="chapter-item expanded "><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> Функції</a></li><li class="chapter-item expanded "><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Коментарі</a></li><li class="chapter-item expanded "><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Управління потоком виконання</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Розуміння володіння</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> Що таке володіння?</a></li><li class="chapter-item expanded "><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> Посилання і позичання</a></li><li class="chapter-item expanded "><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Тип даних слайс</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Використання структур для структурування пов'язаних даних</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Визначення і інстанціювання структур Struct</a></li><li class="chapter-item expanded "><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> Приклад програми, що використовує структури</a></li><li class="chapter-item expanded "><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Синтаксис методів</a></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Енуми і зіставлення з шаблоном</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Визначення енума</a></li><li class="chapter-item expanded "><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> Конструкція управління match</a></li><li class="chapter-item expanded "><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Лаконічний контроль виконання конструкцією if let</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong aria-hidden="true">7.</strong> Керування проєктами, що зростають, за допомогою пакетів, крейтів та модулів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01-packages-and-crates.html"><strong aria-hidden="true">7.1.</strong> Пакети та крейти</a></li><li class="chapter-item expanded "><a href="ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong aria-hidden="true">7.2.</strong> Визначення модулів для управління областями видимості та приватністю</a></li><li class="chapter-item expanded "><a href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html"><strong aria-hidden="true">7.3.</strong> Referring to Names in Different Modules</a></li><li class="chapter-item expanded "><a href="ch07-04-bringing-paths-into-scope-with-the-use-keyword.html"><strong aria-hidden="true">7.4.</strong> Підключення шляхів до області видимості за допомогою ключового слова use</a></li><li class="chapter-item expanded "><a href="ch07-05-separating-modules-into-different-files.html"><strong aria-hidden="true">7.5.</strong> Розподіл модулів на різні файли</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li class="chapter-item expanded "><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li class="chapter-item expanded "><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li class="chapter-item expanded "><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Обробка помилок</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Невідновні Помилки із panic!</a></li><li class="chapter-item expanded "><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Помилки, що піддаються відновленню за допомогою Result</a></li><li class="chapter-item expanded "><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> panic! чи не panic!</a></li></ol></li><li class="chapter-item expanded "><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Узагальнені типи, трейти та лайфтайми</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Узагальнені типи даних</a></li><li class="chapter-item expanded "><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Трейти: визначення загальної поведінки</a></li><li class="chapter-item expanded "><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Перевірка коректності посилань за допомогою часів існування</a></li></ol></li><li class="chapter-item expanded "><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Написання автоматизованих тестів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Як писати тести</a></li><li class="chapter-item expanded "><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Контроль над запуском тестів</a></li><li class="chapter-item expanded "><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Організація тестів</a></li></ol></li><li class="chapter-item expanded "><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> Проєкт з введенням/виведенням: створення програми командного рядка</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Приймання аргументів командного рядка</a></li><li class="chapter-item expanded "><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Читання файлу</a></li><li class="chapter-item expanded "><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Рефакторизація для покращення модульності та обробки помилок</a></li><li class="chapter-item expanded "><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Розробка Функціонала Бібліотеки із Test-Driven Development</a></li><li class="chapter-item expanded "><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Робота зі Змінними Середовища</a></li><li class="chapter-item expanded "><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Написання Повідомлень Про Помилки в Standard Error Замість Стандартного Виводу</a></li></ol></li><li class="chapter-item expanded "><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Функціональні можливості мови: Ітератори та Замикання</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Замикання: Анонімні Функції що Захоплюють Своє Середовище</a></li><li class="chapter-item expanded "><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Обробка послідовностей елементів за допомогою ітераторів</a></li><li class="chapter-item expanded "><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Покращуємо наш проєкт з введенням/виведенням</a></li><li class="chapter-item expanded "><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Порівняння швидкодії: цикли проти ітераторів</a></li></ol></li><li class="chapter-item expanded "><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> Більше про Cargo та Crates.io</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Налаштування Збірок з Release Профілями</a></li><li class="chapter-item expanded "><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Публікація Крейта на Crates.io</a></li><li class="chapter-item expanded "><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Робочі Області Cargo</a></li><li class="chapter-item expanded "><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item expanded "><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Розширення Cargo із Користувацькими Командами</a></li></ol></li><li class="chapter-item expanded "><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Розумні вказівники</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Використання Box&lt;T&gt; для вказування на значення в Heap</a></li><li class="chapter-item expanded "><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> Використання розумних вказівників як звичайних посилань за допомогою трейта Deref</a></li><li class="chapter-item expanded "><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> Виконання коду при очищенні за допомогою трейту Drop</a></li><li class="chapter-item expanded "><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc&lt;T&gt;, розумний вказівник з лічильником посилань</a></li><li class="chapter-item expanded "><a href="ch15-05-interior-mutability.html" class="active"><strong aria-hidden="true">15.5.</strong> RefCell&lt;T&gt; і шаблон внутрішньої мутабельності</a></li><li class="chapter-item expanded "><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Цикли посилань можуть призвести до витоку пам'яті</a></li></ol></li><li class="chapter-item expanded "><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Конкурентність без страху</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li class="chapter-item expanded "><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li class="chapter-item expanded "><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li class="chapter-item expanded "><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li class="chapter-item expanded "><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li class="chapter-item expanded "><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li class="chapter-item expanded "><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li class="chapter-item expanded "><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Шаблони та Зіставлення Шаблонів</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li class="chapter-item expanded "><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Спростовуваність: Чи Може Шаблон Бути Невідповідним</a></li><li class="chapter-item expanded "><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li class="chapter-item expanded "><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Просунутий функціонал</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Небезпечний Rust</a></li><li class="chapter-item expanded "><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.2.</strong> Поглиблено про трейти</a></li><li class="chapter-item expanded "><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.3.</strong> Поглиблено про типи</a></li><li class="chapter-item expanded "><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.4.</strong> Поглиблено про функції та замикання</a></li><li class="chapter-item expanded "><a href="ch19-06-macros.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions & Closures</a></li></ol></li><li class="chapter-item expanded "><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Останній проєкт: збірка багатопотокового вебсервера</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> Збірка однопотокового вебсервера</a></li><li class="chapter-item expanded "><a href="ch20-02-multithreaded.html"><strong aria-hidden="true">20.2.</strong> Перетворюємо наш однопотоковий сервер на багатопотоковий</a></li><li class="chapter-item expanded "><a href="ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.3.</strong> Плавне вимикання і очищення</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Додатки</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Ключові слова</a></li><li class="chapter-item expanded "><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - оператори та символи</a></li><li class="chapter-item expanded "><a href="appendix-03-derivable-traits.html"><strong aria-hidden="true">21.3.</strong> C - Derivable Traits</a></li><li class="chapter-item expanded "><a href="appendix-04-useful-development-tools.html"><strong aria-hidden="true">21.4.</strong> D - Macros</a></li><li class="chapter-item expanded "><a href="appendix-05-editions.html"><strong aria-hidden="true">21.5.</strong> E - Translations</a></li><li class="chapter-item expanded "><a href="appendix-06-translation.html"><strong aria-hidden="true">21.6.</strong> F - Newest Features</a></li><li class="chapter-item expanded "><a href="appendix-07-nightly-rust.html"><strong aria-hidden="true">21.7.</strong> Додаток G - як робиться Rust і "щонічний Rust"</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
-                <div id="menu-bar" class="menu-bar">
-                    <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
-                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                                <i class="fa fa-paint-brush"></i>
-                            </button>
-                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                            </ul>
-                        </div>
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-                        <h1 class="menu-title">The Rust Programming Language</h1>
+                    <h1 class="menu-title">Мова програмування Rust</h1>
 
-                        <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
-                                <i id="print-button" class="fa fa-print"></i>
-                            </a>
-                        </div>
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
                     </div>
                 </div>
 
@@ -120,137 +142,72 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="ch15-05-interior-mutability.html#refcellt-and-the-interior-mutability-pattern" id="refcellt-and-the-interior-mutability-pattern"><h2><code>RefCell&lt;T&gt;</code> and the Interior Mutability Pattern</h2></a>
-<!-- NEXT PARAGRAPH WRAPPED WEIRD INTENTIONALLY SEE #199 -->
-<p><em>Interior mutability</em> is a design pattern in Rust that allows you to mutate
-data even when there are immutable references to that data: normally, this
-action is disallowed by the borrowing rules. To do so, the pattern uses
-<code>unsafe</code> code inside a data structure to bend Rust’s usual rules that govern
-mutation and borrowing. We haven’t yet covered unsafe code; we will in
-Chapter 19. We can use types that use the interior mutability pattern when we
-can ensure that the borrowing rules will be followed at runtime, even though
-the compiler can’t guarantee that. The <code>unsafe</code> code involved is then wrapped
-in a safe API, and the outer type is still immutable.</p>
-<p>Let’s explore this concept by looking at the <code>RefCell&lt;T&gt;</code> type that follows the
-interior mutability pattern.</p>
-<a class="header" href="ch15-05-interior-mutability.html#enforcing-borrowing-rules-at-runtime-with-refcellt" id="enforcing-borrowing-rules-at-runtime-with-refcellt"><h3>Enforcing Borrowing Rules at Runtime with <code>RefCell&lt;T&gt;</code></h3></a>
-<p>Unlike <code>Rc&lt;T&gt;</code>, the <code>RefCell&lt;T&gt;</code> type represents single ownership over the data
-it holds. So, what makes <code>RefCell&lt;T&gt;</code> different than a type like <code>Box&lt;T&gt;</code>?
-Recall the borrowing rules you learned in Chapter 4:</p>
-<ol>
-<li>At any given time, you can have <em>either</em> but not both of:</li>
-</ol>
+                        <h2 id="refcellt-і-шаблон-внутрішньої-мутабельності"><a class="header" href="#refcellt-і-шаблон-внутрішньої-мутабельності"><code>RefCell&lt;T&gt;</code> і шаблон внутрішньої мутабельності</a></h2>
+<p><em>Внутрішня мутабельність</em> - це шаблон проєктування в Rust, що дозволяє вам змінювати дані, навіть якщо є немутабельні посилання на ці дані; зазвичай, ця дія заборонена правилами позичання. Щоб змінювати дані, цей шаблон використовує <code>небезпечний</code> код у структурі даних, щоб обійти звичайні правила Rust, що керують мутабельністю та позичанням. Небезпечний код повідомляє компілятор, що ми перевіряємо правила самостійно, а не покладаємося на компілятор, щоб перевіряти їх для нас; ми детальніше поговоримо про небезпечний код у Розділі 19.</p>
+<p>Ми можемо використовувати типи, які використовують шаблон внутрішньої мутабельності тільки тоді, коли ми можемо гарантувати дотримання правил позичання під час виконання, тоді як компілятор не може гарантувати цього. <code>Небезпечний</code> код застосовується загорнутим у безпечне API, і зовнішній тип лишається немутабельним.</p>
+<p>Дослідимо цю концепцію, розглянувши тип <code>Refell&lt;T&gt;</code>, який слідує шаблону внутрішньої мутабельності.</p>
+<h3 id="Забезпечення-правил-позичання-під-час-виконання-за-допомогою-refcellt"><a class="header" href="#Забезпечення-правил-позичання-під-час-виконання-за-допомогою-refcellt">Забезпечення правил позичання під час виконання за допомогою <code>RefCell&lt;T&gt;</code></a></h3>
+<p>На відміну від <code>Rc&lt;T&gt;</code>, тип <code>RefCell&lt;T&gt;</code> представляє єдине володіння даними, що він містить. То що ж відрізняє <code>RefCell&lt;T&gt;</code> від типу на кшталт <code>Box&lt;T&gt;</code>? Згадайте правила позичання, які ви вивчили у Розділі 4:</p>
 <ul>
-<li>One mutable reference.</li>
-<li>Any number of immutable references.</li>
+<li>У будь-який час можна мати <em>або</em> одне мутабельне посилання, &lt;0&gt;або&lt;/0&gt; будь-яку кількість немутабельних посилань.</li>
+<li>Посилання завжди мають бути коректними.</li>
 </ul>
-<ol start="2">
-<li>References must always be valid.</li>
-</ol>
-<p>With references and <code>Box&lt;T&gt;</code>, the borrowing rules’ invariants are enforced at
-compile time. With <code>RefCell&lt;T&gt;</code>, these invariants are enforced <em>at runtime</em>.
-With references, if you break these rules, you’ll get a compiler error. With
-<code>RefCell&lt;T&gt;</code>, if you break these rules, your program will <code>panic!</code> and exit.</p>
-<p>The advantages of checking the borrowing rules at compile time are that errors
-will be caught sooner in the development process, and there is no impact on
-runtime performance because all the analysis is completed beforehand. For those
-reasons, checking the borrowing rules at compile time is the best choice in the
-majority of cases, which is why this is Rust’s default.</p>
-<p>The advantage of checking the borrowing rules at runtime instead is that
-certain memory safe scenarios are then allowed, whereas they are disallowed by
-the compile time checks. Static analysis, like the Rust compiler, is inherently
-conservative. Some properties of code are impossible to detect by analyzing the
-code: the most famous example is the Halting Problem, which is beyond the scope
-of this book but is an interesting topic to research.</p>
-<p>Because some analysis is impossible, if the Rust compiler can’t be sure the
-code complies with the ownership rules, it might reject a correct program; in
-this way, it’s conservative. If Rust accepted an incorrect program, users
-wouldn’t be able to trust in the guarantees Rust makes. However, if Rust
-rejects a correct program, the programmer will be inconvenienced, but nothing
-catastrophic can occur. The <code>RefCell&lt;T&gt;</code> type is useful when you’re sure your
-code follows the borrowing rules, but the compiler is unable to understand and
-guarantee that.</p>
-<p>Similar to <code>Rc&lt;T&gt;</code>, <code>RefCell&lt;T&gt;</code> is only for use in single-threaded scenarios
-and will give you a compile time error if you try using it in a multithreaded
-context. We’ll talk about how to get the functionality of <code>RefCell&lt;T&gt;</code> in a
-multithreaded program in Chapter 16.</p>
-<p>Here is a recap of the reasons to choose <code>Box&lt;T&gt;</code>, <code>Rc&lt;T&gt;</code>, or <code>RefCell&lt;T&gt;</code>:</p>
+<p>За допомогою посилань і <code>Box&lt;T&gt;</code> інваріанти правил позичання забезпечуються під час компіляції. За допомогою <code>RefCell&lt;T&gt;</code>, ці інваріанти забезпечуються <em>під час виконання</em>. При застосуванні посилань, якщо ви порушите ці правила, то отримаєте помилку компілятора. При застосуванні <code>RefCell&lt;T&gt;</code>, якщо ви порушите ці правила, ваша програма запанікує і завершиться.</p>
+<p>Перевага перевірки правил позичання під час компіляції полягає в тому, що помилки будуть виявлені раніше під час розробки і немає впливу на продуктивність часу виконання, бо весь аналіз проведений заздалегідь. З цих причин перевірка правил позичання під час компіляції є найкращим вибором у більшості випадків, чому це і є замовчуванням Rust.</p>
+<p>Перевагою перевірки правил позичання під час виконання є те, що уможливлюються певні безпечні для пам'яті сценарії, які були б заборонені перевірками часу компіляції. Статичний аналіз, як і компілятор Rust, за своєю природою консервативний. Певні властивості коду неможливо виявити лише аналізом коду: найвідоміший приклад - Проблема зупинки, про яку в цій книзі не йдеться, але це цікава тема для дослідження.</p>
+<p>Оскільки певний аналіз неможливий, то якщо компілятор Rust не може бути впевненим, що код відповідає правилам володіння, він може відхилити коректну програму; таким чином, він консервативний. Якби Rust прийняв некоректну програму, користувачі не змогли б довіряти гарантіям, забезпеченим Rust. Однак, якщо Rust відхиляє правильну програму, програмісту буде незручно, але нічого катастрофічного не може станеться. Тип <code>RefCell&lt;T&gt;</code> є корисним, коли ви впевнені, що ваш код слідує правилам запозичень, але компілятор не в змозі зрозуміти і гарантувати це.</p>
+<p>Подібно до <code>Rc&lt;T&gt;</code>, <code>RefCell&lt;T&gt;</code> призначено лише для використання в однопотоковому сценарії видасть вам помилку часу компіляції, якщо ви спробуєте використати його в багатопотоковому контексті. Ми поговоримо про те, як отримати функціональність <code>RefCell&lt;T&gt;</code> в багатопотоковій програмі у Розділі 16.</p>
+<p>Ось коротке зведення, коли обирати <code>Box&lt;T&gt;</code>, <code>Rc&lt;T&gt;</code>, або <code>RefCell&lt;T&gt;</code>:</p>
 <ul>
-<li><code>Rc&lt;T&gt;</code> enables multiple owners of the same data; <code>Box&lt;T&gt;</code> and <code>RefCell&lt;T&gt;</code>
-have single owners.</li>
-<li><code>Box&lt;T&gt;</code> allows immutable or mutable borrows checked at compile time; <code>Rc&lt;T&gt;</code>
-only allows immutable borrows checked at compile time; <code>RefCell&lt;T&gt;</code> allows
-immutable or mutable borrows checked at runtime.</li>
-<li>Because <code>RefCell&lt;T&gt;</code> allows mutable borrows checked at runtime, we can mutate
-the value inside the <code>RefCell&lt;T&gt;</code> even when the <code>RefCell&lt;T&gt;</code> is immutable.</li>
+<li><code>Rc&lt;T&gt;</code> дозволяє декілька власників одних даних; <code>Box&lt;T&gt;</code> і <code>RefCell&lt;T&gt;</code> мають одного власника.</li>
+<li><code>Box&lt;T&gt;</code> дозволяє немутабельні чи мутабельні позичання, перевірені під час компіляції; <code>Rc&lt;T&gt;</code> дозволяє лише немутабельні позичання, перевірені під час компіляції; <code>RefCell&lt;T&gt;</code> дозволяє немутабельні чи мутабельні позичання, перевірені під час виконання.</li>
+<li>Оскільки <code>RefCell&lt;T&gt;</code> дозволяє мутабельні позичання, перевірені під час виконання, ви можете змінити значення всередині <code>RefCell&lt;T&gt;</code>, навіть коли <code>RefCell&lt;T&gt;</code> є немутабельним.</li>
 </ul>
-<p>Mutating the value inside an immutable value is the <em>interior mutability</em>
-pattern. Let’s look at a situation in which interior mutability is useful and
-examine how it’s possible.</p>
-<a class="header" href="ch15-05-interior-mutability.html#interior-mutability-a-mutable-borrow-to-an-immutable-value" id="interior-mutability-a-mutable-borrow-to-an-immutable-value"><h3>Interior Mutability: A Mutable Borrow to an Immutable Value</h3></a>
-<p>A consequence of the borrowing rules is that when we have an immutable value,
-we can’t borrow it mutably. For example, this code won’t compile:</p>
-<pre><code class="language-rust ignore">fn main() {
+<p>Зміна значення всередині немутабельного значення - це шаблон <em>внутрішньої мутабельності</em>. Подивімося на ситуацію, в якій внутрішня мутабельність корисна і дослідимо, як її використовувати.</p>
+<h3 id="Внутрішня-мутабельність-мутабельне-позичання-немутабельного-значення"><a class="header" href="#Внутрішня-мутабельність-мутабельне-позичання-немутабельного-значення">Внутрішня мутабельність: мутабельне позичання немутабельного значення</a></h3>
+<p>З правил запозичення випливає, що якщо ви маєте немутабельне значення, то ви не можете його мутабельно позичити. Наприклад, цей код не компілюється:</p>
+<pre><code class="language-rust ignore does_not_compile">fn main() {
     let x = 5;
     let y = &amp;mut x;
 }
 </code></pre>
-<p>When we try to compile this code, we’ll get the following error:</p>
-<pre><code class="language-text">error[E0596]: cannot borrow immutable local variable `x` as mutable
- --&gt; src/main.rs:3:18
+<p>Якби ви спробували скомпілювати цей код, то отримали б таку помилку:</p>
+<pre><code class="language-console">$ cargo run
+   Compiling borrowing v0.1.0 (file:///projects/borrowing)
+error[E0596]: cannot borrow `x` as mutable, as it is not declared as mutable
+ --&gt; src/main.rs:3:13
   |
 2 |     let x = 5;
-  |         - consider changing this to `mut x`
+  |         - help: consider changing this to be mutable: `mut x`
 3 |     let y = &amp;mut x;
-  |                  ^ cannot borrow mutably
+  |             ^^^^^^ cannot borrow as mutable
+
+For more information about this error, try `rustc --explain E0596`.
+error: could not compile `borrowing` due to previous error
 </code></pre>
-<p>However, there are situations in which it would be useful for a value to mutate
-itself in its methods, but to other code, the value would appear immutable.
-Code outside the value’s methods would not be able to mutate the value. Using
-<code>RefCell&lt;T&gt;</code> is one way to get the ability to have interior mutability. But
-<code>RefCell&lt;T&gt;</code> doesn’t get around the borrowing rules completely: the borrow
-checker in the compiler allows this interior mutability, and the borrowing
-rules are checked at runtime instead. If we violate the rules, we’ll get a
-<code>panic!</code> instead of a compiler error.</p>
-<p>Let’s work through a practical example where we can use <code>RefCell&lt;T&gt;</code> to mutate
-an immutable value and see why that is useful.</p>
-<a class="header" href="ch15-05-interior-mutability.html#a-use-case-for-interior-mutability-mock-objects" id="a-use-case-for-interior-mutability-mock-objects"><h4>A Use Case for Interior Mutability: Mock Objects</h4></a>
-<p>A <em>test double</em> is the general programming concept for a type used in place of
-another type during testing. <em>Mock objects</em> are specific types of test doubles
-that record what happens during a test so we can assert that the correct
-actions took place.</p>
-<p>Rust doesn’t have objects in the same sense as other languages have objects,
-and Rust doesn’t have mock object functionality built into the standard library
-like some other languages do. However, we can definitely create a struct that
-will serve the same purposes as a mock object.</p>
-<p>Here’s the scenario we’ll test: we’ll create a library that tracks a value
-against a maximum value and sends messages based on how close to the maximum
-value the current value is. This library could be used for keeping track of a
-user’s quota for the number of API calls they’re allowed to make, for example.</p>
-<p>Our library will only provide the functionality of tracking how close to the
-maximum a value is and what the messages should be at what times. Applications
-that use our library will be expected to provide the mechanism for sending the
-messages: the application could put a message in the application, send an
-email, send a text message, or something else. The library doesn’t need to know
-that detail. All it needs is something that implements a trait we’ll provide
-called <code>Messenger</code>. Listing 15-20 shows the library code:</p>
-<p><span class="filename">Filename: src/lib.rs</span></p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-pub trait Messenger {
+<p>Проте, Існують ситуації, в яких було б зручним для значення змінювати себе у своїх методах, але виглядати немутабельним для іншого коду. Код за межами методів цього значення не має можливості змінювати значення. Використання <code>RefCell&lt;T&gt;</code> є одним зі способів отримати можливість внутрішньої мутабельності, але <code>RefCell&lt;T&gt;</code> не повністю оминає правила позичання: borrow checker у компіляторі дозволяє цю внутрішню мутабельність, і правила позичання перевіряються під час виконання програми. Якщо ви порушите ці правила, ви отримаєте <code>panic!</code> замість помилки компілятора.</p>
+<p>Пропрацюємо практичний приклад, де ми можемо використати <code>RefCell&lt;T&gt;</code> для зміни немутабельного значення і побачити, чому це корисно.</p>
+<h4 id="Сценарій-використання-внутрішньої-мутабельності-імітаційні-обєкти"><a class="header" href="#Сценарій-використання-внутрішньої-мутабельності-імітаційні-обєкти">Сценарій використання внутрішньої мутабельності: імітаційні об'єкти</a></h4>
+<p>Іноді під час тестування програміст може використовувати тип замість іншого типу, для того, щоб отримати певну поведінку та перевірити коректність його реалізації. Такий тип-замінник зветься <em>тест-дублером</em>. Можна розглядати його як &quot;дублера-каскадера&quot; у фільмі, де інша людина замінює актора для виконання певної ризикованої сцени. Тест-дублери замінюють інші типи при виконанні тестів. <em>Імітаційні об'єкти</em> - це спеціальні типи тест-дублерів, що записують, що відбувається під час тесту, щоб ви могли перевірити, що мали місце правильні дії.</p>
+<p>У Rust немає об'єктів у тому ж сенсі, в якому вони є в інших мовах, і в Rust немає вбудованої функціональності імітаційних об'єктів у стандартній бібліотеці, як в деяких інших мовах. Однак, ви точно можете створити структуру, що буде служити тій же меті, що й імітаційний об'єкт.</p>
+<p>Ось цей сценарій ми будемо тестувати: ми створимо бібліотеку, яка буде відстежувати значення до максимального значення і надсилатиме повідомлення залежно від того, наскільки близьке поточне значення до максимального значення. Цю бібліотеку можна використовувати, наприклад, для відстеження квоти користувача на кількість викликів API, які їм дозволено зробити.</p>
+<p>Наша бібліотека забезпечить тільки функціональність відстеження, наскільки близьким до максимального є значення і коли та якими мають бути повідомлення. Очікується, що застосунки, які використовують нашу бібліотеку, забезпечать механізм відправлення повідомлень: застосунок може відправити повідомлення у застосунок, надіслати електронного листа, текстове повідомлення або щось інше. Бібліотека не має знати про такі подробиці. Все, що їй потрібно - щось, що реалізує наданий нами трейт, що зветься <code>Messenger</code>. Блок коду 15-20 показує код бібліотеки:</p>
+<p><span class="filename">Файл: src/lib.rs</span></p>
+<pre><code class="language-rust noplayground">pub trait Messenger {
     fn send(&amp;self, msg: &amp;str);
 }
 
-pub struct LimitTracker&lt;'a, T: 'a + Messenger&gt; {
+pub struct LimitTracker&lt;'a, T: Messenger&gt; {
     messenger: &amp;'a T,
     value: usize,
     max: usize,
 }
 
 impl&lt;'a, T&gt; LimitTracker&lt;'a, T&gt;
-    where T: Messenger {
-    pub fn new(messenger: &amp;T, max: usize) -&gt; LimitTracker&lt;T&gt; {
+where
+    T: Messenger,
+{
+    pub fn new(messenger: &amp;'a T, max: usize) -&gt; LimitTracker&lt;'a, T&gt; {
         LimitTracker {
             messenger,
             value: 0,
@@ -263,40 +220,62 @@ impl&lt;'a, T&gt; LimitTracker&lt;'a, T&gt;
 
         let percentage_of_max = self.value as f64 / self.max as f64;
 
-        if percentage_of_max &gt;= 0.75 &amp;&amp; percentage_of_max &lt; 0.9 {
-            self.messenger.send(&quot;Warning: You've used up over 75% of your quota!&quot;);
-        } else if percentage_of_max &gt;= 0.9 &amp;&amp; percentage_of_max &lt; 1.0 {
-            self.messenger.send(&quot;Urgent warning: You've used up over 90% of your quota!&quot;);
-        } else if percentage_of_max &gt;= 1.0 {
+        if percentage_of_max &gt;= 1.0 {
             self.messenger.send(&quot;Error: You are over your quota!&quot;);
+        } else if percentage_of_max &gt;= 0.9 {
+            self.messenger
+                .send(&quot;Urgent warning: You've used up over 90% of your quota!&quot;);
+        } else if percentage_of_max &gt;= 0.75 {
+            self.messenger
+                .send(&quot;Warning: You've used up over 75% of your quota!&quot;);
         }
     }
 }
-#}</code></pre></pre>
-<p><span class="caption">Listing 15-20: A library to keep track of how close to a
-maximum value a value is and warn when the value is at certain levels</span></p>
-<p>One important part of this code is that the <code>Messenger</code> trait has one method
-called <code>send</code> that takes an immutable reference to <code>self</code> and text of the
-message. This is the interface our mock object needs to have. The other
-important part is that we want to test the behavior of the <code>set_value</code> method
-on the <code>LimitTracker</code>. We can change what we pass in for the <code>value</code> parameter,
-but <code>set_value</code> doesn’t return anything for us to make assertions on. We want
-to be able to say that if we create a <code>LimitTracker</code> with something that
-implements the <code>Messenger</code> trait and a particular value for <code>max</code>, when we pass
-different numbers for <code>value</code>, the messenger is told to send the appropriate
-messages.</p>
-<p>We need a mock object that instead of sending an email or text message when we
-call <code>send</code> will only keep track of the messages it’s told to send. We can
-create a new instance of the mock object, create a <code>LimitTracker</code> that uses the
-mock object, call the <code>set_value</code> method on <code>LimitTracker</code>, and then check that
-the mock object has the messages we expect. Listing 15-21 shows an attempt of
-implementing a mock object to do just that but that the borrow checker won’t
-allow:</p>
-<p><span class="filename">Filename: src/lib.rs</span></p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-#[cfg(test)]
+</code></pre>
+<p><span class="caption">Блок коду 15-20: бібліотека для відстеження наближення значення до максимального значення і попередження, коли значення сягає певних рівнів</span></p>
+<p>Важливою частиною цього коду є те, що трейт <code>Messenger</code> має один метод, що зветься <code>send</code>, який приймає немутабельне посилання на <code>self</code> і текст повідомлення. Цей трейт є інтерфейсом нашого імітаційного об'єкта, який треба реалізувати, щоб імітаційний об'єкт можна було використовувати так само, як і реальний об'єкт. Іншою важливою частиною є те, що ми хочемо перевірити поведінку методу <code>set_value</code> у <code>LimitTracker</code>. Ми можемо змінити значення, що передається як параметр <code>value</code>, але <code>set_value</code> не поверне нам нічого, на чому можна робити тестові твердження. Ми хочемо мати змогу сказати, що якщо ми створюємо <code>LimitTracker</code> з чимось, що реалізує трейт <code>Messenger</code> і конкретним значенням <code>max</code>, то коли ми передаємо різні числа для <code>value</code>, месенджеру накажуть відправляти відповідні повідомлення.</p>
+<p>Нам потрібен імітаційний об'єкт, який, замість того, щоб надіслати електронне або текстове повідомлення коли ми викликаємо <code>send</code>, лише стежитиме за повідомленнями, які йому сказано надіслати. Ми можемо створити новий екземпляр імітаційного об'єкта, створити <code>LimitTracker</code>, який використовує цей імітаційний об'єкт, викликати метод <code>set_value</code> для <code>LimitTracker</code> і перевірити, чи цей імітаційний об'єкт містить повідомлення, на які ми очікуємо. Блок коду 15-21 показує спробу реалізувати імітаційний об'єкт, що робить саме це, але borrow checker не дозволяє так робити:</p>
+<p><span class="filename">Файл: src/lib.rs</span></p>
+<pre><code class="language-rust ignore does_not_compile"><span class="boring">pub trait Messenger {
+</span><span class="boring">    fn send(&amp;self, msg: &amp;str);
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">pub struct LimitTracker&lt;'a, T: Messenger&gt; {
+</span><span class="boring">    messenger: &amp;'a T,
+</span><span class="boring">    value: usize,
+</span><span class="boring">    max: usize,
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl&lt;'a, T&gt; LimitTracker&lt;'a, T&gt;
+</span><span class="boring">where
+</span><span class="boring">    T: Messenger,
+</span><span class="boring">{
+</span><span class="boring">    pub fn new(messenger: &amp;'a T, max: usize) -&gt; LimitTracker&lt;'a, T&gt; {
+</span><span class="boring">        LimitTracker {
+</span><span class="boring">            messenger,
+</span><span class="boring">            value: 0,
+</span><span class="boring">            max,
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    pub fn set_value(&amp;mut self, value: usize) {
+</span><span class="boring">        self.value = value;
+</span><span class="boring">
+</span><span class="boring">        let percentage_of_max = self.value as f64 / self.max as f64;
+</span><span class="boring">
+</span><span class="boring">        if percentage_of_max &gt;= 1.0 {
+</span><span class="boring">            self.messenger.send(&quot;Error: You are over your quota!&quot;);
+</span><span class="boring">        } else if percentage_of_max &gt;= 0.9 {
+</span><span class="boring">            self.messenger
+</span><span class="boring">                .send(&quot;Urgent warning: You've used up over 90% of your quota!&quot;);
+</span><span class="boring">        } else if percentage_of_max &gt;= 0.75 {
+</span><span class="boring">            self.messenger
+</span><span class="boring">                .send(&quot;Warning: You've used up over 75% of your quota!&quot;);
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span>#[cfg(test)]
 mod tests {
     use super::*;
 
@@ -306,7 +285,9 @@ mod tests {
 
     impl MockMessenger {
         fn new() -&gt; MockMessenger {
-            MockMessenger { sent_messages: vec![] }
+            MockMessenger {
+                sent_messages: vec![],
+            }
         }
     }
 
@@ -326,48 +307,69 @@ mod tests {
         assert_eq!(mock_messenger.sent_messages.len(), 1);
     }
 }
-#}</code></pre></pre>
-<p><span class="caption">Listing 15-21: An attempt to implement a <code>MockMessenger</code>
-that isn’t allowed by the borrow checker</span></p>
-<p>This test code defines a <code>MockMessenger</code> struct that has a <code>sent_messages</code>
-field with a <code>Vec</code> of <code>String</code> values to keep track of the messages it’s told
-to send. We also define an associated function <code>new</code> to make it convenient to
-create new <code>MockMessenger</code> values that start with an empty list of messages. We
-then implement the <code>Messenger</code> trait for <code>MockMessenger</code> so we can give a
-<code>MockMessenger</code> to a <code>LimitTracker</code>. In the definition of the <code>send</code> method, we
-take the message passed in as a parameter and store it in the <code>MockMessenger</code>
-list of <code>sent_messages</code>.</p>
-<p>In the test, we’re testing what happens when the <code>LimitTracker</code> is told to set
-<code>value</code> to something that is more than 75 percent of the <code>max</code> value. First, we
-create a new <code>MockMessenger</code>, which will start with an empty list of messages.
-Then we create a new <code>LimitTracker</code> and give it a reference to the new
-<code>MockMessenger</code> and a <code>max</code> value of 100. We call the <code>set_value</code> method on the
-<code>LimitTracker</code> with a value of 80, which is more than 75 percent of 100. Then
-we assert that the list of messages that the <code>MockMessenger</code> is keeping track
-of should now have one message in it.</p>
-<p>However, there’s one problem with this test, as shown here:</p>
-<pre><code class="language-text">error[E0596]: cannot borrow immutable field `self.sent_messages` as mutable
-  --&gt; src/lib.rs:52:13
-   |
-51 |         fn send(&amp;self, message: &amp;str) {
-   |                 ----- use `&amp;mut self` here to make mutable
-52 |             self.sent_messages.push(String::from(message));
-   |             ^^^^^^^^^^^^^^^^^^ cannot mutably borrow immutable field
 </code></pre>
-<p>We can’t modify the <code>MockMessenger</code> to keep track of the messages because the
-<code>send</code> method takes an immutable reference to <code>self</code>. We also can’t take the
-suggestion from the error text to use <code>&amp;mut self</code> instead because then the
-signature of <code>send</code> wouldn’t match the signature in the <code>Messenger</code> trait
-definition (feel free to try and see what error message you get).</p>
-<p>This is a situation in which interior mutability can help! We’ll store the
-<code>sent_messages</code> within a <code>RefCell&lt;T&gt;</code>, and then the <code>send</code> message will be
-able to modify <code>sent_messages</code> to store the messages we’ve seen. Listing 15-22
-shows what that looks like:</p>
-<p><span class="filename">Filename: src/lib.rs</span></p>
-<pre><pre class="playpen"><code class="language-rust">
-# #![allow(unused_variables)]
-#fn main() {
-#[cfg(test)]
+<p><span class="caption">Блок коду 15-21: спроба реалізувати <code>MockMessenger</code>, не дозволена borrow checker</span></p>
+<p>Код цього тесту визначає структуру <code>MockMessenger</code>, що має поле <code>sent_messages</code> з <code>Vec</code>, що складається з <code>String</code>, щоб відстежувати повідомлення, які йому сказано. відправити. Ми також визначили асоційовану функцію <code>new</code>, щоб зручно було створювати нові значення <code>MockMessenger</code>, які на початку мають порожній список повідомлень. Далі ми реалізуємо трейт <code>Messenger</code> для <code>MockMessenger</code>, щоб можна було передати <code>Messenger</code> до <code>LimitTracker</code>. У визначенні методу <code>send</code> ми беремо повідомлення, передане як параметр, і у <code>MockMessenger</code> зберігаємо його у списку <code>sent_messages</code>.</p>
+<p>У цьому тесті ми тестуємо, що відбувається, коли наказали <code>LimitTracker</code> встановити якесь значення <code>value</code>, більше за 75 відсотків значення <code>max</code>. Спочатку ми створюємо новий <code>MockMessenger</code>, який починає з порожнім списком повідомлень. Далі ми створюємо новий <code>LimitTracker</code> і даємо йому посилання на новий <code>MockMessenger</code> і значення <code>max</code> 100. Ми викликаємо метод <code>set_value</code> для <code>LimitTracker</code> зі значенням 80, що більше, ніж 75% від 100. Далі ми твердимо, що список повідомлень, який відстежує <code>MockMessenger</code>, має тепер складатися з одного повідомлення.</p>
+<p>Однак, є одна проблема з цим тестом, як показано тут:</p>
+<pre><code class="language-console">$ cargo test
+   Compiling limit-tracker v0.1.0 (file:///projects/limit-tracker)
+error[E0596]: cannot borrow `self.sent_messages` as mutable, as it is behind a `&amp;` reference
+  --&gt; src/lib.rs:58:13
+   |
+2  |     fn send(&amp;self, msg: &amp;str);
+   |             ----- help: consider changing that to be a mutable reference: `&amp;mut self`
+...
+58 |             self.sent_messages.push(String::from(message));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `self` is a `&amp;` reference, so the data it refers to cannot be borrowed as mutable
+
+For more information about this error, try `rustc --explain E0596`.
+error: could not compile `limit-tracker` due to previous error
+warning: build failed, waiting for other jobs to finish...
+</code></pre>
+<p>Ми не можемо змінити <code>MockMessenger</code> для відстеження повідомлень, оскільки метод <code>send</code> приймає немутабельне посилання на <code>self</code>. Також ми не можемо скористатися пропозицією з тексту помилки замінити посилання на <code>&amp;mut self</code>, тому що тоді сигнатура <code>send</code> не відповідатиме сигнатурі у визначенні трейту <code>Messenger</code>: (можете спробувати і побачите, яке повідомлення про помилку ви отримаєте).</p>
+<p>У цій ситуації може допомогти внутрішня мутабельність! Ми зберігатимемо <code>sent_messages</code> в <code>RefCell&lt;T&gt;</code>, і тоді метод <code>send</code> зможе змінити <code>sent_messages</code>, щоб зберегти повідомлення, які ми бачили. Блок коду 15-22 показує, як це виглядає:</p>
+<p><span class="filename">Файл: src/lib.rs</span></p>
+<pre><code class="language-rust noplayground"><span class="boring">pub trait Messenger {
+</span><span class="boring">    fn send(&amp;self, msg: &amp;str);
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">pub struct LimitTracker&lt;'a, T: Messenger&gt; {
+</span><span class="boring">    messenger: &amp;'a T,
+</span><span class="boring">    value: usize,
+</span><span class="boring">    max: usize,
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl&lt;'a, T&gt; LimitTracker&lt;'a, T&gt;
+</span><span class="boring">where
+</span><span class="boring">    T: Messenger,
+</span><span class="boring">{
+</span><span class="boring">    pub fn new(messenger: &amp;'a T, max: usize) -&gt; LimitTracker&lt;'a, T&gt; {
+</span><span class="boring">        LimitTracker {
+</span><span class="boring">            messenger,
+</span><span class="boring">            value: 0,
+</span><span class="boring">            max,
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    pub fn set_value(&amp;mut self, value: usize) {
+</span><span class="boring">        self.value = value;
+</span><span class="boring">
+</span><span class="boring">        let percentage_of_max = self.value as f64 / self.max as f64;
+</span><span class="boring">
+</span><span class="boring">        if percentage_of_max &gt;= 1.0 {
+</span><span class="boring">            self.messenger.send(&quot;Error: You are over your quota!&quot;);
+</span><span class="boring">        } else if percentage_of_max &gt;= 0.9 {
+</span><span class="boring">            self.messenger
+</span><span class="boring">                .send(&quot;Urgent warning: You've used up over 90% of your quota!&quot;);
+</span><span class="boring">        } else if percentage_of_max &gt;= 0.75 {
+</span><span class="boring">            self.messenger
+</span><span class="boring">                .send(&quot;Warning: You've used up over 75% of your quota!&quot;);
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span>#[cfg(test)]
 mod tests {
     use super::*;
     use std::cell::RefCell;
@@ -378,7 +380,9 @@ mod tests {
 
     impl MockMessenger {
         fn new() -&gt; MockMessenger {
-            MockMessenger { sent_messages: RefCell::new(vec![]) }
+            MockMessenger {
+                sent_messages: RefCell::new(vec![]),
+            }
         }
     }
 
@@ -391,112 +395,149 @@ mod tests {
     #[test]
     fn it_sends_an_over_75_percent_warning_message() {
         // --snip--
-#         let mock_messenger = MockMessenger::new();
-#         let mut limit_tracker = LimitTracker::new(&amp;mock_messenger, 100);
-#         limit_tracker.set_value(75);
-
+<span class="boring">        let mock_messenger = MockMessenger::new();
+</span><span class="boring">        let mut limit_tracker = LimitTracker::new(&amp;mock_messenger, 100);
+</span><span class="boring">
+</span><span class="boring">        limit_tracker.set_value(80);
+</span>
         assert_eq!(mock_messenger.sent_messages.borrow().len(), 1);
     }
 }
-#}</code></pre></pre>
-<p><span class="caption">Listing 15-22: Using <code>RefCell&lt;T&gt;</code> to mutate an inner
-value while the outer value is considered immutable</span></p>
-<p>The <code>sent_messages</code> field is now of type <code>RefCell&lt;Vec&lt;String&gt;&gt;</code> instead of
-<code>Vec&lt;String&gt;</code>. In the <code>new</code> function, we create a new <code>RefCell&lt;Vec&lt;String&gt;&gt;</code>
-instance around the empty vector.</p>
-<p>For the implementation of the <code>send</code> method, the first parameter is still an
-immutable borrow of <code>self</code>, which matches the trait definition. We call
-<code>borrow_mut</code> on the <code>RefCell&lt;Vec&lt;String&gt;&gt;</code> in <code>self.sent_messages</code> to get a
-mutable reference to the value inside the <code>RefCell&lt;Vec&lt;String&gt;&gt;</code>, which is
-the vector. Then we can call <code>push</code> on the mutable reference to the vector to
-keep track of the messages sent during the test.</p>
-<p>The last change we have to make is in the assertion: to see how many items are
-in the inner vector, we call <code>borrow</code> on the <code>RefCell&lt;Vec&lt;String&gt;&gt;</code> to get an
-immutable reference to the vector.</p>
-<p>Now that you’ve seen how to use <code>RefCell&lt;T&gt;</code>, let’s dig into how it works!</p>
-<a class="header" href="ch15-05-interior-mutability.html#refcellt-keeps-track-of-borrows-at-runtime" id="refcellt-keeps-track-of-borrows-at-runtime"><h4><code>RefCell&lt;T&gt;</code> Keeps Track of Borrows at Runtime</h4></a>
-<p>When creating immutable and mutable references, we use the <code>&amp;</code> and <code>&amp;mut</code>
-syntax, respectively. With <code>RefCell&lt;T&gt;</code>, we use the <code>borrow</code> and <code>borrow_mut</code>
-methods, which are part of the safe API that belongs to <code>RefCell&lt;T&gt;</code>. The
-<code>borrow</code> method returns the smart pointer type <code>Ref&lt;T&gt;</code>, and <code>borrow_mut</code>
-returns the smart pointer type <code>RefMut&lt;T&gt;</code>. Both types implement <code>Deref</code> so
-we can treat them like regular references.</p>
-<p>The <code>RefCell&lt;T&gt;</code> keeps track of how many <code>Ref&lt;T&gt;</code> and <code>RefMut&lt;T&gt;</code> smart
-pointers are currently active. Every time we call <code>borrow</code>, the <code>RefCell&lt;T&gt;</code>
-increases its count of how many immutable borrows are active. When a <code>Ref&lt;T&gt;</code>
-value goes out of scope, the count of immutable borrows goes down by one. Just
-like the compile time borrowing rules, <code>RefCell&lt;T&gt;</code> lets us have many immutable
-borrows or one mutable borrow at any point in time.</p>
-<p>If we try to violate these rules, rather than getting a compiler error like we
-would with references, the implementation of <code>RefCell&lt;T&gt;</code> will <code>panic!</code> at
-runtime. Listing 15-23 shows a modification of the implementation of <code>send</code> in
-Listing 15-22. We’re deliberately trying to create two mutable borrows active
-for the same scope to illustrate that <code>RefCell&lt;T&gt;</code> prevents us from doing this
-at runtime:</p>
-<p><span class="filename">Filename: src/lib.rs</span></p>
-<pre><code class="language-rust ignore">impl Messenger for MockMessenger {
-    fn send(&amp;self, message: &amp;str) {
-        let mut one_borrow = self.sent_messages.borrow_mut();
-        let mut two_borrow = self.sent_messages.borrow_mut();
+</code></pre>
+<p><span class="caption">Блок коду 15-22: Використання <code>RefCell&lt;T&gt;</code>, щоб змінити внутрішнє значення, поки зовнішнє значення вважається немутабельним</span></p>
+<p>Поле <code>sent_messages</code> тепер має тип <code>RefCell&lt;Vec&lt;String&gt;&gt;</code>, а не <code>Vec&lt;String&gt;</code>. У функції <code>new</code> ми створюємо новий екземпляр <code>RefCell&lt;Vec&lt;String&gt;&gt;</code> навколо порожнього вектора.</p>
+<p>Для реалізації метода <code>send</code> перший параметр все ще є немутабельним позичанням <code>self</code>, що відповідає за визначенню трейта. Ми викликаємо <code>borrow_mut</code> для <code>RefCell&lt;Vec&lt;String&gt;&gt;</code> у <code>self.sent_messages</code>, щоб отримати мутабельне посилання на значення всередині <code>RefCell&lt;Vec&lt;String&gt;&gt;</code>, тобто вектор. Тоді ми можемо викликати <code>push</code> для мутабельного посилання на вектор, щоб зберігати повідомлення, надіслані протягом тесту.</p>
+<p>Остання зміна, яку ми повинні зробити - в твердженні тесту: щоб подивитись, скільки елементів є у внутрішньому векторі, ми викликаємо <code>borrow</code> для <code>RefCell&lt;Vec&lt;String&gt;&gt;</code>, щоб отримати немутабельне посилання на вектор.</p>
+<p>Тепер, коли ви побачили, як використовувати <code>RefCell&lt;T&gt;</code>, зануримось у те, як воно працює!</p>
+<h4 id="Відстеження-позичань-за-допомогою-refcellt-під-час-виконання"><a class="header" href="#Відстеження-позичань-за-допомогою-refcellt-під-час-виконання">Відстеження позичань за допомогою <code>RefCell&lt;T&gt;</code> під час виконання</a></h4>
+<p>Створюючи немутабельні і мутабельні посилання, ви використовуємо, відповідно, записи <code>&amp;</code> та <code>&amp;mut</code>. Для <code>RefCell&lt;T&gt;</code> ми використовуємо методи <code>borrow</code> і <code>borrow_mut</code>, які є частиною безпечного API <code>RefCell&lt;T&gt;</code>. Метод <code>borrow</code> повертає розумний вказівник типу <code>Ref&lt;T&gt;</code>, а <code>borrow_mut</code> повертає розумний вказівник типу <code>RefMut&lt;T&gt;</code>. Обидва типи реалізують <code>Deref</code>, тому ми можемо працювати з ними як зі звичайними посиланнями.</p>
+<p><code>RefCell&lt;T&gt;</code> відстежує, скільки є активних розумних вказівників <code>Ref&lt;T&gt;</code> і <code>Refut&lt;T&gt;</code> у кожен момент. Кожного разу коли ми викликаємо <code>borrow</code>, <code>RefCell&lt;T&gt;</code> збільшує кількість активних немутабельних позичань. Коли значення <code>Ref&lt;T&gt;</code> виходить з області видимості, кількість немутабельних позичань зменшується на один. Так само як правила позичання часу компіляції, <code>Refell&lt;T&gt;</code> дозволяє мати багато немутабельних позичань або одне мутабельне позичання в будь-який момент часу.</p>
+<p>Якщо ми спробуємо порушити ці правила, то замість помилки компілятора, як це стається з посиланнями, реалізація <code>RefCell&lt;T&gt;</code> запанікує під час виконання. Блок коду 15-23 показує зміну реалізації <code>send</code> з Блоку коду 15-22. Ми навмисно намагаємося створити два немутабельні позичання активними в одній області видимості, щоб продемонструвати, що <code>RefCell&lt;T&gt;</code> запобігає цьому під час виконання.</p>
+<p><span class="filename">Файл: src/lib.rs</span></p>
+<pre><code class="language-rust ignore panics"><span class="boring">pub trait Messenger {
+</span><span class="boring">    fn send(&amp;self, msg: &amp;str);
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">pub struct LimitTracker&lt;'a, T: Messenger&gt; {
+</span><span class="boring">    messenger: &amp;'a T,
+</span><span class="boring">    value: usize,
+</span><span class="boring">    max: usize,
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl&lt;'a, T&gt; LimitTracker&lt;'a, T&gt;
+</span><span class="boring">where
+</span><span class="boring">    T: Messenger,
+</span><span class="boring">{
+</span><span class="boring">    pub fn new(messenger: &amp;'a T, max: usize) -&gt; LimitTracker&lt;'a, T&gt; {
+</span><span class="boring">        LimitTracker {
+</span><span class="boring">            messenger,
+</span><span class="boring">            value: 0,
+</span><span class="boring">            max,
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    pub fn set_value(&amp;mut self, value: usize) {
+</span><span class="boring">        self.value = value;
+</span><span class="boring">
+</span><span class="boring">        let percentage_of_max = self.value as f64 / self.max as f64;
+</span><span class="boring">
+</span><span class="boring">        if percentage_of_max &gt;= 1.0 {
+</span><span class="boring">            self.messenger.send(&quot;Error: You are over your quota!&quot;);
+</span><span class="boring">        } else if percentage_of_max &gt;= 0.9 {
+</span><span class="boring">            self.messenger
+</span><span class="boring">                .send(&quot;Urgent warning: You've used up over 90% of your quota!&quot;);
+</span><span class="boring">        } else if percentage_of_max &gt;= 0.75 {
+</span><span class="boring">            self.messenger
+</span><span class="boring">                .send(&quot;Warning: You've used up over 75% of your quota!&quot;);
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">#[cfg(test)]
+</span><span class="boring">mod tests {
+</span><span class="boring">    use super::*;
+</span><span class="boring">    use std::cell::RefCell;
+</span><span class="boring">
+</span><span class="boring">    struct MockMessenger {
+</span><span class="boring">        sent_messages: RefCell&lt;Vec&lt;String&gt;&gt;,
+</span><span class="boring">    }
+</span><span class="boring">
+</span><span class="boring">    impl MockMessenger {
+</span><span class="boring">        fn new() -&gt; MockMessenger {
+</span><span class="boring">            MockMessenger {
+</span><span class="boring">                sent_messages: RefCell::new(vec![]),
+</span><span class="boring">            }
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">
+</span>    impl Messenger for MockMessenger {
+        fn send(&amp;self, message: &amp;str) {
+            let mut one_borrow = self.sent_messages.borrow_mut();
+            let mut two_borrow = self.sent_messages.borrow_mut();
 
-        one_borrow.push(String::from(message));
-        two_borrow.push(String::from(message));
+            one_borrow.push(String::from(message));
+            two_borrow.push(String::from(message));
+        }
     }
-}
+<span class="boring">
+</span><span class="boring">    #[test]
+</span><span class="boring">    fn it_sends_an_over_75_percent_warning_message() {
+</span><span class="boring">        let mock_messenger = MockMessenger::new();
+</span><span class="boring">        let mut limit_tracker = LimitTracker::new(&amp;mock_messenger, 100);
+</span><span class="boring">
+</span><span class="boring">        limit_tracker.set_value(80);
+</span><span class="boring">
+</span><span class="boring">        assert_eq!(mock_messenger.sent_messages.borrow().len(), 1);
+</span><span class="boring">    }
+</span><span class="boring">}
+</span></code></pre>
+<p><span class="caption">Блок коду 15-23: створення двох мутабельних посилань в одній області видимості, щоб побачити, що<code>RefCell&lt;T&gt;</code> запанікує</span></p>
+<p>Ми створюємо змінну <code>one_borrow</code> для розумного вказівника <code>RefMut&lt;T&gt;</code>, повернутого з <code>borrow_mut</code>. Потім так само створюємо ще одне мутабельне позичання в змінній <code>two_borrow</code>. Це створює два мутабельні позичання в одній області видимості, що є забороненим. Коли ми запускаємо тести для нашої бібліотеки, код з Блоку коду 15-23 скомпілюється без будь-яких помилок, але тест не провалиться:</p>
+<pre><code class="language-console">$ cargo test
+   Compiling limit-tracker v0.1.0 (file:///projects/limit-tracker)
+    Finished test [unoptimized + debuginfo] target(s) in 0.91s
+     Running unittests src/lib.rs (target/debug/deps/limit_tracker-e599811fa246dbde)
+
+running 1 test
+test tests::it_sends_an_over_75_percent_warning_message ... FAILED
+
+failures:
+
+---- tests::it_sends_an_over_75_percent_warning_message stdout ----
+thread 'main' panicked at 'already borrowed: BorrowMutError', src/lib.rs:60:53
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::it_sends_an_over_75_percent_warning_message
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass '--lib'
 </code></pre>
-<p><span class="caption">Listing 15-23: Creating two mutable references in the
-same scope to see that <code>RefCell&lt;T&gt;</code> will panic</span></p>
-<p>We create a variable <code>one_borrow</code> for the <code>RefMut&lt;T&gt;</code> smart pointer returned
-from <code>borrow_mut</code>. Then we create another mutable borrow in the same way in the
-variable <code>two_borrow</code>. This makes two mutable references in the same scope,
-which isn’t allowed. When we run the tests for our library, the code in Listing
-15-23 will compile without any errors, but the test will fail:</p>
-<pre><code class="language-text">---- tests::it_sends_an_over_75_percent_warning_message stdout ----
-    thread 'tests::it_sends_an_over_75_percent_warning_message' panicked at
-    'already borrowed: BorrowMutError', src/libcore/result.rs:906:4
-note: Run with `RUST_BACKTRACE=1` for a backtrace.
-</code></pre>
-<p>Notice that the code panicked with the message <code>already borrowed: BorrowMutError</code>. This is how <code>RefCell&lt;T&gt;</code> handles violations of the borrowing
-rules at runtime.</p>
-<p>Catching borrowing errors at runtime rather than compile time means that we
-would find a mistake in our code later in the development process and possibly
-not even until our code was deployed to production. Also, our code will incur a
-small runtime performance penalty as a result of keeping track of the borrows
-at runtime rather than compile time. However, using <code>RefCell&lt;T&gt;</code> makes it
-possible for us to write a mock object that can modify itself to keep track of
-the messages it has seen while we’re using it in a context where only immutable
-values are allowed. We can use <code>RefCell&lt;T&gt;</code> despite its trade-offs to get more
-functionality than regular references give us.</p>
-<a class="header" href="ch15-05-interior-mutability.html#having-multiple-owners-of-mutable-data-by-combining-rct-and-refcellt" id="having-multiple-owners-of-mutable-data-by-combining-rct-and-refcellt"><h3>Having Multiple Owners of Mutable Data by Combining <code>Rc&lt;T&gt;</code> and <code>RefCell&lt;T&gt;</code></h3></a>
-<p>A common way to use <code>RefCell&lt;T&gt;</code> is in combination with <code>Rc&lt;T&gt;</code>. Recall that
-<code>Rc&lt;T&gt;</code> lets us have multiple owners of some data, but it only gives us
-immutable access to that data. If we have an <code>Rc&lt;T&gt;</code> that holds a <code>RefCell&lt;T&gt;</code>,
-we can get a value that can have multiple owners <em>and</em> that we can mutate!</p>
-<p>For example, recall the cons list example in Listing 15-18 where we used
-<code>Rc&lt;T&gt;</code> to let us have multiple lists share ownership of another list. Because
-<code>Rc&lt;T&gt;</code> only holds immutable values, we can’t change any of the values in the
-list once we’ve created them. Let’s add in <code>RefCell&lt;T&gt;</code> to gain the ability to
-change the values in the lists. Listing 15-24 shows that by using a
-<code>RefCell&lt;T&gt;</code> in the <code>Cons</code> definition, we can modify the value stored in all
-the lists:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
-<pre><pre class="playpen"><code class="language-rust">#[derive(Debug)]
+<p>Зверніть увагу, що код панікував з повідомленням <code>already borrowed: BorrowMutError</code>. Ось так <code>RefCell&lt;T&gt;</code> обробляє порушення правил позичання під час виконання.</p>
+<p>Перехоплення помилок під час виконання, а не під час компіляції, як ми зробили це тут, означає що ви потенційно знаходитимете помилки у вашому коді пізніше під час розробки. Можливо, лише тоді, коли ваш код уже буде розгорнуто у кінцевого користувача. Крім того, ваш код матиме незначне зниження продуктивності у піл час виконання у результаті відстеження позичань під час виконання замість часу компіляції. Проте використання <code>RefCell&lt;T&gt;</code> уможливлює запис імітаційних об'єктів, які можуть змінювати себе, щоб відстежувати повідомлення, які вони отримували під час використання в контексті, де допускаються лише немутабельні значення. Ви можете використовувати <code>RefCell&lt;T&gt;</code> не зважаючи на його недоліки, щоб отримати більше функціональності, ніж надають звичайні посилання.</p>
+<h3 id="Множинні-власники-мутабельних-даних-за-допомогою-комбінації-rct-та-refcellt"><a class="header" href="#Множинні-власники-мутабельних-даних-за-допомогою-комбінації-rct-та-refcellt">Множинні власники мутабельних даних за допомогою комбінації <code>Rc&lt;T&gt;</code> та <code>RefCell&lt;T&gt;</code></a></h3>
+<p>Звичайний спосіб використання e <code>RefCell&lt;T&gt;</code> - комбінація з <code>Rc&lt;T&gt;</code>. Згадайте, що <code>Rc&lt;T&gt;</code> дозволяє мати кілька володільців одних даних, але надає лише немутабельний доступ до цих даних. Якщо ви маєте <code>Rc&lt;T&gt;</code>, що містить <code>RefCell&lt;T&gt;</code>, ви можете отримати значення, що може мати кількох власників <em>і</em> яке ви можете змінювати!</p>
+<p>Наприклад, згадайте приклад зі списком cons у Блоці коду 15-18, де ми використовували <code>Rc&lt;T&gt;</code>, щоб дозволити декільком спискам ділитися володінням іншим списком. Оскільки <code>Rc&lt;T&gt;</code> має лише немутабельні значення, ми не можемо змінити жодне зі значень у списку після їх створення. Додамо <code>RefCell&lt;T&gt;</code>, щоб отримати можливість змінити значення у списках. Блок коду 15-24 показує, що використовуючи <code>Refell&lt;T&gt;</code> у визначенні <code>Cons</code> ми можемо змінити значення, збережене у всіх списках:</p>
+<p><span class="filename">Файл: src/main.rs</span></p>
+<pre><pre class="playground"><code class="language-rust">#[derive(Debug)]
 enum List {
     Cons(Rc&lt;RefCell&lt;i32&gt;&gt;, Rc&lt;List&gt;),
     Nil,
 }
 
-use List::{Cons, Nil};
-use std::rc::Rc;
+use crate::List::{Cons, Nil};
 use std::cell::RefCell;
+use std::rc::Rc;
 
 fn main() {
     let value = Rc::new(RefCell::new(5));
 
     let a = Rc::new(Cons(Rc::clone(&amp;value), Rc::new(Nil)));
 
-    let b = Cons(Rc::new(RefCell::new(6)), Rc::clone(&amp;a));
-    let c = Cons(Rc::new(RefCell::new(10)), Rc::clone(&amp;a));
+    let b = Cons(Rc::new(RefCell::new(3)), Rc::clone(&amp;a));
+    let c = Cons(Rc::new(RefCell::new(4)), Rc::clone(&amp;a));
 
     *value.borrow_mut() += 10;
 
@@ -505,56 +546,32 @@ fn main() {
     println!(&quot;c after = {:?}&quot;, c);
 }
 </code></pre></pre>
-<p><span class="caption">Listing 15-24: Using <code>Rc&lt;RefCell&lt;i32&gt;&gt;</code> to create a
-<code>List</code> that we can mutate</span></p>
-<p>We create a value that is an instance of <code>Rc&lt;RefCell&lt;i32&gt;</code> and store it in a
-variable named <code>value</code> so we can access it directly later. Then we create a
-<code>List</code> in <code>a</code> with a <code>Cons</code> variant that holds <code>value</code>. We need to clone
-<code>value</code> so both <code>a</code> and <code>value</code> have ownership of the inner <code>5</code> value rather
-than transferring ownership from <code>value</code> to <code>a</code> or having <code>a</code> borrow from
-<code>value</code>.</p>
-<p>We wrap the list <code>a</code> in an <code>Rc&lt;T&gt;</code> so when we create lists <code>b</code> and <code>c</code>, they
-can both refer to <code>a</code>, which is what we did in Listing 15-18.</p>
-<p>After we’ve created the lists in <code>a</code>, <code>b</code>, and <code>c</code>, we add 10 to the value in
-<code>value</code>. We do this by calling <code>borrow_mut</code> on <code>value</code>, which uses the
-automatic dereferencing feature we discussed in Chapter 5 (see the section
-“Where’s the <code>-&gt;</code> Operator?”) to dereference the <code>Rc&lt;T&gt;</code> to the inner
-<code>RefCell&lt;T&gt;</code> value. The <code>borrow_mut</code> method returns a <code>RefMut&lt;T&gt;</code> smart
-pointer, and we use the dereference operator on it and change the inner value.</p>
-<p>When we print <code>a</code>, <code>b</code>, and <code>c</code>, we can see that they all have the modified
-value of 15 rather than 5:</p>
-<pre><code class="language-text">a after = Cons(RefCell { value: 15 }, Nil)
-b after = Cons(RefCell { value: 6 }, Cons(RefCell { value: 15 }, Nil))
-c after = Cons(RefCell { value: 10 }, Cons(RefCell { value: 15 }, Nil))
+<p><span class="caption">Блок коду 15-24: використання <code>Rc&lt;RefCell&lt;i32&gt;&gt;</code> для створення <code>List</code>, який ми можемо змінювати</span></p>
+<p>Ми створюємо значення, що є екземпляром <code>Rc&lt;RefCell&lt;i32&gt;&gt;</code>, і зберігаємо його у змінній з назвою <code>value</code>, щоб пізніше мати можливість доступу до нього. Потім створили <code>List</code> в <code>a</code> з варіантом <code>Cons</code>, що містить <code>value</code>. Ми маємо клонувати <code>value</code>, щоб обидва <code>a</code> і <code>value</code> мали володіння над внутрішнім значенням <code>5</code> замість передачі володіння з <code>value</code> до <code>a</code> чи щоб <code>a</code> позичало <code>value</code>.</p>
+<p>Ми обгорнули список <code>a</code> у <code>Rc&lt;T&gt;</code>, тож коли ми створюємо списки <code>b</code> та <code>c</code>, вони обидва можуть посилатися на <code>a</code>, як ми робили у Блоці коду 15-18.</p>
+<p>Після створення списків у <code>a</code>, <code>b</code>і <code>c</code>, ми хочемо додати 10 до значення в <code>value</code>. Ми зробимо це, викликавши <code>borrow_mut</code> для <code>value</code>, що використовує автоматичне розіменування, обговорене в Розділі 5 (див. підрозділ <a href="ch05-03-method-syntax.html#wheres-the---operator">&quot;А де ж оператор <code>-&gt;</code>?&quot;</a><!-- ignore -->), для розіменування <code>Rc&lt;T&gt;</code> до внутрішнього значення <code>RefCell&lt;T&gt;</code>. Метод e <code>borrow_mut</code> повертає розумний вказівник <code>RefMut&lt;T&gt;</code>, і ми використовуємо на ньому оператор розіменування та змінюємо внутрішнє значення.</p>
+<p>Коли ми виводимо <code>a</code>, <code>b</code> та <code>c</code>, ми бачимо, що всі вони мають змінене значення 10 замість 5:</p>
+<pre><code class="language-console">$ cargo run
+   Compiling cons-list v0.1.0 (file:///projects/cons-list)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.63s
+     Running `target/debug/cons-list`
+a after = Cons(RefCell { value: 15 }, Nil)
+b after = Cons(RefCell { value: 3 }, Cons(RefCell { value: 15 }, Nil))
+c after = Cons(RefCell { value: 4 }, Cons(RefCell { value: 15 }, Nil))
 </code></pre>
-<p>This technique is pretty neat! By using <code>RefCell&lt;T&gt;</code>, we have an outwardly
-immutable <code>List</code>. But we can use the methods on <code>RefCell&lt;T&gt;</code> that provide
-access to its interior mutability so we can modify our data when we need to.
-The runtime checks of the borrowing rules protect us from data races, and it’s
-sometimes worth trading a bit of speed for this flexibility in our data
-structures.</p>
-<p>The standard library has other types that provide interior mutability, such as
-<code>Cell&lt;T&gt;</code>, which is similar except that instead of giving references to the
-inner value, the value is copied in and out of the <code>Cell&lt;T&gt;</code>. There’s also
-<code>Mutex&lt;T&gt;</code>, which offers interior mutability that’s safe to use across threads;
-we’ll discuss its use in Chapter 16. Check out the standard library docs for
-more details on the differences between these types.</p>
+<p>Ця техніка дуже акуратна! Використовуючи <code>RefCell&lt;T&gt;</code>, ми маємо зовнішньо немутабельне значення <code>List</code>. Але ми можемо використати методи <code>RefCell&lt;T&gt;</code>, які надають доступ до його внутрішньої мутабельності, тож ми можемо змінювати наші дані в разі потреби. Перевірка правил запозичення часу виконання захищає нас від гонитви даних, і це іноді варто виміняти на крихту швидкості швидкістю заради цієї гнучкості в наших структурах даних. Зверніть увагу, що <code>RefCell&lt;T&gt;</code> не працює в багатопотоковому коді! <code>Mutex&lt;T&gt;</code> є потоково-безпечною версією <code>Refell&lt;T&gt;</code>, і ми обговоримо <code>Mutex&lt;T&gt;</code> в Розділі 16.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="ch15-04-rc.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
 
-                        
                             <a rel="next" href="ch15-06-reference-cycles.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -562,46 +579,35 @@ more details on the differences between these types.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
-                    <a href="ch15-04-rc.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ch15-04-rc.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
 
-                
-                    <a href="ch15-06-reference-cycles.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="ch15-06-reference-cycles.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
 
-        <!-- Local fallback for Font Awesome -->
-        <script>
-            if (getComputedStyle(document.querySelector(".fa")).fontFamily !== "FontAwesome") {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.href = '_FontAwesome/css/font-awesome.css';
-                document.head.insertBefore(link, document.head.firstChild)
-            }
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
         </script>
 
-        
 
-        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
 
-        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
-        
+        <!-- Custom JS scripts -->
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
-
-        <!-- Custom JS script -->
-        
 
     </body>
 </html>
